@@ -1,0 +1,68 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bqef5am0cebv7"]
+
+[ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="1_wdpqj"]
+[ext_resource type="Texture2D" uid="uid://1eahbkur84hp" path="res://assets/textures/BrickWall00.png" id="2_0fkti"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yrc3d"]
+texture = ExtResource("1_wdpqj")
+
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_yrc3d"]
+
+[sub_resource type="VisualShaderNodeDistanceFade" id="VisualShaderNodeDistanceFade_viixc"]
+default_input_values = [0, 0.0, 1, 2.0]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_a65kd"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_cnpqs"]
+constant = Color(0, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_lshnd"]
+parameter_name = "ColorParameter"
+qualifier = 2
+default_value_enabled = true
+default_value = Color(0.28235295, 0.2784314, 0.25882354, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_74uhw"]
+texture = ExtResource("2_0fkti")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_c08xq"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_74uhw"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_c08xq"]
+texture = ExtResource("2_0fkti")
+
+[resource]
+flags/unshaded = true
+nodes/vertex/0/position = Vector2(400, 160)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVectorOp_74uhw")
+nodes/vertex/3/position = Vector2(200, 20)
+nodes/vertex/4/node = SubResource("VisualShaderNodeTexture_c08xq")
+nodes/vertex/4/position = Vector2(-180, -220)
+nodes/vertex/connections = PackedInt32Array(4, 0, 3, 0)
+nodes/fragment/0/position = Vector2(640, 180)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_yrc3d")
+nodes/fragment/2/position = Vector2(-520, -60)
+nodes/fragment/3/node = SubResource("VisualShaderNodeProximityFade_yrc3d")
+nodes/fragment/3/position = Vector2(-380, 340)
+nodes/fragment/4/node = SubResource("VisualShaderNodeDistanceFade_viixc")
+nodes/fragment/4/position = Vector2(-160, 380)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMix_a65kd")
+nodes/fragment/5/position = Vector2(100, 380)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_cnpqs")
+nodes/fragment/6/position = Vector2(-300, 560)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorParameter_lshnd")
+nodes/fragment/7/position = Vector2(60, 80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_74uhw")
+nodes/fragment/8/position = Vector2(-200, -340)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_c08xq")
+nodes/fragment/9/position = Vector2(460, -60)
+nodes/fragment/connections = PackedInt32Array(6, 0, 5, 1, 4, 0, 5, 2, 5, 0, 0, 0, 8, 0, 9, 0, 7, 0, 9, 1, 9, 0, 5, 0)
