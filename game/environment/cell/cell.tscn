@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cau0iddxgec2w"]
 
 [ext_resource type="Script" uid="uid://cykl8dsfj3kyf" path="res://game/environment/cell/cell.gd" id="1_7x4xk"]
-[ext_resource type="Material" uid="uid://bh4yiaprbym3r" path="res://assets/textures/carpet.tres" id="2_kg8s0"]
+[ext_resource type="Material" uid="uid://8knpanqppt15" path="res://assets/materials/FloorTile.tres" id="2_kg8s0"]
 [ext_resource type="PlaneMesh" uid="uid://ckpvnf1un8smy" path="res://assets/textures/wall_mesh.tres" id="3_kg8s0"]
 [ext_resource type="PlaneMesh" uid="uid://t01hrwmpf6p7" path="res://assets/textures/ceiling_mesh.tres" id="4_508ii"]
 
@@ -31,6 +31,7 @@ data = PackedVector3Array(0, -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, 0.
 script = ExtResource("1_7x4xk")
 
 [node name="Bottom" type="MeshInstance3D" parent="." unique_id=297199605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.129244e-05, 0.0010787249, -0.0004657209)
 mesh = SubResource("PlaneMesh_0uc8s")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Bottom" unique_id=1263706569]

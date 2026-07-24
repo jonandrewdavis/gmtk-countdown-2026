@@ -1,0 +1,40 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bv057fdcdjpii"]
+
+[ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="1_yrc3d"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yrc3d"]
+texture = ExtResource("1_yrc3d")
+
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_yrc3d"]
+
+[sub_resource type="VisualShaderNodeDistanceFade" id="VisualShaderNodeDistanceFade_viixc"]
+default_input_values = [0, 0.0, 1, 2.0]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_a65kd"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_cnpqs"]
+constant = Color(0, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_viixc"]
+texture = ExtResource("1_yrc3d")
+
+[resource]
+flags/unshaded = true
+nodes/vertex/0/position = Vector2(400, 160)
+nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_viixc")
+nodes/vertex/2/position = Vector2(40, 220)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 6)
+nodes/fragment/0/position = Vector2(640, 180)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_yrc3d")
+nodes/fragment/2/position = Vector2(-500, -40)
+nodes/fragment/3/node = SubResource("VisualShaderNodeProximityFade_yrc3d")
+nodes/fragment/3/position = Vector2(-380, 340)
+nodes/fragment/4/node = SubResource("VisualShaderNodeDistanceFade_viixc")
+nodes/fragment/4/position = Vector2(-160, 380)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMix_a65kd")
+nodes/fragment/5/position = Vector2(100, 380)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_cnpqs")
+nodes/fragment/6/position = Vector2(-300, 560)
+nodes/fragment/connections = PackedInt32Array(6, 0, 5, 1, 4, 0, 5, 2, 5, 0, 0, 0, 2, 0, 5, 0)
