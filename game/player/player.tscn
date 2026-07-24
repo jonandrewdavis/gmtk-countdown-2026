@@ -85,6 +85,7 @@ mesh = SubResource("CylinderMesh_pr2nu")
 
 [node name="PSXShaderMesh" type="MeshInstance3D" parent="Camera3D" unique_id=93284595]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.279261)
+visible = false
 mesh = SubResource("QuadMesh_fgrus")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=37046569]
