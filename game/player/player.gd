@@ -21,8 +21,6 @@ const BALL = preload("uid://c1yny3sauy8yu")
 var is_rotating := false
 var is_moving := false
 
-const SPEED = 100
-
 const OFFSET_START = Vector2(1.5, 2.25)
 const OFFSET_ACTIVE = Vector2(1.5, 1.5)
 var book_raise_tween: Tween
@@ -84,7 +82,7 @@ func _physics_process(_delta) -> void:
 		rotate_and_set_direction(-90)
 		await get_tree().create_timer(0.3).timeout
 	if Input.is_action_just_pressed('down'):
-		rotate_and_set_direction(180)
+		move(-direction)
 
 func collision_check(dir) -> bool:
 	if dir != null:
@@ -92,13 +90,18 @@ func collision_check(dir) -> bool:
 	else:
 		return false
 
-func move() -> void:
-	if forward.is_colliding() or is_moving:
+func is_blocked(dir: Vector3) -> bool:
+	var query = PhysicsRayQueryParameters3D.create(global_position, global_position + dir)
+	query.exclude = [get_rid()]
+	return not get_world_3d().direct_space_state.intersect_ray(query).is_empty()
+
+func move(move_dir: Vector3 = direction) -> void:
+	if is_blocked(move_dir) or is_moving:
 		return
-	
+
 	is_moving = true
-	
-	var target_position = global_position + direction
+
+	var target_position = global_position + move_dir
 	
 	var move_tween = get_tree().create_tween()
 	move_tween.tween_property(self, "global_position", target_position, move_time)\
@@ -180,4 +183,3 @@ func _on_page_turn(spread_index: int):
 	else:
 		control_a.hide()
 		arrow_left.hide()
-				
