@@ -8,8 +8,10 @@ extends Node3D
 @onready var bottomFace: = $Bottom
 
 func update_faces(cell_list) -> void:
-	@warning_ignore("narrowing_conversion")
-	var my_grid_position = Vector2i(global_transform.origin.x / Global.GRID_SIZE, global_transform.origin.z / 1)
+	var origin := global_transform.origin
+	var my_grid_position := Vector2i(
+		roundi(origin.x / Global.GRID_SIZE),
+		roundi(origin.z / Global.GRID_SIZE))
 	
 	# delete face when there is another cell
 	if cell_list.has(my_grid_position+Vector2i.RIGHT):

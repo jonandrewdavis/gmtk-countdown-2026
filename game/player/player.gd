@@ -6,17 +6,18 @@ extends CharacterBody3D
 @export var move_time := 0.4 * speed_factor
 @export var bob_height := 0.07
 
-@onready var page_holder: Node2D = %PageHolder
-
 const BALL = preload("uid://c1yny3sauy8yu")
+const RAY_LENGTH := 0.55
 
-@onready var forward: = $Ray_front
 @onready var camera = $Camera3D
-
+@onready var page_holder: Node2D = %PageHolder
 @onready var page_flip: PageFlip2D = %PageFlip
-
 @onready var ice_color_rect: ColorRect = %IceColorRect
 @onready var book_controls_raise: Control = %BookControlsRaise
+@onready var book_arrows: Control = %BookArrows
+@onready var control_a: TextureRect = %ControlA
+@onready var arrow_left: TextureRect = %ArrowLeft
+@onready var label_countdown: Label = %LabelCountdown
 
 var is_rotating := false
 var is_moving := false
@@ -52,7 +53,6 @@ func _tween_book(offset: Vector2) -> void:
 	book_arrows.visible = offset == OFFSET_ACTIVE
 	book_controls_raise.visible = offset == OFFSET_START
 
-
 func _physics_process(_delta) -> void:
 	if Input.is_action_just_pressed("raise_book"):
 		_tween_book(OFFSET_ACTIVE)
@@ -68,40 +68,36 @@ func _physics_process(_delta) -> void:
 		# Do not allow movement while raised.
 		return
 
-
 	if is_moving or is_rotating:
 		return
 
-
 	if Input.is_action_pressed("up"):
 		move()
-	if Input.is_action_pressed("left"):
+	elif Input.is_action_pressed("left"):
 		rotate_and_set_direction(90)
-		await get_tree().create_timer(0.3).timeout
-	if Input.is_action_pressed("right"):
+	elif Input.is_action_pressed("right"):
 		rotate_and_set_direction(-90)
-		await get_tree().create_timer(0.3).timeout
-	if Input.is_action_just_pressed('down'):
+	elif Input.is_action_just_pressed('down'):
 		move(-direction)
 
-func collision_check(dir) -> bool:
-	if dir != null:
-		return dir.is_colliding()
-	else:
-		return false
-
-func is_blocked(dir: Vector3) -> bool:
-	var query = PhysicsRayQueryParameters3D.create(global_position, global_position + dir)
+func is_blocked(move_dir: Vector3) -> bool:
+	# Cast from eye height along move_dir, just past the wall plane at 0.5.
+	var from := global_position
+	var query := PhysicsRayQueryParameters3D.create(from, from + move_dir.normalized() * RAY_LENGTH)
+	query.collide_with_areas = false
 	query.exclude = [get_rid()]
 	return not get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 func move(move_dir: Vector3 = direction) -> void:
-	if is_blocked(move_dir) or is_moving:
+	if is_blocked(move_dir):
 		return
 
 	is_moving = true
 
+	# Snap to the grid so float error from the rotation tween cannot accumulate.
 	var target_position = global_position + move_dir
+	target_position.x = snappedf(target_position.x, Global.GRID_SIZE)
+	target_position.z = snappedf(target_position.z, Global.GRID_SIZE)
 	
 	var move_tween = get_tree().create_tween()
 	move_tween.tween_property(self, "global_position", target_position, move_time)\
@@ -120,17 +116,8 @@ func move(move_dir: Vector3 = direction) -> void:
 		
 	await move_tween.finished
 	is_moving = false
-	count_down = count_down - 1 
+	count_down -= 1
 	label_countdown.text = str(count_down)
-
-@onready var label_countdown: Label = %LabelCountdown
-
-
-#func _input(event) -> void:
-	#if is_rotating:
-		#return
-	#if event.is_action_pressed("ui_down"):
-		#rotate_and_set_direction(180)
 
 func rotate_and_set_direction(angle_delta: float) -> void:
 	is_rotating = true
@@ -138,7 +125,8 @@ func rotate_and_set_direction(angle_delta: float) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "rotation_degrees:y", new_y, rotation_time).set_ease(Tween.EASE_OUT)
 	await tween.finished
-	direction = -global_transform.basis.z.normalized()
+	# snap
+	direction = (-global_transform.basis.z).snappedf(1.0)
 	is_rotating = false
 
 # TODO: Page resource
@@ -164,17 +152,8 @@ func shoot():
 	new_ball.global_position = pos + Vector3(0.0, 1.0, 0.0)
 	new_ball.apply_central_impulse(shoot_dir * force)
 
-func get_shoot_direction():
-	var viewport_rect = get_viewport().get_visible_rect().size
-	var raycast_start = camera.project_ray_origin(viewport_rect / 2)
-	var raycast_end = raycast_start + camera.project_ray_normal(viewport_rect / 2) * 200
-	return -(raycast_start - raycast_end).normalized()
-
-@onready var control_d: TextureRect = %ControlD
-@onready var control_a: TextureRect = %ControlA
-@onready var arrow_left: TextureRect = %ArrowLeft
-@onready var arrow_right: TextureRect = %ArrowRight
-@onready var book_arrows: Control = %BookArrows
+func get_shoot_direction() -> Vector3:
+	return camera.project_ray_normal(get_viewport().get_visible_rect().size / 2.0)
 
 func _on_page_turn(spread_index: int):
 	if spread_index >= 0:
