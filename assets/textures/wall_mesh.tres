@@ -1,0 +1,19 @@
+[gd_resource type="PlaneMesh" format=3 uid="uid://ckpvnf1un8smy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p1ro1"]
+load_path = "res://.godot/imported/wood_test.jpg-15b5f0a153f21139b2c1ff350b938b93.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dheuq"]
+load_path = "res://.godot/imported/texture_07.png-d5da029bad065933fe404ae4eb550c49.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7a2oq"]
+albedo_color = Color(0.9882353, 0.60784316, 0.34901962, 1)
+albedo_texture = SubResource("CompressedTexture2D_p1ro1")
+metallic_specular = 0.0
+metallic_texture = SubResource("CompressedTexture2D_dheuq")
+roughness = 0.3
+
+[resource]
+material = SubResource("StandardMaterial3D_7a2oq")
+size = Vector2(1, 1)
+orientation = 0

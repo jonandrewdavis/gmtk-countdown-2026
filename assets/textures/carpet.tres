@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bh4yiaprbym3r"]
+
+[ext_resource type="Texture2D" uid="uid://c83w5l86l66qp" path="res://assets/textures/carpet_test.png" id="1_b5ish"]
+[ext_resource type="Texture2D" uid="uid://bsmhs0hdosn2w" path="res://assets/textures/Light/texture_07.png" id="2_fc0a2"]
+
+[resource]
+albedo_color = Color(0.50140655, 0.5014065, 0.5014065, 1)
+albedo_texture = ExtResource("1_b5ish")
+metallic_specular = 0.0
+metallic_texture = ExtResource("2_fc0a2")
+roughness = 0.3

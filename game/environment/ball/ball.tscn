@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c1yny3sauy8yu"]
+
+[ext_resource type="Shader" uid="uid://c7a1ewt6qtqdv" path="res://assets/shaders/lava.gdshader" id="1_gwau6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2e5o0"]
+radius = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8grra"]
+render_priority = 0
+shader = ExtResource("1_gwau6")
+shader_parameter/dark_lava_color = Color(0.65882355, 0, 0, 1)
+shader_parameter/light_lava_color = Color(0.7411765, 0.654902, 0, 1)
+shader_parameter/speed = 0.490000023275
+shader_parameter/scale = 10.0
+shader_parameter/sharpness = 1.0400000019
+shader_parameter/emission_intensity = 0.7170000340575
+
+[sub_resource type="SphereMesh" id="SphereMesh_ono7e"]
+material = SubResource("ShaderMaterial_8grra")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sblyl"]
+radius = 0.4
+
+[node name="Ball" type="RigidBody3D" unique_id=1248059213]
+collision_layer = 0
+mass = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1441134331]
+shape = SubResource("SphereShape3D_2e5o0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1151437209]
+mesh = SubResource("SphereMesh_ono7e")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=743508399]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1860800151]
+shape = SubResource("SphereShape3D_sblyl")
