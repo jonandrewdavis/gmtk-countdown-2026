@@ -16,21 +16,28 @@ const BALL = preload("uid://c1yny3sauy8yu")
 @onready var page_flip: PageFlip2D = %PageFlip
 
 @onready var ice_color_rect: ColorRect = %IceColorRect
+@onready var book_controls_raise: Control = %BookControlsRaise
 
 var is_rotating := false
 var is_moving := false
 
 const SPEED = 100
 
-const OFFSET_START = Vector2(1.2, 2.25)
-const OFFSET_ACTIVE = Vector2(1.2, 1.5)
+const OFFSET_START = Vector2(1.5, 2.25)
+const OFFSET_ACTIVE = Vector2(1.5, 1.5)
 var book_raise_tween: Tween
 
+var count_down := 60
+
 func _ready() -> void:
-	_book_target(OFFSET_START)
+	_tween_book(OFFSET_START)
 	page_holder.position = _book_target(OFFSET_START)
 
 	Global.signal_spell_start.connect(show_spell)
+	
+	page_flip.signal_page_turn.connect(_on_page_turn)
+	_on_page_turn(-1)
+	label_countdown.text = str(count_down)
 
 func _book_target(offset: Vector2) -> Vector2:
 	return camera.get_viewport().get_visible_rect().get_center() * offset
@@ -42,6 +49,11 @@ func _tween_book(offset: Vector2) -> void:
 	book_raise_tween.tween_property(page_holder, "position", _book_target(offset), 0.5)\
 		.set_trans(Tween.TRANS_EXPO)\
 		.set_ease(Tween.EASE_OUT)
+		
+	# BOOK 
+	book_arrows.visible = offset == OFFSET_ACTIVE
+	book_controls_raise.visible = offset == OFFSET_START
+
 
 func _physics_process(_delta) -> void:
 	if Input.is_action_just_pressed("raise_book"):
@@ -105,6 +117,11 @@ func move() -> void:
 		
 	await move_tween.finished
 	is_moving = false
+	count_down = count_down - 1 
+	label_countdown.text = str(count_down)
+
+@onready var label_countdown: Label = %LabelCountdown
+
 
 #func _input(event) -> void:
 	#if is_rotating:
@@ -149,3 +166,18 @@ func get_shoot_direction():
 	var raycast_start = camera.project_ray_origin(viewport_rect / 2)
 	var raycast_end = raycast_start + camera.project_ray_normal(viewport_rect / 2) * 200
 	return -(raycast_start - raycast_end).normalized()
+
+@onready var control_d: TextureRect = %ControlD
+@onready var control_a: TextureRect = %ControlA
+@onready var arrow_left: TextureRect = %ArrowLeft
+@onready var arrow_right: TextureRect = %ArrowRight
+@onready var book_arrows: Control = %BookArrows
+
+func _on_page_turn(spread_index: int):
+	if spread_index >= 0:
+		control_a.show()
+		arrow_left.show()
+	else:
+		control_a.hide()
+		arrow_left.hide()
+				

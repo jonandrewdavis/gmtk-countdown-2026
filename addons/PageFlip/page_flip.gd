@@ -753,6 +753,7 @@ func _unhandled_input(event):
 		#if local_pos.x > -page_width/2.0: next_page(); get_viewport().set_input_as_handled()
 		#else: prev_page(); get_viewport().set_input_as_handled()
 		
+		
 func next_page():
 	if is_animating or current_spread >= total_spreads: return
 	_start_animation(true)
@@ -761,13 +762,14 @@ func next_page():
 func prev_page():
 	if is_animating or current_spread <= -1: return
 	_start_animation(false)
+	
 
 
 func _pageflip_set_input_enabled(give_control_to_book: bool):
 	# Page turning stays globally available: only the routing of events into
 	# interactive page scenes is toggled here, never the book's own navigation.
 	set_process_unhandled_input(true)
-	if give_control_to_book: Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	#if give_control_to_book: Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	if _slot_1.get_child_count() > 0:
 		var node = _slot_1.get_child(-1)
 		if node.has_meta("_pageflip_node") and node.has_signal("manage_pageflip"):
@@ -998,11 +1000,18 @@ func _start_animation(forward: bool):
 	tween.tween_method(_tween_expansion_only.bind(), start_exp, end_exp, motion_duration)
 
 	anim_player.play(final_anim_name)
-	
+
 	if is_rigid_motion:
 		var trigger_time = max(0.0, motion_duration - impact_sync_offset)
 		get_tree().create_timer(trigger_time).timeout.connect(func(): _play_sound(sfx_book_impact))
 	else: _play_sound(sfx_page_flip)
+
+	# NOTE: ADDED
+	await anim_player.animation_finished
+	signal_page_turn.emit(target_spread_idx)
+	
+signal signal_page_turn(current_spread)
+
 
 
 func _on_page_landed_early():

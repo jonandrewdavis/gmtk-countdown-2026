@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://b0ekxxogjmxvh"]
 
 [ext_resource type="Script" uid="uid://dtt84d84mgcn7" path="res://game/player/player.gd" id="1_3780m"]
+[ext_resource type="Material" uid="uid://balkrcu1ac4vr" path="res://assets/shaders/psx_shader_material.tres" id="2_4ste8"]
 [ext_resource type="PackedScene" uid="uid://btnw7ojjf5s3s" path="res://addons/PageFlip/page_flip.tscn" id="2_b2mth"]
 [ext_resource type="Texture2D" uid="uid://dt1tiecgw5rip" path="res://addons/PageFlip/Assets/interior.png" id="3_8soms"]
+[ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="3_anr75"]
 [ext_resource type="Shader" uid="uid://bo6eja0uglb2h" path="res://assets/shaders/vignette.gdshader" id="4_a4w0n"]
+[ext_resource type="Texture2D" uid="uid://ckg8gj7rjgvdr" path="res://assets/images/keyboard-&-mouse_sheet_double.png" id="6_anr75"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fgrus"]
+material = ExtResource("2_4ste8")
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yruvy"]
 
@@ -15,6 +23,38 @@ shader_parameter/vignette_strength = 1.5
 shader_parameter/dither_strength = 0.03
 shader_parameter/vignette_color = Color(0.52746207, 0.6570923, 0.9829801, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0mij"]
+atlas = ExtResource("6_anr75")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ghna"]
+atlas = ExtResource("6_anr75")
+region = Rect2(256, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ste8"]
+atlas = ExtResource("6_anr75")
+region = Rect2(512, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anr75"]
+atlas = ExtResource("6_anr75")
+region = Rect2(128, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fytw"]
+atlas = ExtResource("6_anr75")
+region = Rect2(1792, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epvkq"]
+atlas = ExtResource("6_anr75")
+region = Rect2(2048, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb4gm"]
+atlas = ExtResource("6_anr75")
+region = Rect2(1408, 1664, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv2nh"]
+atlas = ExtResource("6_anr75")
+region = Rect2(1792, 256, 128, 128)
+
 [node name="Player" type="CharacterBody3D" unique_id=317118910]
 script = ExtResource("1_3780m")
 
@@ -22,6 +62,10 @@ script = ExtResource("1_3780m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.279261)
 near = 0.001
 far = 5000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=93284595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.279261)
+mesh = SubResource("QuadMesh_fgrus")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=37046569]
 light_color = Color(1, 0.83015656, 0.66494465, 1)
@@ -40,8 +84,165 @@ shape = SubResource("CapsuleShape3D_yruvy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=365755593]
 
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=148245232]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 2
+theme = ExtResource("3_anr75")
+
+[node name="IceColorRect" type="ColorRect" parent="CanvasLayer/UI" unique_id=1381309172]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_yruvy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PageControlRoot" type="Control" parent="CanvasLayer/UI" unique_id=1174815161]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -44.0
+offset_top = -41.0
+offset_right = -4.0
+offset_bottom = -1.0
+
+[node name="BookControlsRaise" type="Control" parent="CanvasLayer/UI/PageControlRoot" unique_id=1351155341]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mouse" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookControlsRaise" unique_id=1915180086]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = 1474.0
+offset_top = 954.0
+offset_right = 1602.0
+offset_bottom = 1082.0
+texture = SubResource("AtlasTexture_j0mij")
+
+[node name="Space" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookControlsRaise" unique_id=3987300]
+layout_mode = 0
+offset_left = 1315.0
+offset_top = 917.0
+offset_right = 1507.0
+offset_bottom = 1109.0
+texture = SubResource("AtlasTexture_5ghna")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/PageControlRoot/BookControlsRaise" unique_id=591345884]
+layout_mode = 0
+offset_left = 1606.0
+offset_top = 977.0
+offset_right = 1733.0
+offset_bottom = 1044.0
+theme_override_font_sizes/font_size = 48
+text = "Book"
+
+[node name="BookArrows" type="Control" parent="CanvasLayer/UI/PageControlRoot" unique_id=1284381388]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 44.0
+offset_top = 41.0
+offset_right = 84.0
+offset_bottom = 81.0
+
+[node name="ControlA" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=802674537]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = 482.0
+offset_top = 1033.0
+offset_right = 610.0
+offset_bottom = 1161.0
+texture = SubResource("AtlasTexture_4ste8")
+
+[node name="ControlD" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=709255922]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = 1845.0
+offset_top = 1045.0
+offset_right = 1973.0
+offset_bottom = 1173.0
+texture = SubResource("AtlasTexture_anr75")
+
+[node name="ArrowLeft" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=1160030228]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = 482.0
+offset_top = 1152.0
+offset_right = 610.0
+offset_bottom = 1280.0
+texture = SubResource("AtlasTexture_5fytw")
+
+[node name="ArrowRight" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=1537755763]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = 1845.0
+offset_top = 1164.0
+offset_right = 1973.0
+offset_bottom = 1292.0
+texture = SubResource("AtlasTexture_epvkq")
+
+[node name="TopLeft" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=475728918]
+layout_mode = 1
+offset_right = 128.0
+offset_bottom = 155.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TopLeft" unique_id=1550966979]
+layout_mode = 2
+
+[node name="WASD" type="TextureRect" parent="CanvasLayer/UI/TopLeft/HBoxContainer" unique_id=176096386]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_gb4gm")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/TopLeft/HBoxContainer" unique_id=1904693432]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Move"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/TopLeft" unique_id=340473680]
+layout_mode = 2
+
+[node name="Mouse" type="TextureRect" parent="CanvasLayer/UI/TopLeft/HBoxContainer2" unique_id=1642137680]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_uv2nh")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/TopLeft/HBoxContainer2" unique_id=1863709495]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Interact"
+
+[node name="TopCenter" type="MarginContainer" parent="CanvasLayer/UI" unique_id=530590660]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TopCenter" unique_id=566212641]
+layout_mode = 2
+
+[node name="LabelCountdown" type="Label" parent="CanvasLayer/UI/TopCenter/HBoxContainer" unique_id=1829217015]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+
 [node name="PageHolder" type="Node2D" parent="CanvasLayer" unique_id=1030296480]
 unique_name_in_owner = true
+z_index = 99
 
 [node name="PageFlip" parent="CanvasLayer/PageHolder" unique_id=665792726 instance=ExtResource("2_b2mth")]
 unique_name_in_owner = true
@@ -51,13 +252,3 @@ closed_rotation = 0.0
 open_scale = Vector2(1, 1)
 pages_paths = Array[String](["uid://dndmf85msy16a", "uid://dndmf85msy16a", "uid://dp84i3671beg", "uid://dndmf85msy16a", "uid://e85cquarnixn", "uid://dndmf85msy16a"])
 tex_cover_front_out = ExtResource("3_8soms")
-
-[node name="IceColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1381309172]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_yruvy")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

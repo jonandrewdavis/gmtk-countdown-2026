@@ -30,12 +30,60 @@ height = 400
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Page" type="Control" unique_id=2090317257]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7yk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.76862746)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x45ud"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9254902, 0.9137255, 0, 0.76862746)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfrqi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.76862746)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8omcm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.62352943)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[node name="Page" type="Control" unique_id=2090317257 node_paths=PackedStringArray("buttons_to_activate")]
 layout_mode = 3
 anchors_preset = 0
-mouse_default_cursor_shape = 2
 script = ExtResource("1_x45ud")
 timer_cooldown = 11.0
+buttons_to_activate = [NodePath("Button"), NodePath("Button2"), NodePath("Button3")]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
 layout_mode = 0
@@ -48,36 +96,69 @@ custom_minimum_size = Vector2(512, 820)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_okym1")
 
-[node name="Button" type="Button" parent="." unique_id=1010016718]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 136.0
-offset_right = 505.0
-offset_bottom = 598.0
-mouse_default_cursor_shape = 2
-
-[node name="SpellRuneGlyphCircleGeneratorV0S3Jpu4n9Ysy91" type="Sprite2D" parent="Button" unique_id=888491773]
+[node name="SpellRuneGlyphCircleGeneratorV0S3Jpu4n9Ysy91" type="Sprite2D" parent="." unique_id=888491773]
 modulate = Color(0.3019608, 1, 1, 1)
-position = Vector2(247, 225)
+position = Vector2(257, 361)
 scale = Vector2(0.63547486, 0.63547486)
 texture = ExtResource("3_wfrqi")
+metadata/_edit_lock_ = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Button" unique_id=139384893]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=139384893]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 0
-offset_left = 49.0
-offset_top = 49.0
-offset_right = 449.0
-offset_bottom = 449.0
+offset_left = 59.0
+offset_top = 185.0
+offset_right = 459.0
+offset_bottom = 585.0
 mouse_filter = 2
 step = 0.1
 value = 64.0
 fill_mode = 4
 texture_under = SubResource("ImageTexture_4i8qy")
 texture_progress = SubResource("GradientTexture2D_pr2nu")
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1010016718]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 179.0
+offset_top = 142.0
+offset_right = 336.0
+offset_bottom = 299.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+
+[node name="Button2" type="Button" parent="." unique_id=966763277]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 28.0
+offset_top = 392.0
+offset_right = 185.0
+offset_bottom = 549.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wfrqi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+
+[node name="Button3" type="Button" parent="." unique_id=5594998]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 328.0
+offset_top = 399.0
+offset_right = 485.0
+offset_bottom = 556.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_8omcm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
 
 [node name="Timer" type="Timer" parent="." unique_id=995384436]
+unique_name_in_owner = true
 wait_time = 10.0
 one_shot = true
