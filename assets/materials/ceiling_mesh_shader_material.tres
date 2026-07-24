@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dqdpi06c4jcxp"]
+
+[ext_resource type="Shader" uid="uid://ebgh3g1x25sp" path="res://assets/shaders/FloorTile.tres" id="1_jbc2b"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jbc2b")

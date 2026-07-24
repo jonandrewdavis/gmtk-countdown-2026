@@ -1,6 +1,6 @@
 [gd_resource type="PlaneMesh" format=3 uid="uid://t01hrwmpf6p7"]
 
-[ext_resource type="Material" uid="uid://8knpanqppt15" path="res://assets/materials/FloorTile.tres" id="1_bhi1x"]
+[ext_resource type="Material" uid="uid://dqdpi06c4jcxp" path="res://assets/materials/ceiling_mesh_shader_material.tres" id="1_bhi1x"]
 
 [resource]
 material = ExtResource("1_bhi1x")

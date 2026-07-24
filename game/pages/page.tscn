@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://e85cquarnixn"]
 
-[ext_resource type="Texture2D" uid="uid://cen51wqc15b14" path="res://addons/PageFlip/Assets/blank_page.png" id="1_nl5ea"]
 [ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_phrhr"]
+[ext_resource type="Texture2D" uid="uid://ckf672el7mxks" path="res://assets/textures/Book/Book_Page.png" id="2_phrhr"]
 [ext_resource type="Texture2D" uid="uid://cq7kp7w1ulvuc" path="res://assets/images/Screenshot 2026-07-22 at 11.13.06 PM.png" id="3_phrhr"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_4i8qy"]
@@ -78,7 +78,7 @@ layout_mode = 0
 offset_right = 512.0
 offset_bottom = 820.0
 mouse_filter = 2
-texture = ExtResource("1_nl5ea")
+texture = ExtResource("2_phrhr")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1100833507]
 modulate = Color(1, 0.27058825, 0.03529412, 1)

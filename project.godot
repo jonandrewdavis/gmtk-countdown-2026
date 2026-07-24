@@ -13,7 +13,7 @@ config_version=5
 config/name="gmtk-countdown-2026"
 run/main_scene="uid://dorx5po5w5bju"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://ucij4orrin6y"
 
 [autoload]
 
@@ -36,8 +36,9 @@ folder_colors={
 "res://assets/": "green",
 "res://game/": "red",
 "res://game/environment/": "red",
-"res://menus/": "yellow",
-"res://player/": "blue"
+"res://game/pages/": "green",
+"res://game/player/": "blue",
+"res://menus/": "yellow"
 }
 
 [input]

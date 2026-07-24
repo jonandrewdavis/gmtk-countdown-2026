@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://d3aypiy5ai8vk"]
-
-[ext_resource type="Shader" uid="uid://bqef5am0cebv7" path="res://assets/shaders/WallTile.tres" id="1_8rqbl"]
-
-[resource]
-render_priority = 0
-shader = ExtResource("1_8rqbl")

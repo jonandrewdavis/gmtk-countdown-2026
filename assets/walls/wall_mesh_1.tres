@@ -1,6 +1,6 @@
 [gd_resource type="PlaneMesh" format=3 uid="uid://dy2yod8hwvg6q"]
 
-[ext_resource type="Material" uid="uid://cb1fbybdm77gr" path="res://assets/walls/wall_mesh_shader_material.tres" id="1_2lirn"]
+[ext_resource type="Material" uid="uid://cb1fbybdm77gr" path="res://assets/materials/wall_mesh_1_shader_material.tres" id="1_2lirn"]
 
 [resource]
 material = ExtResource("1_2lirn")

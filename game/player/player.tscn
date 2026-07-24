@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://dtt84d84mgcn7" path="res://game/player/player.gd" id="1_3780m"]
 [ext_resource type="Material" uid="uid://balkrcu1ac4vr" path="res://assets/shaders/psx_shader_material.tres" id="2_4ste8"]
 [ext_resource type="PackedScene" uid="uid://btnw7ojjf5s3s" path="res://addons/PageFlip/page_flip.tscn" id="2_b2mth"]
-[ext_resource type="Texture2D" uid="uid://dt1tiecgw5rip" path="res://addons/PageFlip/Assets/interior.png" id="3_8soms"]
 [ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="3_anr75"]
 [ext_resource type="Shader" uid="uid://bo6eja0uglb2h" path="res://assets/shaders/vignette.gdshader" id="4_a4w0n"]
 [ext_resource type="Texture2D" uid="uid://ckg8gj7rjgvdr" path="res://assets/images/keyboard-&-mouse_sheet_double.png" id="6_anr75"]
+[ext_resource type="Texture2D" uid="uid://ckf672el7mxks" path="res://assets/textures/Book/Book_Page.png" id="7_epvkq"]
+[ext_resource type="Texture2D" uid="uid://cyj5cyrvdb2wd" path="res://assets/textures/Book/Book_Spine.png" id="8_gb4gm"]
+[ext_resource type="Texture2D" uid="uid://ucij4orrin6y" path="res://assets/textures/Book/Book_Cover.png" id="9_uv2nh"]
+[ext_resource type="Texture2D" uid="uid://57gq4ht6fvmr" path="res://assets/textures/Book/Book_Inside.png" id="10_n270p"]
+[ext_resource type="Texture2D" uid="uid://2slmwcl3uuhk" path="res://assets/textures/Book/Book_Back.png" id="11_3ep63"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pr2nu"]
 top_radius = 0.2
@@ -258,12 +262,17 @@ z_index = 99
 
 [node name="PageFlip" parent="CanvasLayer/PageHolder" unique_id=665792726 instance=ExtResource("2_b2mth")]
 unique_name_in_owner = true
+blank_page_texture = ExtResource("7_epvkq")
+spine_texture = ExtResource("8_gb4gm")
 closed_scale = Vector2(1, 1)
 closed_skew = 0.0
 closed_rotation = 0.0
 open_scale = Vector2(1, 1)
 pages_paths = Array[String](["uid://dndmf85msy16a", "uid://dndmf85msy16a", "uid://dp84i3671beg", "uid://dndmf85msy16a", "uid://e85cquarnixn", "uid://dndmf85msy16a"])
-tex_cover_front_out = ExtResource("3_8soms")
+tex_cover_front_out = ExtResource("9_uv2nh")
+tex_cover_front_in = ExtResource("10_n270p")
+tex_cover_back_in = ExtResource("10_n270p")
+tex_cover_back_out = ExtResource("11_3ep63")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=871921692]
 mesh = SubResource("CapsuleMesh_yruvy")

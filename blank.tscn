@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dndmf85msy16a"]
 
-[ext_resource type="Texture2D" uid="uid://cen51wqc15b14" path="res://addons/PageFlip/Assets/blank_page.png" id="2_c8lqs"]
+[ext_resource type="Texture2D" uid="uid://ckf672el7mxks" path="res://assets/textures/Book/Book_Page.png" id="1_pvq5a"]
 
 [node name="Page" type="Control" unique_id=2090317257]
 layout_mode = 3
@@ -11,4 +11,4 @@ mouse_default_cursor_shape = 2
 layout_mode = 0
 offset_right = 512.0
 offset_bottom = 820.0
-texture = ExtResource("2_c8lqs")
+texture = ExtResource("1_pvq5a")

@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cau0iddxgec2w"]
 
 [ext_resource type="Script" uid="uid://cykl8dsfj3kyf" path="res://game/environment/cell/cell.gd" id="1_7x4xk"]
-[ext_resource type="Material" uid="uid://8knpanqppt15" path="res://assets/materials/FloorTile.tres" id="2_kg8s0"]
+[ext_resource type="Material" uid="uid://dqdpi06c4jcxp" path="res://assets/materials/ceiling_mesh_shader_material.tres" id="2_508ii"]
 [ext_resource type="PlaneMesh" uid="uid://dy2yod8hwvg6q" path="res://assets/walls/wall_mesh_1.tres" id="3_508ii"]
-[ext_resource type="PlaneMesh" uid="uid://ckpvnf1un8smy" path="res://assets/textures/wall_mesh.tres" id="3_kg8s0"]
-[ext_resource type="PlaneMesh" uid="uid://t01hrwmpf6p7" path="res://assets/textures/ceiling_mesh.tres" id="4_508ii"]
+[ext_resource type="PlaneMesh" uid="uid://t01hrwmpf6p7" path="res://assets/walls/ceiling_mesh.tres" id="4_508ii"]
+[ext_resource type="Shader" uid="uid://bqef5am0cebv7" path="res://assets/shaders/WallTile.tres" id="4_tcmk1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0uc8s"]
-material = ExtResource("2_kg8s0")
+material = ExtResource("2_508ii")
 size = Vector2(1, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8biqg"]
@@ -15,6 +15,15 @@ data = PackedVector3Array(0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5,
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_ew"]
 size = Vector3(0.05, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tu1u8"]
+render_priority = 0
+shader = ExtResource("4_tcmk1")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nefus"]
+material = SubResource("ShaderMaterial_tu1u8")
+size = Vector2(1, 1)
+orientation = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_ns"]
 size = Vector3(1, 1, 0.05)
@@ -46,7 +55,7 @@ shape = SubResource("BoxShape3D_wall_ew")
 
 [node name="East" type="MeshInstance3D" parent="." unique_id=1807365666]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0.5, 0)
-mesh = ExtResource("3_kg8s0")
+mesh = SubResource("PlaneMesh_nefus")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="East" unique_id=601058748]
 

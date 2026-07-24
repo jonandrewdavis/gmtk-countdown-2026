@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dp84i3671beg"]
 
 [ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_x45ud"]
-[ext_resource type="Texture2D" uid="uid://cen51wqc15b14" path="res://addons/PageFlip/Assets/blank_page.png" id="2_tl7yk"]
+[ext_resource type="Texture2D" uid="uid://ckf672el7mxks" path="res://assets/textures/Book/Book_Page.png" id="2_x45ud"]
 [ext_resource type="Texture2D" uid="uid://0wm163epw0on" path="res://assets/images/spell-rune-glyph-circle-generator-v0-s3jpu4n9ysy91.webp" id="3_wfrqi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okym1"]
@@ -89,7 +89,7 @@ buttons_to_activate = [NodePath("Button"), NodePath("Button2"), NodePath("Button
 layout_mode = 0
 offset_right = 512.0
 offset_bottom = 820.0
-texture = ExtResource("2_tl7yk")
+texture = ExtResource("2_x45ud")
 
 [node name="Control" type="Panel" parent="." unique_id=31334238]
 custom_minimum_size = Vector2(512, 820)
