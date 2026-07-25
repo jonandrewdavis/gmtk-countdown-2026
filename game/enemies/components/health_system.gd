@@ -32,6 +32,10 @@ func damage(value: int, source: int = 0) -> bool:
 	if health == 0:
 		return false
 
+	if get_parent().has_method('can_be_damaged'):
+		if get_parent().can_be_damaged() == false:
+			return false
+
 	# Don't allow negative values when damaging
 	var next_health = health - abs(value)
 	if allow_damage_from_source(source) == false:

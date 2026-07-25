@@ -12,4 +12,5 @@ func _ready() -> void:
 
 func on_ball_hit(body: Node3D):
 	if body is Enemy:
-		body.health_system.damage(100)
+		if body.health_system.damage(100):
+			Global.signal_enemy_damaged.emit(100, body.global_position + Vector3.UP)

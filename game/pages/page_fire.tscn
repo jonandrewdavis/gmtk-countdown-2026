@@ -2,15 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_k3igj"]
 [ext_resource type="Texture2D" uid="uid://dmk4uw0nu07vn" path="res://assets/textures/Book/Spell_Fire.png" id="2_k3igj"]
-
-[sub_resource type="Gradient" id="Gradient_kna4x"]
-offsets = PackedFloat32Array(0, 0.028037382, 0.03551402, 0.9570094, 0.97943926, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.99607843, 0.827451, 0, 1, 0.99607843, 0.827451, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ad3wk"]
-gradient = SubResource("Gradient_kna4x")
-width = 140
-height = 460
+[ext_resource type="Texture2D" uid="uid://cxsrr78hl8024" path="res://game/pages/page_fire_gradient.tres" id="3_kna4x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7yk"]
 content_margin_left = 4.0
@@ -83,7 +75,7 @@ mouse_filter = 2
 step = 0.1
 value = 59.7
 fill_mode = 3
-texture_progress = SubResource("GradientTexture2D_ad3wk")
+texture_progress = ExtResource("3_kna4x")
 
 [node name="Button" type="Button" parent="." unique_id=1010016718]
 custom_minimum_size = Vector2(96, 96)

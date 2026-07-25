@@ -15,6 +15,14 @@
 [ext_resource type="Texture2D" uid="uid://2slmwcl3uuhk" path="res://assets/textures/Book/Book_Back.png" id="11_3ep63"]
 [ext_resource type="Script" uid="uid://d5jl3b0hfehw" path="res://game/enemies/components/health_system.gd" id="12_hlth0"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr2nu"]
+albedo_color = Color(1, 0.3647059, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yruvy"]
+material = SubResource("StandardMaterial3D_pr2nu")
+radius = 0.2
+height = 1.0
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_pr2nu"]
 top_radius = 0.2
 bottom_radius = 0.1
@@ -96,14 +104,6 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr2nu"]
-albedo_color = Color(1, 0.3647059, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_yruvy"]
-material = SubResource("StandardMaterial3D_pr2nu")
-radius = 0.2
-height = 1.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trans"]
 shader = ExtResource("4_a4w0n")
 shader_parameter/inner_radius = -0.1
@@ -116,6 +116,10 @@ shader_parameter/vignette_color = Color(0, 0, 0, 1)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_3780m")
+
+[node name="DEBUG_MESH_INSTANCE" type="MeshInstance3D" parent="." unique_id=871921692]
+visible = false
+mesh = SubResource("CapsuleMesh_yruvy")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1061677885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.279261)
@@ -338,16 +342,12 @@ tex_cover_front_in = ExtResource("10_n270p")
 tex_cover_back_in = ExtResource("10_n270p")
 tex_cover_back_out = ExtResource("11_3ep63")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=871921692]
-visible = false
-mesh = SubResource("CapsuleMesh_yruvy")
-
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1014316301]
 layer = 128
-visible = false
 
 [node name="TransitionRect" type="ColorRect" parent="TransitionLayer" unique_id=1014316302]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_trans")
 anchors_preset = 15
 anchor_right = 1.0
@@ -355,3 +355,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Timers" type="Node" parent="." unique_id=1652229975]
+
+[node name="TimerIceShield" type="Timer" parent="Timers" unique_id=1779971472]
+unique_name_in_owner = true
+wait_time = 3.0

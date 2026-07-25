@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bwe1as47pivlv"]
+
+[ext_resource type="Script" uid="uid://bwtp4idccslav" path="res://menus/main_menu_loading.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="2_theme"]
+[ext_resource type="PackedScene" uid="uid://c1yny3sauy8yu" path="res://game/environment/ball/ball.tscn" id="3_ball"]
+[ext_resource type="PackedScene" uid="uid://vydo5ihqeu0v" path="res://game/enemies/ghost_1/enemy_ghost_1.tscn" id="4_ghost"]
+[ext_resource type="PackedScene" uid="uid://b0ekxxogjmxvh" path="res://game/player/player.tscn" id="4_xjkwq"]
+
+[sub_resource type="Environment" id="Environment_load"]
+background_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_kna4x"]
+offsets = PackedFloat32Array(0, 0.028037382, 0.03551402, 0.9570094, 0.97943926, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.99607843, 0.827451, 0, 1, 0.99607843, 0.827451, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xjkwq"]
+gradient = SubResource("Gradient_kna4x")
+width = 1000
+height = 60
+
+[node name="MainMenuLoading" type="Node3D" unique_id=410157323]
+script = ExtResource("1_script")
+scenes_to_instantiate = Array[PackedScene]([ExtResource("4_ghost"), ExtResource("3_ball"), ExtResource("4_xjkwq")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=216064984]
+environment = SubResource("Environment_load")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=826817605]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 4, 4)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1683296253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.5)
+
+[node name="Target" type="Marker3D" parent="." unique_id=1366781254]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1720207352]
+layer = 999
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1153150707]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LoadingUI" type="Control" parent="CanvasLayer" unique_id=356254031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/LoadingUI" unique_id=351753114]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -314.0
+offset_top = -109.5
+offset_right = 314.0
+offset_bottom = 109.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LoadingUI/MarginContainer" unique_id=1639027998]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/LoadingUI/MarginContainer/VBoxContainer" unique_id=279387155]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Loading ..."
+
+[node name="ProgressBar" type="TextureProgressBar" parent="CanvasLayer/LoadingUI/MarginContainer/VBoxContainer" unique_id=785291206]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 40)
+layout_mode = 2
+theme = ExtResource("2_theme")
+texture_progress = SubResource("GradientTexture2D_xjkwq")

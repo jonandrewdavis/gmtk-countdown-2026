@@ -9,6 +9,7 @@ const DEFAULT_SPEED := 3.0
 @export var bob_height := 0.07
 
 const BALL = preload("uid://c1yny3sauy8yu")
+const DAMAGE_NUMBER = preload("res://addons/damage_numbers/damage_number_2d.tscn")
 const RAY_LENGTH := 0.55
 
 @onready var camera = $Camera3D
@@ -24,6 +25,8 @@ const RAY_LENGTH := 0.55
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var hurt_color_rect: ColorRect = %HurtColorRect
 @onready var health_system: HealthSystem = %HealthSystem
+@onready var timer_ice_shield: Timer = %TimerIceShield
+@onready var ui: Control = $CanvasLayer/UI
 
 var is_rotating := false
 var is_moving := false
@@ -35,10 +38,13 @@ var book_raise_tween: Tween
 var count_down := 60
 
 var hurt_tween: Tween
+var damage_number_pool: Array[DamageNumber2D] = []
+var last_health := -1
 
 func _ready() -> void:
 	add_to_group('PlayerCharacter')
-
+	ready_spell_timers()
+	
 	transition_rect.material.set_shader_parameter('inner_radius', -0.1)
 	transition_rect.material.set_shader_parameter('outer_radius', 0.0)
 	transition_rect.show()
@@ -47,6 +53,7 @@ func _ready() -> void:
 	page_holder.position = _book_target(OFFSET_START)
 
 	Global.signal_spell_start.connect(show_spell)
+	Global.signal_enemy_damaged.connect(_on_enemy_damaged)
 
 	health_system.signal_max_health_updated.connect(_on_max_health_updated)
 	health_system.signal_health_updated.connect(_on_health_updated)
@@ -56,16 +63,54 @@ func _ready() -> void:
 	_on_health_updated(health_system.health)
 
 	page_flip.signal_page_turn.connect(_on_page_turn)
-	_on_page_turn(-1)
+	_on_page_turn(-1) # turn to cover page to get the book in position
+
 	label_countdown.text = str(count_down)
+
 
 func _on_max_health_updated(max_health: int) -> void:
 	health_bar.max_value = max_health
 
 func _on_health_updated(health: int) -> void:
+	if last_health > health:
+		_spawn_damage_number(last_health - health)
+	last_health = health
 	health_bar.value = health
 
-func _on_hurt() -> void:
+func _spawn_damage_number(amount: int) -> void:
+	var damage_number := _get_damage_number()
+	health_bar.add_child(damage_number)
+	damage_number.scale = Vector2(0.4, 0.4)
+	damage_number.position = Vector2(
+		randf_range(12.0, health_bar.size.x - 12.0),
+		health_bar.size.y
+	)
+	damage_number.set_values_and_animate(str(amount), Vector2.ZERO, -140.0, 30.0, 2.4)
+
+func _on_enemy_damaged(amount: int, world_pos: Vector3) -> void:
+	if camera.is_position_behind(world_pos):
+		return
+	var damage_number := _get_damage_number()
+	ui.add_child(damage_number)
+	damage_number.scale = Vector2(0.5, 0.5)
+	damage_number.position = camera.unproject_position(world_pos)
+	damage_number.set_values_and_animate(str(amount), Vector2.ZERO, 120.0, 40.0)
+
+func _get_damage_number() -> DamageNumber2D:
+	if damage_number_pool.size() > 0:
+		return damage_number_pool.pop_front()
+
+	var new_damage_number: DamageNumber2D = DAMAGE_NUMBER.instantiate()
+	new_damage_number.tree_exiting.connect(func(): damage_number_pool.append(new_damage_number))
+	return new_damage_number
+
+func can_be_damaged() -> bool:
+	if not timer_ice_shield.is_stopped():
+		return false
+		
+	return true
+
+func _on_hurt() -> void:	
 	if hurt_tween:
 		hurt_tween.kill()
 
@@ -177,20 +222,30 @@ func rotate_and_set_direction(angle_delta: float) -> void:
 	print(direction)
 	is_rotating = false
 
+func ready_spell_timers():
+	timer_ice_shield.one_shot = true
+	timer_ice_shield.wait_time = 3.0
+	timer_ice_shield.timeout.connect(func(): remove_spell(Global.SPELLS.ICE))
+
 # TODO: Page resource
 # TOOD: Spell resource, effects, etc	
 func show_spell(spell: Global.SPELLS):
 	if spell == Global.SPELLS.ICE:
 		ice_color_rect.show()
-		await get_tree().create_timer(3.0).timeout
-		var tween = get_tree().create_tween()
-		tween.tween_property(ice_color_rect.material, 'shader_parameter/vignette_strength', 0.0, 2.0)
-		await tween.finished
-		ice_color_rect.hide()
-		ice_color_rect.material['shader_parameter/vignette_strength'] = 1.5
+		timer_ice_shield.start()
 	elif spell == Global.SPELLS.FIRE:
 		shoot()
-		
+
+func remove_spell(spell: Global.SPELLS):
+	if spell == Global.SPELLS.ICE:
+		var tween = get_tree().create_tween()
+		tween.tween_property(ice_color_rect.material, 'shader_parameter/vignette_strength', 0.0, 2.0)
+		# Fades out
+		await tween.finished
+		ice_color_rect.hide()
+		ice_color_rect.material['shader_parameter/vignette_strength'] = 1.5		
+
+
 func shoot():
 	var force = 1.0
 	var shoot_dir = get_shoot_direction()
@@ -211,12 +266,8 @@ func _on_page_turn(spread_index: int):
 		arrow_left.hide()
 
 func fade_in() -> void:
-	# skip fade if we are testing...
-	if OS.is_debug_build():
-		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-		tween.tween_property(transition_rect.material, 'shader_parameter/outer_radius', 1.2, 2.5)
-		tween.parallel().tween_property(transition_rect.material, 'shader_parameter/inner_radius', 0.85, 2.5)
-		await tween.finished
-		transition_rect.hide()
-	else:
-		transition_rect.hide()
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(transition_rect.material, 'shader_parameter/outer_radius', 1.2, 2.5)
+	tween.parallel().tween_property(transition_rect.material, 'shader_parameter/inner_radius', 0.85, 2.5)
+	await tween.finished
+	transition_rect.hide()

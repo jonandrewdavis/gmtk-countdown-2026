@@ -13,42 +13,40 @@ const GHOST = preload("uid://vydo5ihqeu0v")
 var cells = []
 
 func _ready() -> void:
-	# makes loading screens not grey like in editor.
-		
-		
-	if OS.is_debug_build():
-		print('DEBUG: Mute music while testing')
-		audio_stream_player_music.volume_db = -50.0
+	_build_cells()
+	await _bake_navigation()
+	await _spawn_secret_ball()
+	_spawn_enemies()
+	player.fade_in()
 
+func _build_cells() -> void:
 	var map = Map.instantiate()
-	var tile_map = map.get_tilemap()
-	var used_tiles = tile_map.get_used_cells()
+	var used_tiles = map.get_tilemap().get_used_cells()
 	map.free()
+
 	for tile in used_tiles:
 		var cell = CELL.instantiate()
 		navigation_region_3d.add_child(cell)
 		cells.append(cell)
-		cell.global_transform.origin = Vector3(tile.x*Global.GRID_SIZE, 0, tile.y*Global.GRID_SIZE)
+		cell.global_transform.origin = Vector3(tile.x * Global.GRID_SIZE, 0, tile.y * Global.GRID_SIZE)
+
 	for cell in cells:
 		cell.update_faces(used_tiles)
 
-
-	
+func _bake_navigation() -> void:
 	await get_tree().process_frame
 	navigation_region_3d.bake_navigation_mesh.call_deferred()
 	await navigation_region_3d.bake_finished
 
+func _spawn_secret_ball() -> void:
 	await get_tree().create_timer(0.2).timeout
 	var secret_ball: RigidBody3D = BALL.instantiate()
-	secret_ball.position = Vector3(0.0, 0.0, 0.0)
+	secret_ball.position = Vector3.ZERO
 	add_child.call_deferred(secret_ball)
 	secret_ball.freeze = true
 	await get_tree().create_timer(0.2).timeout
-	
-	player.fade_in()
-	_spawn_enemies()
-	
-
+	secret_ball.queue_free()
+	await get_tree().create_timer(0.2).timeout
 
 # TODO: More flexible logic
 func _spawn_enemies():
