@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1yny3sauy8yu"]
 
 [ext_resource type="Shader" uid="uid://c7a1ewt6qtqdv" path="res://assets/shaders/lava.gdshader" id="1_gwau6"]
+[ext_resource type="Script" uid="uid://djbjmd88fahp5" path="res://game/environment/ball/ball.gd" id="1_wunp1"]
 [ext_resource type="Texture2D" uid="uid://dgqgulmi0tu0k" path="res://assets/textures/ParticleSprites/S_Fire00.png" id="2_wunp1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2e5o0"]
