@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://j1toekq3mgwl"
+path="res://.godot/imported/Spellbook Being Opened 1.mp3-99446f0c54d751a58d6ac2e385b5f7df.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Being Opened 1.mp3"
+dest_files=["res://.godot/imported/Spellbook Being Opened 1.mp3-99446f0c54d751a58d6ac2e385b5f7df.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

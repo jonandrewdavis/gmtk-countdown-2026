@@ -188,8 +188,10 @@ enum JumpTarget {
 @export_category("Audio")
 ## Sound played when a rigid cover slams shut.
 @export var sfx_book_impact: AudioStream
-## Sound played when a flexible page turns.
-@export var sfx_page_flip: AudioStream
+## Sounds played when a flexible page turns. One is picked at random per flip.
+@export var sfx_page_flip: Array[AudioStream] = [] : set = _set_sfx_page_flip
+## Random pitch range applied to each page flip sound.
+@export var sfx_page_flip_pitch: Vector2 = Vector2(0.95, 1.05) : set = _set_sfx_page_flip_pitch
 ## Time offset to sync the impact sound with the visual contact frame.
 @export var impact_sync_offset: float = 0.15
 ## AudioStreamPlayer node used for feedback.
@@ -228,6 +230,7 @@ var going_forward: bool = true
 var page_width: float
 var is_book_open: bool = false
 
+var _page_flip_randomizer: AudioStreamRandomizer
 var _runtime_pages: Array[String] = []
 var _spine_poly: Polygon2D
 
@@ -309,7 +312,7 @@ func _apply_newold_config(val):
 	volume_stack_offset = Vector2(0, 0)
 	landing_overlap = 0.15
 	sfx_book_impact = preload("uid://bhitebdghyhua")
-	sfx_page_flip = preload("uid://bylfc3b5pmbij")
+	sfx_page_flip = [preload("uid://bylfc3b5pmbij")] as Array[AudioStream]
 	impact_sync_offset = 0.15
 	target_page_size = Vector2(512, 820)
 	page_stretch_mode = PageStretchOption.SCALE
@@ -1004,7 +1007,7 @@ func _start_animation(forward: bool):
 	if is_rigid_motion:
 		var trigger_time = max(0.0, motion_duration - impact_sync_offset)
 		get_tree().create_timer(trigger_time).timeout.connect(func(): _play_sound(sfx_book_impact))
-	else: _play_sound(sfx_page_flip)
+	else: _play_sound(_page_flip_randomizer)
 
 	# NOTE: ADDED
 	await anim_player.animation_finished
@@ -1061,7 +1064,34 @@ func _animate_container_transform(target_is_closed: bool, is_back: bool, duratio
 
 func _play_sound(stream: AudioStream):
 	if not audio_player or not stream: return
-	audio_player.stream = stream; audio_player.pitch_scale = randf_range(0.95, 1.05); audio_player.play()
+	# Randomizers pitch-shift themselves, so don't compound it here.
+	var pitch := 1.0 if stream is AudioStreamRandomizer else randf_range(0.95, 1.05)
+	audio_player.stream = stream; audio_player.pitch_scale = pitch; audio_player.play()
+
+
+func _set_sfx_page_flip(value: Array[AudioStream]) -> void:
+	sfx_page_flip = value
+	_rebuild_page_flip_randomizer()
+
+
+func _set_sfx_page_flip_pitch(value: Vector2) -> void:
+	sfx_page_flip_pitch = value
+	_rebuild_page_flip_randomizer()
+
+
+## Packs the page flip clips into an AudioStreamRandomizer so playback picks a
+## different clip (and pitch) each turn without repeating the previous one.
+func _rebuild_page_flip_randomizer() -> void:
+	_page_flip_randomizer = null
+	var streams: Array[AudioStream] = sfx_page_flip.filter(func(s): return s != null)
+	if streams.is_empty(): return
+
+	var randomizer := AudioStreamRandomizer.new()
+	randomizer.playback_mode = AudioStreamRandomizer.PLAYBACK_RANDOM_NO_REPEATS
+	randomizer.random_pitch = maxf(1.0, sqrt(maxf(sfx_page_flip_pitch.y, 0.01) / maxf(sfx_page_flip_pitch.x, 0.01)))
+	for stream in streams:
+		randomizer.add_stream(-1, stream)
+	_page_flip_randomizer = randomizer
 
 
 # ==============================================================================

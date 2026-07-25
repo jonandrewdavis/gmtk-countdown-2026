@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cr2litk42pcv5" path="res://game/World.gd" id="1_16uyv"]
 [ext_resource type="PackedScene" uid="uid://b0ekxxogjmxvh" path="res://game/player/player.tscn" id="1_a7fmb"]
 [ext_resource type="PackedScene" uid="uid://b7yc03naufag0" path="res://game/environment/map/map.tscn" id="2_prens"]
+[ext_resource type="AudioStream" uid="uid://bbrj1s0o1hqkf" path="res://assets/sound/Songs/Exploring.wav" id="4_r743u"]
 
 [sub_resource type="Environment" id="Environment_yruvy"]
 
@@ -30,3 +31,8 @@ environment = SubResource("Environment_yruvy")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=559861031]
 unique_name_in_owner = true
 navigation_mesh = SubResource("NavigationMesh_yruvy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1014316300]
+stream = ExtResource("4_r743u")
+volume_db = -5.0
+autoplay = true

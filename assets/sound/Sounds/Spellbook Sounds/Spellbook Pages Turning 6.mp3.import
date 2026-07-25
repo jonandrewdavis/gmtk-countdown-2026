@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdfc876udr0xr"
+path="res://.godot/imported/Spellbook Pages Turning 6.mp3-deaeedec4b4cc0dc5782c09c737a4336.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 6.mp3"
+dest_files=["res://.godot/imported/Spellbook Pages Turning 6.mp3-deaeedec4b4cc0dc5782c09c737a4336.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

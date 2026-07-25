@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://dhlv4dbh7uctb"]
 
 [ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="1_abtw4"]
-
-[sub_resource type="Environment" id="Environment_yruvy"]
+[ext_resource type="Script" uid="uid://dirdlhegdfl3y" path="res://menus/main_menu_temp.gd" id="1_o8com"]
+[ext_resource type="PackedScene" uid="uid://csjnbcf3pr87d" path="res://menus/world_menu_preview.tscn" id="2_4uey8"]
+[ext_resource type="AudioStream" uid="uid://dt1m8gu6boc0m" path="res://assets/sound/Songs/Title Screen.wav" id="4_ffc6i"]
 
 [node name="MainMenuTemp" type="CanvasLayer" unique_id=635395771]
+script = ExtResource("1_o8com")
 
 [node name="MainMenu" type="Control" parent="." unique_id=1597372065]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +18,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_abtw4")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu" unique_id=1056617445]
+[node name="MainMargin" type="MarginContainer" parent="MainMenu" unique_id=1056617445]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -29,33 +33,48 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer" unique_id=644059089]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MainMargin" unique_id=644059089]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label" type="Label" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=50036594]
+[node name="Label" type="Label" parent="MainMenu/MainMargin/VBoxContainer" unique_id=50036594]
 layout_mode = 2
 theme_override_font_sizes/font_size = 144
 text = "\"The Countdown\""
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1772789724]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MainMargin/VBoxContainer" unique_id=1772789724]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 48
 
-[node name="ButtonStart" type="Button" parent="MainMenu/MarginContainer/VBoxContainer/VBoxContainer" unique_id=341485007]
+[node name="ButtonStart" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=341485007]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "Begin"
 
-[node name="ButtonStart2" type="Button" parent="MainMenu/MarginContainer/VBoxContainer/VBoxContainer" unique_id=765816215]
+[node name="ButtonTutorial" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=765816215]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "  How to Play  "
 
-[node name="WorldMenuPreview" type="Node3D" parent="MainMenu" unique_id=1661000805]
+[node name="ColorRect" type="ColorRect" parent="MainMenu" unique_id=1756180518]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="MainMenu/WorldMenuPreview" unique_id=925317185]
-environment = SubResource("Environment_yruvy")
+[node name="WorldMenuPreview" parent="MainMenu" unique_id=1058388667 instance=ExtResource("2_4uey8")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainMenu/WorldMenuPreview" unique_id=268287404]
+[node name="AudioStreamTitle" type="AudioStreamPlayer" parent="." unique_id=1337221430]
+unique_name_in_owner = true
+stream = ExtResource("4_ffc6i")
+volume_db = -5.0
+autoplay = true

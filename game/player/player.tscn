@@ -8,8 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://ckg8gj7rjgvdr" path="res://assets/images/keyboard-&-mouse_sheet_double.png" id="6_anr75"]
 [ext_resource type="Texture2D" uid="uid://ckf672el7mxks" path="res://assets/textures/Book/Book_Page.png" id="7_epvkq"]
 [ext_resource type="Texture2D" uid="uid://cyj5cyrvdb2wd" path="res://assets/textures/Book/Book_Spine.png" id="8_gb4gm"]
+[ext_resource type="AudioStream" uid="uid://d223no3j4qs33" path="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 3.mp3" id="9_3ep63"]
 [ext_resource type="Texture2D" uid="uid://ucij4orrin6y" path="res://assets/textures/Book/Book_Cover.png" id="9_uv2nh"]
 [ext_resource type="Texture2D" uid="uid://57gq4ht6fvmr" path="res://assets/textures/Book/Book_Inside.png" id="10_n270p"]
+[ext_resource type="AudioStream" uid="uid://ca58057hi4ket" path="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 4.mp3" id="10_rqcxa"]
+[ext_resource type="AudioStream" uid="uid://bdfc876udr0xr" path="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 6.mp3" id="11_2mv0n"]
 [ext_resource type="Texture2D" uid="uid://2slmwcl3uuhk" path="res://assets/textures/Book/Book_Back.png" id="11_3ep63"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pr2nu"]
@@ -269,6 +272,7 @@ closed_scale = Vector2(1, 1)
 closed_skew = 0.0
 closed_rotation = 0.0
 open_scale = Vector2(1, 1)
+sfx_page_flip = Array[AudioStream]([ExtResource("9_3ep63"), ExtResource("10_rqcxa"), ExtResource("11_2mv0n")])
 pages_paths = Array[String](["uid://dndmf85msy16a", "uid://dndmf85msy16a", "uid://dp84i3671beg", "uid://dndmf85msy16a", "uid://e85cquarnixn", "uid://dndmf85msy16a"])
 tex_cover_front_out = ExtResource("9_uv2nh")
 tex_cover_front_in = ExtResource("10_n270p")

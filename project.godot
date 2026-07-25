@@ -35,6 +35,7 @@ window/stretch/aspect="expand"
 folder_colors={
 "res://assets/": "green",
 "res://game/": "red",
+"res://game/enemies/components/": "yellow",
 "res://game/environment/": "red",
 "res://game/pages/": "green",
 "res://game/player/": "blue",

@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://csjnbcf3pr87d"]
+
+[ext_resource type="Script" uid="uid://c5hl6wnyloab2" path="res://menus/world_menu_preview.gd" id="1_348no"]
+[ext_resource type="Texture2D" uid="uid://ydjggg6lo04t" path="res://assets/images/skybox_1.jpg" id="1_hjqsq"]
+[ext_resource type="Texture2D" uid="uid://b3nf8n3st57h7" path="res://assets/images/tree_test.png" id="2_kyrtu"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_viixc"]
+panorama = ExtResource("1_hjqsq")
+
+[sub_resource type="Sky" id="Sky_yrc3d"]
+sky_material = SubResource("PanoramaSkyMaterial_viixc")
+
+[sub_resource type="Environment" id="Environment_yruvy"]
+background_mode = 2
+sky = SubResource("Sky_yrc3d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjqsq"]
+albedo_color = Color(0.12792766, 0.06457897, 0.089219265, 1)
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yruvy"]
+material = SubResource("StandardMaterial3D_hjqsq")
+size = Vector2(500, 500)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyrtu"]
+albedo_color = Color(0.16355681, 0.08940034, 0.11612398, 1)
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_hjqsq"]
+material = SubResource("StandardMaterial3D_kyrtu")
+size = Vector3(1, 1, 2.3862305)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_348no"]
+albedo_color = Color(0.09101627, 0.041323125, 0.05924292, 1)
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynmjy"]
+material = SubResource("StandardMaterial3D_348no")
+size = Vector3(1, 1.5675049, 2.3862305)
+
+[sub_resource type="BoxMesh" id="BoxMesh_348no"]
+material = SubResource("StandardMaterial3D_348no")
+size = Vector3(0.68896484, 1.5675049, 1.8774414)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kyrtu"]
+material = SubResource("StandardMaterial3D_kyrtu")
+size = Vector3(2.3549805, 0.5975342, 3.680542)
+
+[node name="WorldMenuPreview" type="Node3D" unique_id=1058388667]
+script = ExtResource("1_348no")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1218737679]
+environment = SubResource("Environment_yruvy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1338448553]
+transform = Transform3D(-0.114705026, 0.34687912, -0.9308694, 0.04242281, 0.93790984, 0.34427518, 0.99249345, 0, -0.12229856, 0, 1.1680462, -4.2956867)
+
+[node name="MeshInstance2D" type="MeshInstance3D" parent="." unique_id=1214878671]
+mesh = SubResource("PlaneMesh_yruvy")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=350665977]
+transform = Transform3D(-0.8660255, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, -0.8660255, -1.4942198, 0.56415415, -3.765801)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=82234818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15763998, 0.49740195, 1.0530696)
+mesh = SubResource("BoxMesh_hjqsq")
+
+[node name="house" type="MeshInstance3D" parent="." unique_id=2090504699]
+transform = Transform3D(0.91208655, 0, -0.4099977, 0, 1, 0, 0.4099977, 0, 0.91208655, 0.84791136, 1.4331515, 0.52715325)
+mesh = SubResource("BoxMesh_ynmjy")
+
+[node name="house2" type="MeshInstance3D" parent="." unique_id=592431434]
+transform = Transform3D(0.91208655, 0, -0.4099977, 0, 1, 0, 0.4099977, 0, 0.91208655, 0.97524273, 1.8413537, 0.6232033)
+mesh = SubResource("BoxMesh_348no")
+
+[node name="house3" type="MeshInstance3D" parent="." unique_id=1759789779]
+transform = Transform3D(0.91208655, 0.34295428, -0.22467859, 0, 0.5479997, 0.83647853, 0.4099977, -0.7629408, 0.49982315, 0.97524273, 1.8413537, 0.6232033)
+mesh = SubResource("BoxMesh_348no")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1361362367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33118677, 0.49740195, -0.6833942)
+mesh = SubResource("BoxMesh_hjqsq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=263991022]
+transform = Transform3D(-0.5842131, 0, 0.8116003, 0, 1, 0, -0.8116003, 0, -0.5842131, 1.0746565, -0.098480225, -1.7138907)
+mesh = SubResource("BoxMesh_kyrtu")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=500937436]
+transform = Transform3D(-0.9869891, 0, 0.16078705, 0, 1, 0, -0.16078705, 0, -0.9869891, 1.0746565, 0.16583765, -0.8497449)
+mesh = SubResource("BoxMesh_kyrtu")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=871376045]
+transform = Transform3D(-0.99661434, 0, -0.08221856, 0, 1, 0, 0.08221856, 0, -0.99661434, -0.7099788, -0.098480225, 0.8663837)
+mesh = SubResource("BoxMesh_kyrtu")
+
+[node name="TreeGroup" type="Node3D" parent="." unique_id=1503564539]
+
+[node name="Sprite3D" type="Sprite3D" parent="TreeGroup" unique_id=1532210814]
+transform = Transform3D(0.2891922, 0, 0.74590075, 0, 0.8, 0, -0.74590075, 0, 0.2891922, 6.1776013, 1.3771043, 0)
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("2_kyrtu")
+
+[node name="Sprite3D4" type="Sprite3D" parent="TreeGroup" unique_id=958560673]
+transform = Transform3D(0.25304317, 0, 0.6526631, 0, 0.7, 0, -0.6526631, 0, 0.25304317, 6.2821007, 1.9662421, 0.8070471)
+flip_h = true
+modulate = Color(0.21230483, 0.21230483, 0.21230483, 1)
+texture = ExtResource("2_kyrtu")
+
+[node name="Sprite3D2" type="Sprite3D" parent="TreeGroup" unique_id=1690949778]
+transform = Transform3D(0.768865, 0, -0.22101286, 0, 0.8, 0, 0.22101286, 0, 0.768865, -2.496221, 1.3771043, 6.230257)
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("2_kyrtu")
+
+[node name="Sprite3D3" type="Sprite3D" parent="TreeGroup" unique_id=72995198]
+transform = Transform3D(0.7806102, 0, -0.17506504, 0, 0.8, 0, 0.17506504, 0, 0.7806102, -3.1928592, 1.751873, 7.3810306)
+flip_h = true
+modulate = Color(0.21950102, 0.21950102, 0.21950102, 1)
+texture = ExtResource("2_kyrtu")
