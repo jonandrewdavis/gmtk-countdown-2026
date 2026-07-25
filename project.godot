@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gmtk-countdown-2026"
-run/main_scene="uid://dorx5po5w5bju"
+run/main_scene="uid://dhlv4dbh7uctb"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://ucij4orrin6y"
 

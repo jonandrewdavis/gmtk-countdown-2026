@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://dp84i3671beg"]
+
+[ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_phrhr"]
+[ext_resource type="Texture2D" uid="uid://p8vt4240k4t3" path="res://assets/textures/Book/Spell_Ice.png" id="2_al5if"]
+[ext_resource type="Texture2D" uid="uid://cl3erjh25o56u" path="res://game/pages/page_ice_gradient_texture.tres" id="3_5di8p"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_4i8qy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7yk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.5529412)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l06b"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x45ud"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9254902, 0.9137255, 0, 0.58431375)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmxod"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1kqs"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="Page" type="Control" unique_id=2090317257]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_phrhr")
+timer_cooldown = 11.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 820.0
+texture = ExtResource("2_al5if")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=139384893]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(425, 425)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 183.0
+offset_right = 480.0
+offset_bottom = 633.0
+mouse_filter = 2
+step = 0.1
+value = 64.0
+fill_mode = 4
+texture_under = SubResource("ImageTexture_4i8qy")
+texture_progress = ExtResource("3_5di8p")
+
+[node name="Button" type="Button" parent="." unique_id=1010016718]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 185.0
+offset_top = 155.0
+offset_right = 325.0
+offset_bottom = 295.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
+
+[node name="Button2" type="Button" parent="." unique_id=912241615]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 341.0
+offset_right = 141.0
+offset_bottom = 481.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_t1kqs")
+
+[node name="Button3" type="Button" parent="." unique_id=1517317677]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 186.0
+offset_top = 528.0
+offset_right = 326.0
+offset_bottom = 668.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_t1kqs")
+
+[node name="Button4" type="Button" parent="." unique_id=480399331]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 366.0
+offset_top = 339.0
+offset_right = 506.0
+offset_bottom = 479.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_t1kqs")
+
+[node name="Timer" type="Timer" parent="." unique_id=995384436]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true

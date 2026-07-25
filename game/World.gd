@@ -4,6 +4,7 @@ const CELL = preload("uid://cau0iddxgec2w")
 
 @export var Map: PackedScene
 const BALL = preload("uid://c1yny3sauy8yu")
+const GHOST = preload("uid://vydo5ihqeu0v")
 
 @onready var navigation_region_3d: NavigationRegion3D = %NavigationRegion3D
 
@@ -26,4 +27,12 @@ func _ready() -> void:
 	navigation_region_3d.bake_navigation_mesh.call_deferred()
 	await navigation_region_3d.bake_finished
 	
-	add_child(BALL.instantiate())
+	#var ghost = GHOST.instantiate()
+	#add_child(ghost)
+	#ghost.global_transform.origin = cells.pick_random().global_transform.origin + Vector3(0.0, 1.0, 0.0)
+
+	var secret_ball = BALL.instantiate()
+	secret_ball.position = Vector3(100.0, 100.0, 100.0)
+	add_child.call_deferred(secret_ball)
+	await get_tree().process_frame
+	secret_ball.queue_free()

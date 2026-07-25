@@ -3,7 +3,19 @@
 [ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="1_abtw4"]
 [ext_resource type="Script" uid="uid://dirdlhegdfl3y" path="res://menus/main_menu_temp.gd" id="1_o8com"]
 [ext_resource type="PackedScene" uid="uid://csjnbcf3pr87d" path="res://menus/world_menu_preview.tscn" id="2_4uey8"]
-[ext_resource type="AudioStream" uid="uid://dt1m8gu6boc0m" path="res://assets/sound/Songs/Title Screen.wav" id="4_ffc6i"]
+[ext_resource type="AudioStream" uid="uid://bbrj1s0o1hqkf" path="res://assets/sound/Songs/Exploring.wav" id="4_ffc6i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffc6i"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.47788018, 0.47788012, 0.47788012, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
 
 [node name="MainMenuTemp" type="CanvasLayer" unique_id=635395771]
 script = ExtResource("1_o8com")
@@ -18,20 +30,33 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_abtw4")
 
+[node name="TopRight" type="MarginContainer" parent="MainMenu" unique_id=2004498779]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
 [node name="MainMargin" type="MarginContainer" parent="MainMenu" unique_id=1056617445]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -20.0
-offset_right = 26.0
-offset_bottom = 20.0
+anchor_bottom = 1.0
+offset_left = -549.0
+offset_top = -471.0
+offset_right = 549.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MainMargin" unique_id=644059089]
 layout_mode = 2
@@ -50,14 +75,36 @@ theme_override_constants/separation = 48
 [node name="ButtonStart" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=341485007]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 72
 text = "Begin"
 
 [node name="ButtonTutorial" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=765816215]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 72
-text = "  How to Play  "
+text = "  How to Play"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=1457408358]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=760425134]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Volume"
+
+[node name="SliderVolume" type="HSlider" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1893471102]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_styles/slider = SubResource("StyleBoxFlat_ffc6i")
+max_value = 1.0
+step = 0.01
+value = 0.5
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu" unique_id=1756180518]
 unique_name_in_owner = true

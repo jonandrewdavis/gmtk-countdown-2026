@@ -8,20 +8,20 @@ signal manage_pageflip(give_control_to_book: bool)
 @export var spell: Global.SPELLS
 @export var timer_cooldown: float = 5.0
 
-@onready var button: Button = %Button
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var timer: Timer = %Timer
 
-@export var buttons_to_activate: Array[Button] = [] 
+var buttons_to_activate: Array[Button] = []
 
 func _ready():
 	timer.wait_time = timer_cooldown
-	button.focus_mode = Control.FOCUS_NONE
 
-	for this_button in buttons_to_activate:
-		if !this_button: printerr('Missing button assignment')
-		this_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		this_button.pressed.connect(activate.bind(this_button))
+	for child in get_children():
+		if child is Button:
+			var this_button: Button = child
+			this_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			this_button.pressed.connect(activate.bind(this_button))
+			buttons_to_activate.append(this_button)
 
 	texture_progress_bar.max_value = timer.wait_time
 	texture_progress_bar.value = 0.0

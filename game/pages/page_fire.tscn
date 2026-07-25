@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://wamtfbeofiln"]
+
+[ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_k3igj"]
+[ext_resource type="Texture2D" uid="uid://dmk4uw0nu07vn" path="res://assets/textures/Book/Spell_Fire.png" id="2_k3igj"]
+
+[sub_resource type="Gradient" id="Gradient_kna4x"]
+colors = PackedColorArray(1, 0, 0, 1, 0.42175126, 0, 0.03709449, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ad3wk"]
+gradient = SubResource("Gradient_kna4x")
+width = 140
+height = 460
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7yk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.5529412)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l06b"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x45ud"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9254902, 0.9137255, 0, 0.58431375)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmxod"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="PageFire" type="Control" unique_id=2090317257]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_k3igj")
+spell = 1
+timer_cooldown = 11.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 820.0
+texture = ExtResource("2_k3igj")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=139384893]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 189.0
+offset_top = 172.0
+offset_right = 329.0
+offset_bottom = 632.0
+mouse_filter = 2
+step = 0.1
+value = 59.7
+fill_mode = 3
+texture_progress = SubResource("GradientTexture2D_ad3wk")
+
+[node name="Button" type="Button" parent="." unique_id=1010016718]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 153.0
+offset_top = 94.0
+offset_right = 364.0
+offset_bottom = 373.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
+
+[node name="Button2" type="Button" parent="." unique_id=1240733112]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 155.0
+offset_top = 423.0
+offset_right = 366.0
+offset_bottom = 702.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
+
+[node name="Timer" type="Timer" parent="." unique_id=995384436]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true

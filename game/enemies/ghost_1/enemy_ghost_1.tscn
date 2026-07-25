@@ -92,11 +92,10 @@ libraries/ = ExtResource("14_v1528")
 script = ExtResource("2_ip34o")
 regen_enabled = false
 
-[node name="NavigationSystem" type="Node" parent="." unique_id=516601289 node_paths=PackedStringArray("nav_agent", "search_box", "search_box_ghost")]
+[node name="NavigationSystem" type="Node" parent="." unique_id=516601289 node_paths=PackedStringArray("nav_agent", "search_box")]
 script = ExtResource("3_uvqya")
 nav_agent = NodePath("../NavigationAgent3D")
 search_box = NodePath("../SearchBox")
-search_box_ghost = NodePath("")
 min_patrol = 8.0
 
 [node name="AttackBox" type="Area3D" parent="." unique_id=1496836165]
