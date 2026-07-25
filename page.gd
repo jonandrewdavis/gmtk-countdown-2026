@@ -46,6 +46,7 @@ func all_buttons_ready():
 	return buttons_to_activate.all(func(item: Button): return item.disabled == true)	
 
 func reset():
+	await get_tree().process_frame
 	for this_button in buttons_to_activate:
 		this_button.disabled = false
 		this_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
