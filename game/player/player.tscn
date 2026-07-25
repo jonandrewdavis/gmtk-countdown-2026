@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bdfc876udr0xr" path="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 6.mp3" id="11_2mv0n"]
 [ext_resource type="Texture2D" uid="uid://2slmwcl3uuhk" path="res://assets/textures/Book/Book_Back.png" id="11_3ep63"]
 [ext_resource type="Script" uid="uid://d5jl3b0hfehw" path="res://game/enemies/components/health_system.gd" id="12_hlth0"]
+[ext_resource type="Script" uid="uid://cbuduog2p7fw5" path="res://addons/damage_numbers/damage_numbers_2d.gd" id="13_dmgnm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr2nu"]
 albedo_color = Color(1, 0.3647059, 1, 1)
@@ -341,6 +342,23 @@ tex_cover_front_out = ExtResource("9_uv2nh")
 tex_cover_front_in = ExtResource("10_n270p")
 tex_cover_back_in = ExtResource("10_n270p")
 tex_cover_back_out = ExtResource("11_3ep63")
+
+[node name="DamageNumbersPlayer" type="CanvasLayer" parent="." unique_id=1014316303]
+unique_name_in_owner = true
+layer = 2
+script = ExtResource("13_dmgnm")
+color = Color(1, 0.35, 0.3, 1)
+number_scale = 0.9
+height = -260.0
+spread = 50.0
+duration = 2.4
+
+[node name="DamageNumbersEnemy" type="CanvasLayer" parent="." unique_id=1014316304]
+unique_name_in_owner = true
+layer = 2
+script = ExtResource("13_dmgnm")
+color = Color(1, 0.92, 0.55, 1)
+number_scale = 0.8
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1014316301]
 layer = 128

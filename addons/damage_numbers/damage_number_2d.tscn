@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ebcvhr11avrw"]
+[gd_scene format=3 uid="uid://ebcvhr11avrw"]
 
-[ext_resource type="Script" path="res://addons/damage_numbers/damage_number_2d.gd" id="1_kt674"]
+[ext_resource type="Script" uid="uid://cd1dnm77h0j6p" path="res://addons/damage_numbers/damage_number_2d.gd" id="1_kt674"]
+[ext_resource type="FontFile" uid="uid://7axext4e2oua" path="res://assets/theme/Amarante-Regular.ttf" id="2_abnla"]
 
 [sub_resource type="Animation" id="Animation_7v65o"]
 length = 0.001
@@ -91,47 +92,39 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_np4dl"]
 _data = {
-"RESET": SubResource("Animation_7v65o"),
-"Rise and Fade": SubResource("Animation_lhokx")
+&"RESET": SubResource("Animation_7v65o"),
+&"Rise and Fade": SubResource("Animation_lhokx")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_ygtpk"]
-font_size = 46
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-
-[node name="Damage_Number_2D" type="Node2D"]
+[node name="Damage_Number_2D" type="Node2D" unique_id=353619393]
 script = ExtResource("1_kt674")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=188795135]
 unique_name_in_owner = true
-autoplay = "Rise and Fade"
-libraries = {
-"": SubResource("AnimationLibrary_np4dl")
-}
+libraries/ = SubResource("AnimationLibrary_np4dl")
+autoplay = &"Rise and Fade"
 
-[node name="LabelContainer" type="Node2D" parent="."]
+[node name="LabelContainer" type="Node2D" parent="." unique_id=1995976807]
 unique_name_in_owner = true
-position = Vector2(0, -40)
 scale = Vector2(2, 2)
 
-[node name="Label" type="Label" parent="LabelContainer"]
+[node name="Label" type="Label" parent="LabelContainer" unique_id=260186799]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -14.0
-offset_right = 375.0
-offset_bottom = 53.0
-scale = Vector2(0.5, 0.5)
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 30
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("2_abnla")
+theme_override_font_sizes/font_size = 64
 text = "123"
-label_settings = SubResource("LabelSettings_ygtpk")
 horizontal_alignment = 1
+vertical_alignment = 1

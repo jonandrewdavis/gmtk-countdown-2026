@@ -9,7 +9,6 @@ const DEFAULT_SPEED := 3.0
 @export var bob_height := 0.07
 
 const BALL = preload("uid://c1yny3sauy8yu")
-const DAMAGE_NUMBER = preload("res://addons/damage_numbers/damage_number_2d.tscn")
 const RAY_LENGTH := 0.55
 
 @onready var camera = $Camera3D
@@ -26,7 +25,8 @@ const RAY_LENGTH := 0.55
 @onready var hurt_color_rect: ColorRect = %HurtColorRect
 @onready var health_system: HealthSystem = %HealthSystem
 @onready var timer_ice_shield: Timer = %TimerIceShield
-@onready var ui: Control = $CanvasLayer/UI
+@onready var damage_numbers_player: DamageNumbers2D = %DamageNumbersPlayer
+@onready var damage_numbers_enemy: DamageNumbers2D = %DamageNumbersEnemy
 
 var is_rotating := false
 var is_moving := false
@@ -38,7 +38,6 @@ var book_raise_tween: Tween
 var count_down := 60
 
 var hurt_tween: Tween
-var damage_number_pool: Array[DamageNumber2D] = []
 var last_health := -1
 
 func _ready() -> void:
@@ -73,36 +72,13 @@ func _on_max_health_updated(max_health: int) -> void:
 
 func _on_health_updated(health: int) -> void:
 	if last_health > health:
-		_spawn_damage_number(last_health - health)
+		damage_numbers_player.spawn(last_health - health,
+			health_bar.global_position + Vector2(health_bar.size.x * 0.5, health_bar.size.y + 30.0))
 	last_health = health
 	health_bar.value = health
 
-func _spawn_damage_number(amount: int) -> void:
-	var damage_number := _get_damage_number()
-	health_bar.add_child(damage_number)
-	damage_number.scale = Vector2(0.4, 0.4)
-	damage_number.position = Vector2(
-		randf_range(12.0, health_bar.size.x - 12.0),
-		health_bar.size.y
-	)
-	damage_number.set_values_and_animate(str(amount), Vector2.ZERO, -140.0, 30.0, 2.4)
-
-func _on_enemy_damaged(amount: int, world_pos: Vector3) -> void:
-	if camera.is_position_behind(world_pos):
-		return
-	var damage_number := _get_damage_number()
-	ui.add_child(damage_number)
-	damage_number.scale = Vector2(0.5, 0.5)
-	damage_number.position = camera.unproject_position(world_pos)
-	damage_number.set_values_and_animate(str(amount), Vector2.ZERO, 120.0, 40.0)
-
-func _get_damage_number() -> DamageNumber2D:
-	if damage_number_pool.size() > 0:
-		return damage_number_pool.pop_front()
-
-	var new_damage_number: DamageNumber2D = DAMAGE_NUMBER.instantiate()
-	new_damage_number.tree_exiting.connect(func(): damage_number_pool.append(new_damage_number))
-	return new_damage_number
+func _on_enemy_damaged(amount: int) -> void:
+	damage_numbers_enemy.spawn_centered(amount)
 
 func can_be_damaged() -> bool:
 	if not timer_ice_shield.is_stopped():

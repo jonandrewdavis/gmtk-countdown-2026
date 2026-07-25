@@ -6,8 +6,9 @@ extends Node2D
 @onready var ap: AnimationPlayer = %AnimationPlayer
 
 
-func set_values_and_animate(value: String, start_pos: Vector2, height: float, spread: float, duration: float = 0.0) -> void:
+func set_values_and_animate(value: String, start_pos: Vector2, height: float, spread: float, duration: float = 0.0, color: Color = Color.WHITE) -> void:
 	label.text = value
+	label.modulate = color
 	var anim_length = ap.get_animation("Rise and Fade").length
 	var tween_length = duration if duration > 0.0 else anim_length
 	ap.speed_scale = anim_length / tween_length
