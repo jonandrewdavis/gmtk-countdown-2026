@@ -10,4 +10,7 @@ enum SPELLS {
 }
 
 
+func _enter_tree() -> void:
+	RenderingServer.set_default_clear_color(Color.BLACK)
+
 signal signal_spell_start(SPELLS)

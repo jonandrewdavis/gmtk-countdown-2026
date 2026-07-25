@@ -14,8 +14,6 @@ var cells = []
 
 func _ready() -> void:
 	# makes loading screens not grey like in editor.
-	if not OS.is_debug_build():
-		RenderingServer.set_default_clear_color(Color.BLACK)
 		
 		
 	if OS.is_debug_build():
