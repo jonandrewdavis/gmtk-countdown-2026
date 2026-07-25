@@ -71,7 +71,7 @@ corner_detail = 5
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_phrhr")
-timer_cooldown = 10.0
+timer_cooldown = 11.0
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
 layout_mode = 0

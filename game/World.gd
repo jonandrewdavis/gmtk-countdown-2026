@@ -4,10 +4,12 @@ const CELL = preload("uid://cau0iddxgec2w")
 
 @export var Map: PackedScene
 const BALL = preload("uid://c1yny3sauy8yu")
-const GHOST = preload("uid://vydo5ihqeu0v")
+const ENEMY = preload("uid://vydo5ihqeu0v")
 
 @onready var navigation_region_3d: NavigationRegion3D = %NavigationRegion3D
 @onready var player: Player = %Player
+
+const TOTAL_GHOSTS = 4
 
 var cells = []
 
@@ -53,14 +55,38 @@ func _bake_navigation() -> void:
 
 # TODO: More flexible logic
 func _spawn_enemies():
+	var knight_cell = get_furthest_cell()
+	if knight_cell:
+		spawn_enemy(knight_cell, Enemy.TYPE.KNIGHT)
+
 	var spawn_cells = cells.duplicate()
 	spawn_cells.shuffle()
 
+	var ghosts_spawned = 0
 	for cell in spawn_cells:
-		if get_tree().get_nodes_in_group("Enemies").size() >= 3:
+		if ghosts_spawned >= TOTAL_GHOSTS:
 			break
+		if cell == knight_cell:
+			continue
 		if cell.global_transform.origin.distance_to(player.global_transform.origin) < 3.0 * Global.GRID_SIZE:
 			continue
-		var ghost = GHOST.instantiate()
-		add_child(ghost)
-		ghost.global_transform.origin = cell.global_transform.origin + Vector3(0.0, 1.0, 0.0)	
+		spawn_enemy(cell, Enemy.TYPE.CULTIST)
+		ghosts_spawned += 1
+
+func get_furthest_cell():
+	var furthest = null
+	var furthest_distance = -1.0
+
+	for cell in cells:
+		var distance = cell.global_transform.origin.distance_to(player.global_transform.origin)
+		if distance > furthest_distance:
+			furthest_distance = distance
+			furthest = cell
+
+	return furthest
+
+func spawn_enemy(cell, enemy_type: Enemy.TYPE) -> void:
+	var enemy = ENEMY.instantiate()
+	enemy.enemy_type = enemy_type
+	add_child(enemy)
+	enemy.global_transform.origin = cell.global_transform.origin + Vector3(0.0, 1.0, 0.0)

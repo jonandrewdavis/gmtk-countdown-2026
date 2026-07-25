@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1yny3sauy8yu" path="res://game/environment/ball/ball.tscn" id="3_ball"]
 [ext_resource type="PackedScene" uid="uid://vydo5ihqeu0v" path="res://game/enemies/ghost_1/enemy_ghost_1.tscn" id="4_ghost"]
 [ext_resource type="PackedScene" uid="uid://b0ekxxogjmxvh" path="res://game/player/player.tscn" id="4_xjkwq"]
+[ext_resource type="PackedScene" uid="uid://c34e5todmxua4" path="res://assets/mesh/Enemy_Knight.glb" id="5_rt8he"]
 
 [sub_resource type="Environment" id="Environment_load"]
 background_mode = 1
@@ -20,7 +21,7 @@ height = 60
 
 [node name="MainMenuLoading" type="Node3D" unique_id=410157323]
 script = ExtResource("1_script")
-scenes_to_instantiate = Array[PackedScene]([ExtResource("4_ghost"), ExtResource("3_ball"), ExtResource("4_xjkwq")])
+scenes_to_instantiate = Array[PackedScene]([ExtResource("4_ghost"), ExtResource("3_ball"), ExtResource("4_xjkwq"), ExtResource("5_rt8he")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=216064984]
 environment = SubResource("Environment_load")

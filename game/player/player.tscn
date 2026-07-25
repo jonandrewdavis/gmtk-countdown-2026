@@ -139,8 +139,8 @@ shape = SubResource("CapsuleShape3D_yruvy")
 [node name="HealthSystem" type="Node" parent="." unique_id=530590663]
 unique_name_in_owner = true
 script = ExtResource("12_hlth0")
-max_health = 1000
-health = 1000
+max_health = 1250
+health = 1250
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=365755593]
 

@@ -7,10 +7,15 @@ extends CharacterBody3D
 
 class_name Enemy
 
+# TODO: Resource these if we have at least 3.
 enum TYPE { 
 	GHOST,
-	CULTIST
+	CULTIST,
+	KNIGHT
 }
+
+@onready var CULT_MESH: Node3D = %Enemy_Ghost2
+@onready var KNIGHT_MESH: Node3D = %Enemy_Knight
 
 @export var enemy_type: TYPE
 
@@ -35,9 +40,10 @@ const ROTATION_SPEED = 2.0
 @export_category("Enemy Stats")
 @export var max_speed = 0.4
 @export var speed = max_speed
-@export var attack_value: int = 30
+@export var attack_value: int = 20
+@export var attack_value_max: int = 30
 
-const RETREAT_CHANCE = 0.4
+const RETREAT_CHANCE = 0.6
 const ATTACK_RANGE = 1.2
 const ARRIVE_DISTANCE = 0.8
 const MIN_ALIGNMENT = 0.25
@@ -93,8 +99,21 @@ var state: States = States.IDLE
 func _ready(): 
 	add_to_group("Enemies")
 	
+	var attack_time_freq = randf_range(6.0, 10.0)
+	
 	if enemy_type == TYPE.CULTIST:
 		print("IM A CULTIST")
+		
+	if enemy_type == TYPE.KNIGHT:
+		health_system.max_health = 250
+		health_system.heal(250)
+		attack_time_freq = randf_range(3.0, 7.0)
+		attack_value = 40
+		attack_value_max = 50
+		CULT_MESH.hide()
+		KNIGHT_MESH.show()
+		speed = max_speed * 1.2
+		print("IM A KNIGHT")
 	
 	animation_player.playback_default_blend_time = 0.4
 
@@ -118,7 +137,7 @@ func _ready():
 
 	add_child(timer_attack_cooldown)
 	timer_attack_cooldown.timeout.connect(attack)
-	timer_attack_cooldown.wait_time = randf_range(4.0, 7.0)
+	timer_attack_cooldown.wait_time = attack_time_freq
 	timer_attack_cooldown.start()
 
 	add_child(timer_retreat)
@@ -341,7 +360,8 @@ func check_retreat_chance() -> bool:
 	return health_system.health > 0 \
 	and state == States.HURTING \
 	and randf() < RETREAT_CHANCE \
-	and timer_retreat_cooldown.is_stopped()
+	and timer_retreat_cooldown.is_stopped()\
+	and enemy_type != TYPE.KNIGHT # knights never retreat.
 	
 func end_retreat():
 	if state != States.DODGING:
@@ -436,7 +456,7 @@ func on_attack_box_entered(body):
 	if body.is_in_group('PlayerCharacter') or body.is_in_group('Goat'):
 		if not body.get('health_system'):
 			return
-		body.health_system.damage(attack_value, 4)
+		body.health_system.damage(randi_range(attack_value, attack_value_max), 4)
 		attack_box.set_deferred('monitoring', false)
 
 func _on_audio_stream_player_3d_ambient_finished() -> void:

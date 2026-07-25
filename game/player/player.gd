@@ -90,6 +90,7 @@ func _on_hurt(damage_value: int = 0) -> void:
 
 	if damage_value == 0:
 		damage_numbers_player_heal.spawn(damage_value, bar_pos)
+		remove_spell(Global.SPELLS.ICE)
 		return
 
 	damage_numbers_player.spawn(damage_value, bar_pos)
@@ -205,7 +206,7 @@ func rotate_and_set_direction(angle_delta: float) -> void:
 
 func ready_spell_timers():
 	timer_ice_shield.one_shot = true
-	timer_ice_shield.wait_time = 3.0
+	timer_ice_shield.wait_time = 7.0 # Longer shield timer, since enemies attack so slow
 	timer_ice_shield.timeout.connect(func(): remove_spell(Global.SPELLS.ICE))
 
 # TODO: Page resource
