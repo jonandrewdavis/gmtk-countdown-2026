@@ -25,6 +25,7 @@ const ROTATION_SPEED = 2.0
 @export var nav_agent: NavigationAgent3D
 @export var search_box: ShapeCast3D
 @export var attack_box: Area3D
+@export var detection_box: Area3D
 
 # TODO: Weak points and eyeline
 # TODO: Give up chase 
@@ -40,6 +41,8 @@ const RETREAT_CHANCE = 0.4
 const ATTACK_RANGE = 1.0
 const ARRIVE_DISTANCE = 0.2
 const MIN_ALIGNMENT = 0.25
+const CHASE_BREAK_DISTANCE = 2.0
+const CHASE_BREAK_CHANCE = 0.5
 
 var timer_attack_cooldown = Timer.new()
 var timer_retreat = Timer.new()
@@ -89,11 +92,13 @@ func _ready():
 	animation_player.playback_default_blend_time = 0.4
 
 	nav_agent.path_desired_distance = 0.15
-	nav_agent.target_desired_distance = randf_range(0.2, 0.3)
+	nav_agent.target_desired_distance = randf_range(0.5, 0.65)
 	nav_agent.radius = 0.12
 	nav_agent.avoidance_enabled = false
 
 	attack_box.body_entered.connect(on_attack_box_entered)
+	detection_box.body_entered.connect(on_detection_box_entered)
+	detection_box.body_exited.connect(on_detection_box_exited)
 	animation_player.animation_finished.connect(on_animation_finished)
 	
 	# Health
@@ -369,6 +374,41 @@ func on_path_changed():
 		
 	if animation_player.current_animation == ANI[LIST.HURT]:
 		animation_player.play(ANI[LIST.WALK])
+
+var player_adjacent := false
+
+func on_detection_box_entered(body):
+	if not body.is_in_group('PlayerCharacter'):
+		return
+
+	player_adjacent = true
+
+	if state in [States.DYING, States.DECAYING, States.ATTACKING]:
+		return
+
+	if target != body or state != States.CHASING:
+		target = body
+		set_state(States.CHASING)
+
+func on_detection_box_exited(body):
+	if body.is_in_group('PlayerCharacter'):
+		player_adjacent = false
+
+func try_break_chase() -> bool:
+	if state != States.CHASING or player_adjacent or not target:
+		return false
+
+	var to_target = target.global_transform.origin - global_transform.origin
+	to_target.y = 0.0
+	if to_target.length() < CHASE_BREAK_DISTANCE * Global.GRID_SIZE:
+		return false
+
+	if randf() < CHASE_BREAK_CHANCE:
+		target = null
+		set_state(States.SEARCHING)
+		return true
+
+	return false
 
 func on_attack_box_entered(body):
 	if body.is_in_group('PlayerCharacter') or body.is_in_group('Goat'):

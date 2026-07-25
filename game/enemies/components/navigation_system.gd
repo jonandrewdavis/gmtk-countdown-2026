@@ -61,6 +61,8 @@ func tick():
 	if parent.state == parent.States.SEARCHING:
 		pick_patrol_destination()
 	elif parent.state == parent.States.CHASING or parent.state == parent.States.HURTING:
+		if parent.try_break_chase():
+			return
 		chase_target()
 
 func start_tick():
@@ -106,6 +108,8 @@ func found_player(body: Node3D):
 	parent.set_state(parent.States.CHASING)
 
 func give_up():
+	if parent.player_adjacent:
+		return
 	print('give up')
 	parent.set_state(parent.States.SEARCHING)
 

@@ -21,7 +21,6 @@ func _ready() -> void:
 	if OS.is_debug_build():
 		print('DEBUG: Mute music while testing')
 		audio_stream_player_music.volume_db = -50.0
-		
 
 	var map = Map.instantiate()
 	var tile_map = map.get_tilemap()
@@ -34,19 +33,24 @@ func _ready() -> void:
 		cell.global_transform.origin = Vector3(tile.x*Global.GRID_SIZE, 0, tile.y*Global.GRID_SIZE)
 	for cell in cells:
 		cell.update_faces(used_tiles)
+
+
 	
 	await get_tree().process_frame
 	navigation_region_3d.bake_navigation_mesh.call_deferred()
 	await navigation_region_3d.bake_finished
-	
-	player.fade_in()
 
-	_spawn_enemies()
-
+	await get_tree().create_timer(0.2).timeout
 	var secret_ball: RigidBody3D = BALL.instantiate()
-	secret_ball.position = Vector3(100.0, 100.0, 100.0)
+	secret_ball.position = Vector3(0.0, 0.0, 0.0)
 	add_child.call_deferred(secret_ball)
 	secret_ball.freeze = true
+	await get_tree().create_timer(0.2).timeout
+	
+	player.fade_in()
+	_spawn_enemies()
+	
+
 
 # TODO: More flexible logic
 func _spawn_enemies():
