@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dmk4uw0nu07vn" path="res://assets/textures/Book/Spell_Fire.png" id="2_k3igj"]
 
 [sub_resource type="Gradient" id="Gradient_kna4x"]
-colors = PackedColorArray(1, 0, 0, 1, 0.42175126, 0, 0.03709449, 1)
+offsets = PackedFloat32Array(0, 0.028037382, 0.03551402, 0.9570094, 0.97943926, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.99607843, 0.827451, 0, 1, 0.99607843, 0.827451, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ad3wk"]
 gradient = SubResource("Gradient_kna4x")
@@ -87,10 +88,10 @@ texture_progress = SubResource("GradientTexture2D_ad3wk")
 [node name="Button" type="Button" parent="." unique_id=1010016718]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 0
-offset_left = 153.0
-offset_top = 94.0
-offset_right = 364.0
-offset_bottom = 373.0
+offset_left = 187.0
+offset_top = 169.33176
+offset_right = 328.0
+offset_bottom = 311.66824
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
@@ -100,10 +101,10 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
 [node name="Button2" type="Button" parent="." unique_id=1240733112]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 0
-offset_left = 155.0
-offset_top = 423.0
-offset_right = 366.0
-offset_bottom = 702.0
+offset_left = 185.0
+offset_top = 481.46924
+offset_right = 331.0
+offset_bottom = 627.46924
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")

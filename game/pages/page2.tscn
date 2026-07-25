@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://btedjg3pqeylo"]
+
+[ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_x45ud"]
+[ext_resource type="Texture2D" uid="uid://ckf672el7mxks" path="res://assets/textures/Book/Book_Page.png" id="2_x45ud"]
+[ext_resource type="Texture2D" uid="uid://0wm163epw0on" path="res://assets/images/spell-rune-glyph-circle-generator-v0-s3jpu4n9ysy91.webp" id="3_wfrqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okym1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0.74509805, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="ImageTexture" id="ImageTexture_4i8qy"]
+
+[sub_resource type="Gradient" id="Gradient_7tx1s"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.3953125, 0.396875, 0.41875, 0.59375, 0.609375, 1)
+colors = PackedColorArray(0.93333334, 0.93333334, 0.93333334, 0, 0.8745098, 0.8745098, 0.8745098, 0, 0.046875, 0.046875, 0.046875, 1, 0.0803992, 0.0028231791, 0.0028231791, 1.0493828, 0, 0.5451495, 0.9395752, 1, 0.8980392, 0.8980392, 0.8980392, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pr2nu"]
+gradient = SubResource("Gradient_7tx1s")
+width = 400
+height = 400
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7yk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.76862746)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x45ud"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9254902, 0.9137255, 0, 0.76862746)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfrqi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.76862746)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8omcm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.62352943)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 5
+
+[node name="Page" type="Control" unique_id=2090317257]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_x45ud")
+timer_cooldown = 11.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 820.0
+texture = ExtResource("2_x45ud")
+
+[node name="Control" type="Panel" parent="." unique_id=31334238]
+custom_minimum_size = Vector2(512, 820)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_okym1")
+
+[node name="SpellRuneGlyphCircleGeneratorV0S3Jpu4n9Ysy91" type="Sprite2D" parent="." unique_id=888491773]
+modulate = Color(0.3019608, 1, 1, 1)
+position = Vector2(257, 361)
+scale = Vector2(0.63547486, 0.63547486)
+texture = ExtResource("3_wfrqi")
+metadata/_edit_lock_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=139384893]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 0
+offset_left = 59.0
+offset_top = 185.0
+offset_right = 459.0
+offset_bottom = 585.0
+mouse_filter = 2
+step = 0.1
+value = 64.0
+fill_mode = 4
+texture_under = SubResource("ImageTexture_4i8qy")
+texture_progress = SubResource("GradientTexture2D_pr2nu")
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1010016718]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 179.0
+offset_top = 142.0
+offset_right = 336.0
+offset_bottom = 299.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+
+[node name="Button2" type="Button" parent="." unique_id=966763277]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 28.0
+offset_top = 392.0
+offset_right = 185.0
+offset_bottom = 549.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wfrqi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+
+[node name="Button3" type="Button" parent="." unique_id=5594998]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 0
+offset_left = 328.0
+offset_top = 399.0
+offset_right = 485.0
+offset_bottom = 556.0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_8omcm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
+
+[node name="Timer" type="Timer" parent="." unique_id=995384436]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
