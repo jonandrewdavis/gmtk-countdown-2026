@@ -8,6 +8,7 @@ const GHOST = preload("uid://vydo5ihqeu0v")
 
 @onready var navigation_region_3d: NavigationRegion3D = %NavigationRegion3D
 @onready var player: Player = %Player
+@onready var audio_stream_player_music: AudioStreamPlayer = %AudioStreamPlayerMusic
 
 var cells = []
 
@@ -15,6 +16,12 @@ func _ready() -> void:
 	# makes loading screens not grey like in editor.
 	if not OS.is_debug_build():
 		RenderingServer.set_default_clear_color(Color.BLACK)
+		
+		
+	if OS.is_debug_build():
+		print('DEBUG: Mute music while testing')
+		audio_stream_player_music.volume_db = -50.0
+		
 
 	var map = Map.instantiate()
 	var tile_map = map.get_tilemap()

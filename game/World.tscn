@@ -30,7 +30,8 @@ transform = Transform3D(0.8424786, 0, 0.53872997, 0, 1, 0, -0.53872997, 0, 0.842
 unique_name_in_owner = true
 navigation_mesh = SubResource("NavigationMesh_yruvy")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1014316300]
+[node name="AudioStreamPlayerMusic" type="AudioStreamPlayer" parent="." unique_id=1014316300]
+unique_name_in_owner = true
 stream = ExtResource("4_r743u")
 volume_db = -10.0
 autoplay = true

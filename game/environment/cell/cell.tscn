@@ -19,6 +19,7 @@ size = Vector3(0.05, 1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tu1u8"]
 render_priority = 0
 shader = ExtResource("4_tcmk1")
+shader_parameter/ColorParameter = Color(0.282353, 0.278431, 0.258824, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nefus"]
 material = SubResource("ShaderMaterial_tu1u8")
@@ -39,6 +40,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.129244e-05, 0.0010787249, -
 mesh = SubResource("PlaneMesh_0uc8s")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Bottom" unique_id=1263706569]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bottom/StaticBody3D" unique_id=1536308994]
 shape = SubResource("ConcavePolygonShape3D_8biqg")
@@ -48,6 +51,8 @@ transform = Transform3D(-4.371139e-08, 1, 0, 4.371139e-08, 1.9106855e-15, 1, 1, 
 mesh = ExtResource("3_508ii")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="West" unique_id=294146756]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="West/StaticBody3D" unique_id=1806584333]
 transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0)
@@ -58,6 +63,8 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0
 mesh = SubResource("PlaneMesh_nefus")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="East" unique_id=601058748]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="East/StaticBody3D" unique_id=1316705677]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
@@ -68,6 +75,8 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 mesh = ExtResource("3_508ii")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="North" unique_id=1075593975]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="North/StaticBody3D" unique_id=583509613]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
@@ -78,6 +87,8 @@ transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.8
 mesh = ExtResource("4_508ii")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Top" unique_id=911744382]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Top/StaticBody3D" unique_id=1206442532]
 shape = SubResource("ConcavePolygonShape3D_ymnla")
@@ -87,6 +98,8 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 mesh = ExtResource("3_508ii")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="South" unique_id=1237690153]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="South/StaticBody3D" unique_id=635202405]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)

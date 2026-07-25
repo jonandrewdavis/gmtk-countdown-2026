@@ -192,11 +192,11 @@ func show_spell(spell: Global.SPELLS):
 		shoot()
 		
 func shoot():
-	var force = 5.0
+	var force = 1.0
 	var shoot_dir = get_shoot_direction()
 	var new_ball: RigidBody3D = BALL.instantiate()
 	get_tree().current_scene.add_child(new_ball, true)
-	new_ball.global_position = camera.global_position + shoot_dir * 0.3
+	new_ball.global_position = camera.global_position + shoot_dir * 0.1
 	new_ball.apply_central_impulse(shoot_dir * force)
 
 func get_shoot_direction() -> Vector3:
