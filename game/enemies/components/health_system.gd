@@ -9,7 +9,9 @@ signal signal_death
 @export var max_health : int = 100
 @export var health : int = 100
 
-@export var regen_enabled: bool = true
+# I think regen should be off in this kind of game. How do we heal? lets just
+# add a lot of health (or the player)
+@export var regen_enabled: bool = false
 @export var regen_delay: float = 5.5 # Halo 1
 @export var regen_speed: float = 0.15
 @export var regen_increment: int = 2

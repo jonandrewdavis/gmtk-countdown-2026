@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gmtk-countdown-2026"
-run/main_scene="uid://dhlv4dbh7uctb"
+run/main_scene="uid://cqpjcrcf1pf4o"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://ucij4orrin6y"
 
@@ -77,8 +77,8 @@ right={
 
 [navigation]
 
-3d/default_cell_size=0.05
-3d/default_cell_height=0.05
+3d/default_cell_size=0.025
+3d/default_cell_height=0.025
 
 [physics]
 
@@ -87,7 +87,7 @@ right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-textures/vram_compression/import_etc2_astc=true
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

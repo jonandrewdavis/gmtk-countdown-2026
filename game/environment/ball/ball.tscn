@@ -67,6 +67,7 @@ radius = 0.4
 [node name="Ball" type="RigidBody3D" unique_id=1248059213]
 collision_layer = 0
 mass = 3.0
+script = ExtResource("1_wunp1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1441134331]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)

@@ -1,7 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
-@export var speed_factor := 3.0
+const DEFAULT_SPEED := 3.0
+@export var speed_factor := DEFAULT_SPEED
 @export var direction := Vector3.FORWARD
 @export var rotation_time := 0.2 * speed_factor
 @export var move_time := 0.4 * speed_factor
@@ -19,6 +20,10 @@ const RAY_LENGTH := 0.55
 @onready var control_a: TextureRect = %ControlA
 @onready var arrow_left: TextureRect = %ArrowLeft
 @onready var label_countdown: Label = %LabelCountdown
+@onready var transition_rect: ColorRect = %TransitionRect
+@onready var health_bar: ProgressBar = %HealthBar
+@onready var hurt_color_rect: ColorRect = %HurtColorRect
+@onready var health_system: HealthSystem = %HealthSystem
 
 var is_rotating := false
 var is_moving := false
@@ -29,15 +34,52 @@ var book_raise_tween: Tween
 
 var count_down := 60
 
+var hurt_tween: Tween
+
 func _ready() -> void:
+	add_to_group('PlayerCharacter')
+
+	transition_rect.material.set_shader_parameter('inner_radius', -0.1)
+	transition_rect.material.set_shader_parameter('outer_radius', 0.0)
+	transition_rect.show()
+
 	_tween_book(OFFSET_START)
 	page_holder.position = _book_target(OFFSET_START)
 
 	Global.signal_spell_start.connect(show_spell)
-	
+
+	health_system.signal_max_health_updated.connect(_on_max_health_updated)
+	health_system.signal_health_updated.connect(_on_health_updated)
+	health_system.signal_hurt.connect(_on_hurt)
+	health_system.signal_death.connect(_on_death)
+	_on_max_health_updated(health_system.max_health)
+	_on_health_updated(health_system.health)
+
 	page_flip.signal_page_turn.connect(_on_page_turn)
 	_on_page_turn(-1)
 	label_countdown.text = str(count_down)
+
+func _on_max_health_updated(max_health: int) -> void:
+	health_bar.max_value = max_health
+
+func _on_health_updated(health: int) -> void:
+	health_bar.value = health
+
+func _on_hurt() -> void:
+	if hurt_tween:
+		hurt_tween.kill()
+
+	hurt_color_rect.show()
+	hurt_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	hurt_tween.tween_property(hurt_color_rect.material, 'shader_parameter/vignette_strength', 1.4, 0.07)\
+		.set_ease(Tween.EASE_OUT)
+	hurt_tween.tween_property(hurt_color_rect.material, 'shader_parameter/vignette_strength', 0.0, 0.6)\
+		.set_ease(Tween.EASE_IN)
+	hurt_tween.tween_callback(hurt_color_rect.hide)
+
+func _on_death() -> void:
+	health_bar.value = 0
+	# TODO: game over
 
 func _book_target(offset: Vector2) -> Vector2:
 	return camera.get_viewport().get_visible_rect().get_center() * offset
@@ -82,7 +124,6 @@ func _physics_process(_delta) -> void:
 		move(-direction)
 
 func is_blocked(move_dir: Vector3) -> bool:
-	# Cast from eye height along move_dir, just past the wall plane at 0.5.
 	var from := global_position
 	var query := PhysicsRayQueryParameters3D.create(from, from + move_dir.normalized() * RAY_LENGTH)
 	query.collide_with_areas = false
@@ -95,11 +136,14 @@ func move(move_dir: Vector3 = direction) -> void:
 
 	is_moving = true
 
-	# Snap to the grid so float error from the rotation tween cannot accumulate.
 	var target_position = global_position + move_dir
 	target_position.x = snappedf(target_position.x, Global.GRID_SIZE)
 	target_position.z = snappedf(target_position.z, Global.GRID_SIZE)
 	
+	# moving backwards is slower, so it pays to turn around.
+	if move_dir.dot(direction) < 0.0:
+		move_time = move_time * 1.4
+
 	var move_tween = get_tree().create_tween()
 	move_tween.tween_property(self, "global_position", target_position, move_time)\
 		.set_trans(Tween.TRANS_SINE)\
@@ -119,6 +163,8 @@ func move(move_dir: Vector3 = direction) -> void:
 	is_moving = false
 	count_down -= 1
 	label_countdown.text = str(count_down)
+	# reset speed if backwards was done
+	move_time = 0.4 * speed_factor
 
 func rotate_and_set_direction(angle_delta: float) -> void:
 	is_rotating = true
@@ -128,6 +174,7 @@ func rotate_and_set_direction(angle_delta: float) -> void:
 	await tween.finished
 	# snap
 	direction = (-global_transform.basis.z).snappedf(1.0)
+	print(direction)
 	is_rotating = false
 
 # TODO: Page resource
@@ -163,3 +210,14 @@ func _on_page_turn(spread_index: int):
 	else:
 		control_a.hide()
 		arrow_left.hide()
+
+func fade_in() -> void:
+	# skip fade if we are testing...
+	if OS.is_debug_build():
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(transition_rect.material, 'shader_parameter/outer_radius', 1.2, 2.5)
+		tween.parallel().tween_property(transition_rect.material, 'shader_parameter/inner_radius', 0.85, 2.5)
+		await tween.finished
+		transition_rect.hide()
+	else:
+		transition_rect.hide()

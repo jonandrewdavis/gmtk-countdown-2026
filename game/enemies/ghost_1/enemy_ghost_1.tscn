@@ -3,27 +3,27 @@
 [ext_resource type="Script" uid="uid://2so0dr2208kn" path="res://game/enemies/ghost_1/enemy_ghost_1.gd" id="1_j1tbm"]
 [ext_resource type="Script" uid="uid://d5jl3b0hfehw" path="res://game/enemies/components/health_system.gd" id="2_ip34o"]
 [ext_resource type="Script" uid="uid://es67axqa8ao6" path="res://game/enemies/components/navigation_system.gd" id="3_uvqya"]
+[ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="5_1jl0m"]
 [ext_resource type="Texture2D" uid="uid://bxh65xidnxpf6" path="res://assets/mesh/monk/textures/Material.001_baseColor.png" id="5_dfiu0"]
 [ext_resource type="AnimationLibrary" uid="uid://d1jtpjs3818j4" path="res://assets/mesh/monk/ghost_animations.res" id="14_v1528"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_indh1"]
-height = 2.4
+radius = 0.12
+height = 0.7
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nd7sd"]
-size = Vector3(30, 3, 30)
+size = Vector3(0.8, 1, 0.2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8fdcm"]
-radius = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3ped"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e1ruj"]
+load_path = "res://.godot/imported/Material.001_baseColor.png-63528d7f1b6acaedb8741e176b38efb7.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfiu0"]
 resource_name = "Material.001"
 cull_mode = 2
-albedo_texture = ExtResource("5_dfiu0")
-roughness = 0.6
-emission_enabled = true
-emission = Color(0.90510195, 0.90510195, 0.90510195, 1)
-emission_operator = 1
-emission_texture = ExtResource("5_dfiu0")
+shading_mode = 0
+albedo_texture = SubResource("CompressedTexture2D_e1ruj")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_o2m31"]
 _surfaces = [{
@@ -47,7 +47,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 2322,
 "index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgABwAGAAkACQAGAAoABwAJAAsADAANAA4ADQAMAA8ADwAMABAADQAPABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUANgA3ADgAOQA6ADsAPAA9AD4APwBAAEEAQgBDAEQARQBGAEcASABJAEoASwBMAE0ATgBPAFAAUQBSAFMAVABVAFYAVwBYAFkAWgBbAFwAWgBdAFsAXgBfAGAAXgBhAF8AYgBjAGQAYgBlAGMAZgBnAGgAZgBpAGcAagBrAGwAagBtAGsAbgBvAHAAbgBxAG8AcgBzAHQAcgB1AHMAdgB3AHgAdgB5AHcAegB7AHwAegB9AHsAfgB/AIAAfgCBAH8AggCDAIQAggCFAIMAhgCHAIgAhgCJAIcAigCLAIwAigCNAIsAjgCPAJAAjgCRAI8AkgCTAJQAkgCVAJMAlgCXAJgAlgCZAJcAmgCbAJwAmgCdAJsAngCfAKAAngChAJ8AogCjAKQAogClAKMApgCnAKgApgCpAKcAqgCrAKwAqgCtAKsArgCvALAArgCxAK8AsgCzALQAsgC1ALMAtgC3ALgAtgC5ALcAugC7ALwAugC9ALsAvgC/AMAAvgDBAL8AwgDDAMQAwgDFAMMAxgDHAMgAxgDJAMcAygDLAMwAygDNAMsAzgDPANAAzgDRAM8A0gDTANQA0gDVANMA1gDXANgA1gDZANcA2gDbANwA2gDdANsA3gDfAOAA3gDhAN8A4gDjAOQA4gDlAOMA5gDnAOgA5gDpAOcA6gDrAOwA6gDtAOsA7gDvAPAA7gDxAO8A8gDzAPQA8gD1APMA9gD3APgA9gD5APcA+gD7APwA+gD9APsA/gD/AAAB/gABAf8AAgEDAQQBAgEFAQMBBgEHAQgBBgEJAQcBCgELAQwBCgENAQsBDgEPARABDgERAQ8BEgETARQBEgEVARMBFgEXARgBFgEZARcBGgEbARwBGgEdARsBHgEfASABHgEhAR8BIgEjASQBIgElASMBJgEnASgBJgEpAScBKgErASwBKgEtASsBLgEvATABLgExAS8BMgEzATQBMgE1ATMBNgE3ATgBNgE5ATcBOgE7ATwBOgE9ATsBPgE/AUABPgFBAT8BQgFDAUQBQgFFAUMBRgFHAUgBRgFJAUcBSgFLAUwBSgFNAUsBTgFPAVABTgFRAU8BUgFTAVQBUgFVAVMBVgFXAVgBVgFZAVcBWgFbAVwBWgFdAVsBXgFfAWABXgFhAV8BYgFjAWQBYgFlAWMBZgFnAWgBZgFpAWcBagFrAWwBagFtAWsBbgFvAXABbgFxAW8BcgFzAXQBcgF1AXMBdgF3AXgBdgF5AXcBegF7AXwBegF9AXsBfgF/AYABfgGBAX8BggGDAYQBggGFAYMBhgGHAYgBhgGJAYcBigGLAYwBigGNAYsBjgGPAZABjgGRAY8BkgGTAZQBkgGVAZMBlgGXAZgBlgGZAZcBmgGbAZwBmgGdAZsBngGfAaABngGhAZ8BogGjAaQBogGlAaMBpgGnAagBpgGpAacBqgGrAawBqgGtAasBrgGvAbABrgGxAa8BsgGzAbQBsgG1AbMBtgG3AbgBtgG5AbcBugG7AbwBugG9AbsBvgG/AcABvgHBAb8BwgHDAcQBwgHFAcMBxgHHAcgBxgHJAccBygHLAcwBygHNAcsBzgHPAdABzgHRAc8B0gHTAdQB0gHVAdMB1gHXAdgB1gHZAdcB2gHbAdwB2gHdAdsB3gHfAeAB3gHhAd8B4gHjAeQB4gHlAeMB5gHnAegB5gHpAecB6gHrAewB6gHtAesB7gHvAfAB7gHxAe8B8gHzAfQB8gH1AfMB9gH3AfgB9gH5AfcB+gH7AfwB+gH9AfsB/gH/AQAC/gEBAv8BAgIDAgQCAgIFAgMCBgIHAggCBgIJAgcCCgILAgwCCgINAgsCDgIPAhACDgIRAg8CEgITAhQCEgIVAhMCFgIXAhgCFgIZAhcCGgIbAhwCGgIdAhsCHgIfAiACHgIhAh8CIgIjAiQCIgIlAiMCJgInAigCJgIpAicCKgIrAiwCKgItAisCLgIvAjACLgIxAi8CMgIzAjQCMgI1AjMCNgI3AjgCNgI5AjcCOgI7AjwCOgI9AjsCPgI/AkACPgJBAj8CQgJDAkQCQgJFAkMCRgJHAkgCRgJJAkcCSgJLAkwCSgJNAksCTgJPAlACTgJRAk8CUgJTAlQCUgJVAlMCVgJXAlgCVgJZAlcCWgJbAlwCWgJdAlsCXgJfAmACXgJhAl8CYgJjAmQCYgJlAmMCZgJnAmgCZgJpAmcCagJrAmwCagJtAmsCbgJvAnACbgJxAm8CcgJzAnQCcgJ1AnMCdgJ3AngCdgJ5AncCegJ7AnwCegJ9AnsCfgJ/AoACfgKBAn8CggKDAoQCggKFAoMChgKHAogChgKJAocCigKLAowCigKNAosCjgKPApACjgKRAo8CkgKTApQCkgKVApMClgKXApgClgKZApcCmgKbApwCmgKdApsCngKfAqACngKhAp8CogKjAqQCogKlAqMCpgKnAqgCpgKpAqcCqgKrAqwCqgKtAqsCrgKvArACrgKxAq8CsgKzArQCsgK1ArMCtgK3ArgCtgK5ArcCugK7ArwCugK9ArsCvgK/AsACvgLBAr8CwgLDAsQCwgLFAsMCxgLHAsgCxgLJAscCygLLAswCygLNAssCzgLPAtACzgLRAs8C0gLTAtQC0gLVAtMC1gLXAtgC1gLZAtcC2gLbAtwC2gLdAtsC3gLfAuAC3gLhAt8C4gLjAuQC4gLlAuMC5gLnAugC5gLpAucC6gLrAuwC6gLtAusC7gLvAvAC7gLxAu8C8gLzAvQC8gL1AvMC9gL3AvgC9gL5AvcC+gL7AvwC+gL9AvsC/gL/AgAD/gIBA/8CAgMDAwQDAgMFAwMDBgMHAwgDBgMJAwcDCgMLAwwDCgMNAwsDDgMPAxADDgMRAw8DEgMTAxQDEgMVAxMDFgMXAxgDFgMZAxcDGgMbAxwDGgMdAxsDHgMfAyADHgMhAx8DIgMjAyQDIgMlAyMDJgMnAygDJgMpAycDKgMrAywDKgMtAysDLgMvAzADLgMxAy8DMgMzAzQDMgM1AzMDNgM3AzgDNgM5AzcDOgM7AzwDOgM9AzsDPgM/A0ADPgNBAz8DQgNDA0QDQgNFA0MDRgNHA0gDRgNJA0cDSgNLA0wDSgNNA0sDTgNPA1ADTgNRA08DUgNTA1QDUgNVA1MDVgNXA1gDVgNZA1cDWgNbA1wDWgNdA1sDXgNfA2ADXgNhA18DYgNjA2QDYgNlA2MDZgNnA2gDZgNpA2cDagNrA2wDagNtA2sDbgNvA3ADbgNxA28DcgNzA3QDcgN1A3MDdgN3A3gDdgN5A3cDegN7A3wDegN9A3sDfgN/A4ADfgOBA38DggODA4QDggOFA4MDhgOHA4gDhgOJA4cDigOLA4wDigONA4sDjgOPA5ADjgORA48DkgOTA5QDkgOVA5MDlgOXA5gDlgOZA5cDmgObA5wDmgOdA5sDngOfA6ADngOhA58DogOjA6QDogOlA6MDpgOnA6gDpgOpA6cDqgOrA6wDqgOtA6sDrgOvA7ADrgOxA68DsgOzA7QDsgO1A7MDtgO3A7gDtgO5A7cDugO7A7wDugO9A7sDvgO/A8ADvgPBA78DwgPDA8QDwgPFA8MDxgPHA8gDxgPJA8cDygPLA8wDygPNA8sDzgPPA9ADzgPRA88D0gPTA9QD0gPVA9MD1gPXA9gD1gPZA9cD2gPbA9wD2gPdA9sD3gPfA+AD3gPhA98D4gPjA+QD4gPlA+MD5gPnA+gD5gPpA+cD6gPrA+wD6gPtA+sD7gPvA/AD7gPxA+8D8gPzA/QD8gP1A/MD9gP3A/gD9gP5A/cD+gP7A/wD+gP9A/sD/gP/AwAE/gMBBP8DAgQDBAQEAgQFBAMEBgQHBAgEBgQJBAcECgQLBAwECgQNBAsEDgQPBBAEDgQRBA8EEgQTBBQEEgQVBBMEFgQXBBgEFgQZBBcEGgQbBBwEGgQdBBsEHgQfBCAEHgQhBB8EIgQjBCQEIgQlBCMEJgQnBCgEJgQpBCcEKgQrBCwEKgQtBCsELgQvBDAELgQxBC8EMgQzBDQEMgQ1BDMENgQ3BDgENgQ5BDcEOgQ7BDwEOgQ9BDsEPgQ/BEAEPgRBBD8EQgRDBEQEQgRFBEMERgRHBEgERgRJBEcESgRLBEwESgRNBEsETgRPBFAETgRRBE8EUgRTBFQEUgRVBFMEVgRXBFgEVgRZBFcEWgRbBFwEWgRdBFsEXgRfBGAEXgRhBF8EYgRjBGQEYgRlBGMEZgRnBGgEZgRpBGcEagRrBGwEagRtBGsEbgRvBHAEbgRxBG8EcgRzBHQEcgR1BHMEdgR3BHgEdgR5BHcEegR7BHwEegR9BHsEfgR/BIAEfgSBBH8EggSDBIQEggSFBIMEhgSHBIgEhgSJBIcEigSLBIwEigSNBIsEjgSPBJAEjgSRBI8EkgSTBJQEkgSVBJMElgSXBJgElgSZBJcEmgSbBJwEmgSdBJsEngSfBKAEngShBJ8EogSjBKQEogSlBKMEpgSnBKgEpgSpBKcEqgSrBKwEqgStBKsErgSvBLAErgSxBK8EsgSzBLQEsgS1BLMEtgS3BLgEtgS5BLcEugS7BLwEugS9BLsEvgS/BMAEvgTBBL8EwgTDBMQEwgTFBMMExgTHBMgExgTJBMcEygTLBMwEygTNBMsEzgTPBNAEzgTRBM8E0gTTBNQE0gTVBNME1gTXBNgE1gTZBNcE2gTbBNwE2gTdBNsE3gTfBOAE3gThBN8E4gTjBOQE4gTlBOME5gTnBOgE5gTpBOcE6gTrBOwE6gTtBOsE7gTvBPAE7gTxBO8E8gTzBPQE8gT1BPME9gT3BPgE9gT5BPcE+gT7BPwE+gT9BPsE/gT/BAAF/gQBBf8EAgUDBQQFAgUFBQMFBgUHBQgFBgUJBQcFCgULBQwFCgUNBQsFDgUPBRAFDgURBQ8FEgUTBRQFEgUVBRMFFgUXBRgFFgUZBRcFGgUbBRwFGgUdBRsFHgUfBSAFHgUhBR8FIgUjBSQFIgUlBSMFJgUnBSgFJgUpBScFKgUrBSwFKgUtBSsFLgUvBTAFLgUxBS8FMgUzBTQFMgU1BTMFNgU3BTgFNgU5BTcFOgU7BTwFOgU9BTsFPgU/BUAFPgVBBT8FQgVDBUQFQgVFBUMFRgVHBUgFRgVJBUcFSgVLBUwFSgVNBUsFTgVPBVAFTgVRBU8FUgVTBVQFUgVVBVMFVgVXBVgFVgVZBVcFWgVbBVwFWgVdBVsFXgVfBWAFXgVhBV8FYgVjBWQFYgVlBWMFZgVnBWgFZgVpBWcFagVrBWwFagVtBWsFbgVvBXAFbgVxBW8FcgVzBXQFcgV1BXMFdgV3BXgFdgV5BXcFegV7BXwFegV9BXsFfgV/BYAFfgWBBX8FggWDBYQFggWFBYMFhgWHBYgFhgWJBYcFigWLBYwFigWNBYsFjgWPBZAFjgWRBY8FkgWTBZQFkgWVBZMFlgWXBZgFlgWZBZcFmgWbBZwFmgWdBZsFngWfBaAFngWhBZ8FogWjBaQFogWlBaMFpgWnBagFpgWpBacFqgWrBawFqgWtBasFrgWvBbAFrgWxBa8FsgWzBbQFsgW1BbMFtgW3BbgFtgW5BbcFugW7BbwFugW9BbsFvgW/BcAFvgXBBb8FwgXDBcQFwgXFBcMFxgXHBcgFxgXJBccFygXLBcwFygXNBcsFzgXPBdAFzgXRBc8F0gXTBdQF0gXVBdMF1gXXBdgF1gXZBdcF2gXbBdwF2gXdBdsF3gXfBeAF3gXhBd8F4gXjBeQF4gXlBeMF5gXnBegF5gXpBecF6gXrBewF6gXtBesF7gXvBfAF7gXxBe8F8gXzBfQF8gX1BfMF9gX3BfgF9gX5BfcF+gX7BfwF+gX9BfsF/gX/BQAG/gUBBv8FAgYDBgQGAgYFBgMGBgYHBggGBgYJBgcGCgYLBgwGCgYNBgsGDgYPBhAGDgYRBg8GEgYTBhQGEgYVBhMGFgYXBhgGFgYZBhcGGgYbBhwGGgYdBhsGHgYfBiAGHgYhBh8G"),
-"material": SubResource("StandardMaterial3D_o3ped"),
+"material": SubResource("StandardMaterial3D_dfiu0"),
 "name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -57,49 +57,114 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_o2m31")
 
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bcvej"]
+texture = ExtResource("5_1jl0m")
+
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_nd7pr"]
+
+[sub_resource type="VisualShaderNodeDistanceFade" id="VisualShaderNodeDistanceFade_gmo4j"]
+default_input_values = [0, 0.0, 1, 2.0]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_dvf5c"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_yktog"]
+constant = Color(0, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_acr63"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+default_value = Color(0.08468992, 0.08468992, 0.08468992, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_r85vn"]
+texture = ExtResource("5_dfiu0")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_t3dne"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 7
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_3nmgk"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_scikm"]
+texture = ExtResource("5_dfiu0")
+
+[sub_resource type="VisualShader" id="VisualShader_n5voe"]
+flags/unshaded = true
+nodes/vertex/0/position = Vector2(400, 160)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVectorOp_3nmgk")
+nodes/vertex/3/position = Vector2(200, 20)
+nodes/vertex/4/node = SubResource("VisualShaderNodeTexture_scikm")
+nodes/vertex/4/position = Vector2(-180, -220)
+nodes/vertex/connections = PackedInt32Array(4, 0, 3, 0)
+nodes/fragment/0/position = Vector2(640, 180)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_bcvej")
+nodes/fragment/2/position = Vector2(-520, -60)
+nodes/fragment/3/node = SubResource("VisualShaderNodeProximityFade_nd7pr")
+nodes/fragment/3/position = Vector2(-380, 340)
+nodes/fragment/4/node = SubResource("VisualShaderNodeDistanceFade_gmo4j")
+nodes/fragment/4/position = Vector2(-160, 380)
+nodes/fragment/5/node = SubResource("VisualShaderNodeMix_dvf5c")
+nodes/fragment/5/position = Vector2(100, 380)
+nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_yktog")
+nodes/fragment/6/position = Vector2(-300, 560)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorParameter_acr63")
+nodes/fragment/7/position = Vector2(60, 80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_r85vn")
+nodes/fragment/8/position = Vector2(-200, -340)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorOp_t3dne")
+nodes/fragment/9/position = Vector2(460, -60)
+nodes/fragment/connections = PackedInt32Array(6, 0, 5, 1, 4, 0, 5, 2, 5, 0, 0, 0, 8, 0, 9, 0, 7, 0, 9, 1, 9, 0, 5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18t1r"]
+render_priority = 0
+shader = SubResource("VisualShader_n5voe")
+shader_parameter/ColorParameter = Color(0.282353, 0.278431, 0.258824, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_j1tbm"]
 height = 0.2
 
 [node name="EnemyGhost1" type="CharacterBody3D" unique_id=427302985 node_paths=PackedStringArray("animation_player", "health_system", "nav", "nav_agent", "search_box", "attack_box")]
 script = ExtResource("1_j1tbm")
+enemy_type = 1
 animation_player = NodePath("AnimationPlayer")
 health_system = NodePath("HealthSystem")
 nav = NodePath("NavigationSystem")
 nav_agent = NodePath("NavigationAgent3D")
 search_box = NodePath("SearchBox")
 attack_box = NodePath("AttackBox")
-max_speed = 3.0
 attack_value = 20
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=475714064]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07483545, 1.2075865, -0.029321551)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("CapsuleShape3D_indh1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=892091126]
 
-[node name="SearchBox" type="Area3D" parent="." unique_id=528706763]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, -8)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SearchBox" unique_id=606131953]
+[node name="SearchBox" type="ShapeCast3D" parent="." unique_id=528706763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+enabled = false
 shape = SubResource("BoxShape3D_nd7sd")
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=406928111]
 libraries/ = ExtResource("14_v1528")
 
 [node name="HealthSystem" type="Node" parent="." unique_id=374662232]
 script = ExtResource("2_ip34o")
-regen_enabled = false
 
 [node name="NavigationSystem" type="Node" parent="." unique_id=516601289 node_paths=PackedStringArray("nav_agent", "search_box")]
 script = ExtResource("3_uvqya")
 nav_agent = NodePath("../NavigationAgent3D")
 search_box = NodePath("../SearchBox")
-min_patrol = 8.0
 
 [node name="AttackBox" type="Area3D" parent="." unique_id=1496836165]
-transform = Transform3D(1, -1.2621775e-29, 0, 3.1554436e-30, 1, 7.1054274e-15, -1.0587912e-22, -7.1054274e-15, 1, -1.4901161e-08, 1.7517948, -2.1708367)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.7)
 collision_layer = 0
 collision_mask = 2
 monitoring = false
@@ -114,7 +179,7 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041, 0)
 
 [node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene" unique_id=1524213485]
-transform = Transform3D(-0.2635156, -2.3037265e-08, -1.0069908e-15, 0, -1.1518632e-08, 0.2635156, -2.3037265e-08, 0.2635156, 1.1518632e-08, -2.0139816e-15, -0.054855585, 2.3037265e-08)
+transform = Transform3D(-0.1, -1.509958e-08, -6.6002364e-16, 0, -4.371139e-09, 0.1, -1.509958e-08, 0.1, 4.371139e-09, -2.0139816e-15, -0.054855585, 2.3037265e-08)
 
 [node name="Root" type="Node3D" parent="Sketchfab_Scene/Sketchfab_model" unique_id=1073294468]
 
@@ -123,6 +188,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0, 8.4)
 
 [node name="moine_002_0" type="MeshInstance3D" parent="Sketchfab_Scene/Sketchfab_model/Root/moine_002" unique_id=2142787540]
 mesh = SubResource("ArrayMesh_kafa7")
+surface_material_override/0 = SubResource("ShaderMaterial_18t1r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=103209726]
 transform = Transform3D(1, 0, 0, 0, -0.017609445, 0.99984497, 0, -0.99984497, -0.017609445, 0, 2.2572672, -0.6309147)

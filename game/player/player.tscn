@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://ca58057hi4ket" path="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 4.mp3" id="10_rqcxa"]
 [ext_resource type="AudioStream" uid="uid://bdfc876udr0xr" path="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 6.mp3" id="11_2mv0n"]
 [ext_resource type="Texture2D" uid="uid://2slmwcl3uuhk" path="res://assets/textures/Book/Book_Back.png" id="11_3ep63"]
+[ext_resource type="Script" uid="uid://d5jl3b0hfehw" path="res://game/enemies/components/health_system.gd" id="12_hlth0"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_pr2nu"]
 top_radius = 0.2
@@ -20,6 +21,8 @@ bottom_radius = 0.1
 height = 0.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yruvy"]
+radius = 0.2
+height = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yruvy"]
 shader = ExtResource("4_a4w0n")
@@ -28,6 +31,14 @@ shader_parameter/outer_radius = 1.0
 shader_parameter/vignette_strength = 1.5
 shader_parameter/dither_strength = 0.03
 shader_parameter/vignette_color = Color(0.52746207, 0.6570923, 0.9829801, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hurt"]
+shader = ExtResource("4_a4w0n")
+shader_parameter/inner_radius = 0.35
+shader_parameter/outer_radius = 0.8
+shader_parameter/vignette_strength = 0.0
+shader_parameter/dither_strength = 0.0
+shader_parameter/vignette_color = Color(0.72156864, 0.05882353, 0.07058824, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0mij"]
 atlas = ExtResource("6_anr75")
@@ -61,13 +72,49 @@ region = Rect2(1408, 1664, 128, 128)
 atlas = ExtResource("6_anr75")
 region = Rect2(1792, 256, 128, 128)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_bg"]
+bg_color = Color(0.10196079, 0.078431375, 0.09019608, 0.7137255)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.21960784, 0.1764706, 0.20784314, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
+bg_color = Color(0.7647059, 0.13333334, 0.14901961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4392157, 0.05882353, 0.08235294, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr2nu"]
 albedo_color = Color(1, 0.3647059, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yruvy"]
 material = SubResource("StandardMaterial3D_pr2nu")
+radius = 0.2
+height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trans"]
+shader = ExtResource("4_a4w0n")
+shader_parameter/inner_radius = -0.1
+shader_parameter/outer_radius = 0.0
+shader_parameter/vignette_strength = 1.0
+shader_parameter/dither_strength = 0.03
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D" unique_id=317118910]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_3780m")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1061677885]
@@ -82,6 +129,12 @@ mesh = SubResource("CylinderMesh_pr2nu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=69916003]
 shape = SubResource("CapsuleShape3D_yruvy")
+
+[node name="HealthSystem" type="Node" parent="." unique_id=530590663]
+unique_name_in_owner = true
+script = ExtResource("12_hlth0")
+max_health = 1000
+health = 1000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=365755593]
 
@@ -106,6 +159,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HurtColorRect" type="ColorRect" parent="CanvasLayer/UI" unique_id=530590664]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_hurt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="PageControlRoot" type="Control" parent="CanvasLayer/UI" unique_id=1174815161]
 layout_mode = 1
@@ -233,13 +298,26 @@ anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TopCenter" unique_id=566212641]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/TopCenter" unique_id=530590661]
 layout_mode = 2
 
-[node name="LabelCountdown" type="Label" parent="CanvasLayer/UI/TopCenter/HBoxContainer" unique_id=1829217015]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TopCenter/VBoxContainer" unique_id=566212641]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelCountdown" type="Label" parent="CanvasLayer/UI/TopCenter/VBoxContainer/HBoxContainer" unique_id=1829217015]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/UI/TopCenter/VBoxContainer" unique_id=530590662]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_health_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
+value = 100.0
+show_percentage = false
 
 [node name="PageHolder" type="Node2D" parent="CanvasLayer" unique_id=1030296480]
 unique_name_in_owner = true
@@ -261,4 +339,19 @@ tex_cover_back_in = ExtResource("10_n270p")
 tex_cover_back_out = ExtResource("11_3ep63")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=871921692]
+visible = false
 mesh = SubResource("CapsuleMesh_yruvy")
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1014316301]
+layer = 128
+visible = false
+
+[node name="TransitionRect" type="ColorRect" parent="TransitionLayer" unique_id=1014316302]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_trans")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

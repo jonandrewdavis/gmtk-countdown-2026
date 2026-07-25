@@ -15,15 +15,15 @@ enum TYPE {
 @export var enemy_type: TYPE
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-const FRICTION = 12
-const ROTATION_SPEED = 3.0
+const FRICTION = 1.0
+const ROTATION_SPEED = 2.0
 
 @export_category("Enemy Required Nodes")
 @export var animation_player: AnimationPlayer 
 @export var health_system: HealthSystem
 @export var nav: NavigationSystem
 @export var nav_agent: NavigationAgent3D
-@export var search_box: Area3D
+@export var search_box: ShapeCast3D
 @export var attack_box: Area3D
 
 # TODO: Weak points and eyeline
@@ -32,11 +32,17 @@ const ROTATION_SPEED = 3.0
 #@export var eyeline: Area3D 
 
 @export_category("Enemy Stats")
-@export var max_speed = 5.0
+@export var max_speed = 0.4
 @export var speed = max_speed
 @export var attack_value: int = 30
 
+const RETREAT_CHANCE = 0.4
+const ATTACK_RANGE = 1.0
+const ARRIVE_DISTANCE = 0.2
+const MIN_ALIGNMENT = 0.25
+
 var timer_attack_cooldown = Timer.new()
+var timer_retreat = Timer.new()
 
 var target = null
 
@@ -82,8 +88,10 @@ func _ready():
 	
 	animation_player.playback_default_blend_time = 0.4
 
-	nav_agent.target_desired_distance = randf_range(4.5, 6.5)
-	nav_agent.avoidance_enabled = true
+	nav_agent.path_desired_distance = 0.15
+	nav_agent.target_desired_distance = randf_range(0.2, 0.3)
+	nav_agent.radius = 0.12
+	nav_agent.avoidance_enabled = false
 
 	attack_box.body_entered.connect(on_attack_box_entered)
 	animation_player.animation_finished.connect(on_animation_finished)
@@ -102,6 +110,10 @@ func _ready():
 	timer_attack_cooldown.one_shot = false
 	timer_attack_cooldown.start()
 
+	add_child(timer_retreat)
+	timer_retreat.timeout.connect(end_retreat)
+	timer_retreat.one_shot = true
+
 	await get_tree().create_timer(0.2).timeout
 	set_state(States.SEARCHING)
 
@@ -110,20 +122,22 @@ func _ready():
 	
 func _play_new_random_ambient_sound() -> void:
 	await get_tree().create_timer(randf_range(0.5, 10.0)).timeout
-	var RandomAmbientSound: AudioStream = AmbientSoundsArray.pick_random()
-	AudioPlayerAmbient.stream = RandomAmbientSound
-	AudioPlayerAmbient.play()
+	if AmbientSoundsArray.size() > 0:
+		var RandomAmbientSound: AudioStream = AmbientSoundsArray.pick_random()
+		AudioPlayerAmbient.stream = RandomAmbientSound
+		AudioPlayerAmbient.play()
 	
 func _play_random_attack_sound() -> void:
-	var RandomAttackSound: AudioStream = AttackSoundsArray.pick_random()
-	AudioPlayerAttack.stream = RandomAttackSound
-	AudioPlayerAttack.play()
+	if AttackSoundsArray.size() > 0:
+		var RandomAttackSound: AudioStream = AttackSoundsArray.pick_random()
+		AudioPlayerAttack.stream = RandomAttackSound
+		AudioPlayerAttack.play()
 
 func _physics_process(delta: float) -> void:
 	match state:
 		States.SEARCHING:
 			move_and_look(delta)
-		States.CHASING, States.HURTING:
+		States.CHASING, States.HURTING, States.DODGING:
 			move_and_look(delta)
 		States.ATTACKING:
 			move_and_attack(delta)
@@ -136,43 +150,57 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-# TODO: ADD LOOK
-func move_and_attack(_delta):
-	if position.distance_to(attack_position) > 0.5:
-		velocity = (attack_position - global_transform.origin).normalized() * speed * 1.4
-	elif position.distance_to(attack_position) > 8.0: 
-		set_state(States.CHASING)
-		nav.chase_target()
+func move_and_attack(delta):
+	if target:
+		face_position(target.global_transform.origin, delta)
+
+	if global_position.distance_to(attack_position) > 0.2:
+		move_towards(attack_position, speed * 1.4)
 	else:
 		set_state(States.CHASING)
 		nav.chase_target()
+
+func distance_to_destination() -> float:
+	var to_destination = nav_agent.target_position - global_transform.origin
+	to_destination.y = 0.0
+	return to_destination.length()
+
+func has_arrived() -> bool:
+	return nav_agent.is_navigation_finished() or distance_to_destination() < ARRIVE_DISTANCE
 
 func move_and_look(delta):
-	var new_look_at
-	if nav_agent.is_navigation_finished() == false:
-		velocity = (nav.next_path_pos - global_transform.origin).normalized() * speed
-	else:
-		velocity = velocity.move_toward(Vector3.ZERO, FRICTION * delta)
-		velocity.y -= gravity * delta
-
-	if target:
-		new_look_at = target.transform.origin
-	else:
-		new_look_at = nav.next_path_pos
-
-	# Finally fix "Target and up vectors are colinear" by
-	# doing the same checks as the source code (used C++ source!)
-	# https://github.com/godotengine/godot/issues/79146
-	var v_z : Vector3 = (new_look_at - position).normalized()
-	# Perpendicular vector using up+front.
-	var v_x : Vector3 = Vector3.UP.cross(-v_z)	
-	if v_x.is_zero_approx():
+	if has_arrived() == false:
+		move_towards(nav.next_path_pos, speed)
+		face_position(nav.next_path_pos, delta)
 		return
-	
-	var old = transform.basis.orthonormalized()
-	look_at(new_look_at)
-	var new = transform.basis.orthonormalized()
-	transform.basis = lerp(old, new, ROTATION_SPEED * delta).orthonormalized()
+
+	velocity.x = move_toward(velocity.x, 0.0, FRICTION * delta)
+	velocity.z = move_toward(velocity.z, 0.0, FRICTION * delta)
+
+	if target and state != States.DODGING:
+		face_position(target.global_transform.origin, delta)
+
+func move_towards(destination, move_speed):
+	var direction = destination - global_transform.origin
+	direction.y = 0.0
+	direction = direction.normalized()
+
+	var facing = -global_transform.basis.z
+	var alignment = clampf(Vector2(facing.x, facing.z).normalized().dot(Vector2(direction.x, direction.z)), MIN_ALIGNMENT, 1.0)
+
+	velocity.x = direction.x * move_speed * alignment
+	velocity.z = direction.z * move_speed * alignment
+
+func face_position(look_target, delta):
+	var direction = look_target - global_position
+	direction.y = 0.0
+	if direction.is_zero_approx():
+		return
+
+	var facing = -global_transform.basis.z
+	var current_yaw = atan2(-facing.x, -facing.z)
+	var desired_yaw = atan2(-direction.x, -direction.z)
+	rotation = Vector3(0.0, rotate_toward(current_yaw, desired_yaw, ROTATION_SPEED * delta), 0.0)
 
 
 func set_state(new_state: States) -> void:
@@ -210,7 +238,7 @@ func set_state(new_state: States) -> void:
 		target = null
 		if not animation_player.current_animation == ANI[LIST.HURT]:
 			animation_player.play(ANI[LIST.WALK])
-		speed = 3.0
+		speed = max_speed * 0.6
 		nav.pick_patrol_destination()
 		pass
 
@@ -218,11 +246,20 @@ func set_state(new_state: States) -> void:
 		if not animation_player.current_animation == ANI[LIST.HURT]:
 			animation_player.play(ANI[LIST.WALK])
 		nav.chase_target()
-		speed = 5.0
+		speed = max_speed
 		pass
-		
+
+	if state == States.DODGING:
+		animation_player.play(ANI[LIST.WALK])
+		speed = max_speed * 0.8
+		nav.retreat_from_target()
+		timer_retreat.wait_time = randf_range(2.0, 5.0)
+		timer_retreat.start()
+
 	if state == States.ATTACKING:
 		animation_player.play(ANI[LIST.ATTACK])
+		# TODO: await an animation but we're not sure if the current animation is in action, etc.
+		await get_tree().create_timer(0.5).timeout
 		attack_box.set_deferred('monitoring', true)
 	#else:
 		#attack_box.set_deferred('monitoring', false)
@@ -239,9 +276,11 @@ func set_state(new_state: States) -> void:
 
 	if state == States.DYING:
 		# Helps prevent monitoring issues
-		nav.timer_chase_target.stop()
+		nav.timer_tick.stop()
 		nav.timer_navigate.stop()
 		nav.timer_give_up.stop()
+		nav.timer_search.stop()
+		timer_retreat.stop()
 		animation_player.play(ANI[LIST.DYING])
 		set_process(false)
 		await get_tree().create_timer(2.0).timeout
@@ -260,6 +299,9 @@ func decay():
 	queue_free()
 
 func on_animation_finished(animation_name):
+	if state == States.DODGING:
+		return
+
 	if animation_name == ANI[LIST.HURT]:
 		if target:
 			set_state(States.CHASING)
@@ -270,7 +312,20 @@ func on_animation_finished(animation_name):
 
 func on_hurt():
 	set_state(States.HURTING)
-	
+
+	if health_system.health > 0 and state == States.HURTING and randf() < RETREAT_CHANCE:
+		set_state(States.DODGING)
+
+func end_retreat():
+	if state != States.DODGING:
+		return
+
+	if target:
+		set_state(States.CHASING)
+	else:
+		set_state(States.SEARCHING)
+
+
 func on_death():
 	# TODO: #CRITICAL " DEATH PROPER
 	set_state(States.DYING)
@@ -295,12 +350,11 @@ func attack():
 		return
 	# TODO: Pick a position on the left or the right of the player.
 	if state == States.CHASING or state == States.HURTING:
-		await get_tree().create_timer(0.1).timeout
-		if nav_agent.is_navigation_finished():
-			if target and global_position.distance_to(target.transform.origin) < 7.0:
-				attack_position = target.transform.origin
-				set_state(States.ATTACKING)
-				attack_position = target.transform.origin + Vector3(0.0, 0.1, 0.0)
+		var to_target = target.global_transform.origin - global_transform.origin
+		to_target.y = 0.0
+		if to_target.length() <= ATTACK_RANGE:
+			attack_position = target.global_transform.origin + Vector3(0.0, 0.1, 0.0)
+			set_state(States.ATTACKING)
 
 func on_path_changed():
 	if health_system.health == 0.0:
@@ -318,6 +372,8 @@ func on_path_changed():
 
 func on_attack_box_entered(body):
 	if body.is_in_group('PlayerCharacter') or body.is_in_group('Goat'):
+		if not body.get('health_system'):
+			return
 		var damage_successful = body.health_system.damage(attack_value, 4)
 		if damage_successful && attack_box:
 			attack_box.set_deferred('monitoring', false)

@@ -7,17 +7,20 @@
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yruvy"]
 geometry_parsed_geometry_type = 1
-cell_size = 0.05
-cell_height = 0.05
-agent_height = 0.9
+cell_size = 0.025
+cell_height = 0.025
+agent_height = 0.7
 agent_radius = 0.15
 agent_max_climb = 0.1
+
+[sub_resource type="Environment" id="Environment_yruvy"]
 
 [node name="World" type="Node3D" unique_id=62566534]
 script = ExtResource("1_16uyv")
 Map = ExtResource("2_prens")
 
 [node name="Player" parent="." unique_id=1744906786 instance=ExtResource("1_a7fmb")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="DEBUG_CAM" type="Camera3D" parent="." unique_id=1616180418]
@@ -31,3 +34,9 @@ navigation_mesh = SubResource("NavigationMesh_yruvy")
 stream = ExtResource("4_r743u")
 volume_db = -10.0
 autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1585995550]
+environment = SubResource("Environment_yruvy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643380151]
+transform = Transform3D(0.7090907, 0.23326087, -0.66541696, 0, 0.94369686, 0.33081144, 0.7051173, -0.23457532, 0.6691667, -2.7163866, 0, 3.1339397)
