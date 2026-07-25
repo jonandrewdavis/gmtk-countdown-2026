@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="gmtk-countdown-2026"
-run/main_scene="res://menus/main_menu_loading.tscn"
+run/main_scene="uid://bwe1as47pivlv"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://ucij4orrin6y"
 
 [autoload]
 
 Global="*uid://buewgt0amkpxo"
+SoundManager="*res://game/SoundManager.gd"
 
 [debug]
 

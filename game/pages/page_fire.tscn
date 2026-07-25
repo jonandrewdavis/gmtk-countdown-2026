@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_k3igj"]
 [ext_resource type="Texture2D" uid="uid://dmk4uw0nu07vn" path="res://assets/textures/Book/Spell_Fire.png" id="2_k3igj"]
 [ext_resource type="Texture2D" uid="uid://cxsrr78hl8024" path="res://game/pages/page_fire_gradient.tres" id="3_kna4x"]
+[ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="4_4th0j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7yk"]
 content_margin_left = 4.0
@@ -90,6 +91,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
 
+[node name="CPUParticles2D4" parent="Button" unique_id=1489809784 instance=ExtResource("4_4th0j")]
+position = Vector2(68, 67.66824)
+
 [node name="Button2" type="Button" parent="." unique_id=1240733112]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 0
@@ -102,6 +106,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
+
+[node name="CPUParticles2D4" parent="Button2" unique_id=174443017 instance=ExtResource("4_4th0j")]
+position = Vector2(72, 64.53076)
 
 [node name="Timer" type="Timer" parent="." unique_id=995384436]
 unique_name_in_owner = true

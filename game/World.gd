@@ -8,16 +8,29 @@ const GHOST = preload("uid://vydo5ihqeu0v")
 
 @onready var navigation_region_3d: NavigationRegion3D = %NavigationRegion3D
 @onready var player: Player = %Player
-@onready var audio_stream_player_music: AudioStreamPlayer = %AudioStreamPlayerMusic
 
 var cells = []
 
 func _ready() -> void:
+	Global.signal_enemy_target_changed.connect(_update_combat_music)
+	SoundManager.crossfade_bgm(SoundManager.MUSIC_INTRO)
+
 	_build_cells()
 	await _bake_navigation()
-	await _spawn_secret_ball()
 	_spawn_enemies()
 	player.fade_in()
+
+func _update_combat_music() -> void:
+	SoundManager.crossfade_bgm(SoundManager.MUSIC_COMBAT if _any_enemy_hunting() else SoundManager.MUSIC_INTRO)
+
+func _any_enemy_hunting() -> bool:
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if enemy.state in [Enemy.States.DYING, Enemy.States.DECAYING]:
+			continue
+		if is_instance_valid(enemy.target) and enemy.target.is_in_group("PlayerCharacter"):
+			return true
+
+	return false
 
 func _build_cells() -> void:
 	var map = Map.instantiate()
@@ -37,16 +50,6 @@ func _bake_navigation() -> void:
 	await get_tree().process_frame
 	navigation_region_3d.bake_navigation_mesh.call_deferred()
 	await navigation_region_3d.bake_finished
-
-func _spawn_secret_ball() -> void:
-	await get_tree().create_timer(0.2).timeout
-	var secret_ball: RigidBody3D = BALL.instantiate()
-	secret_ball.position = Vector3.ZERO
-	add_child.call_deferred(secret_ball)
-	secret_ball.freeze = true
-	await get_tree().create_timer(0.2).timeout
-	secret_ball.queue_free()
-	await get_tree().create_timer(0.2).timeout
 
 # TODO: More flexible logic
 func _spawn_enemies():

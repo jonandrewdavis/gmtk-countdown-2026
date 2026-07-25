@@ -1,7 +1,7 @@
 extends Node3D
 
-const SWAY_SKEW := 0.02 # how far the treetops lean
-const SWAY_SPEED := 0.8
+const SWAY_SKEW := 0.09 # how far the treetops lean
+const SWAY_SPEED := 0.4
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 @onready var trees: Array[Node] = $TreeGroup.get_children()

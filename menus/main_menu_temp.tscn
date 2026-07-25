@@ -3,7 +3,9 @@
 [ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="1_abtw4"]
 [ext_resource type="Script" uid="uid://dirdlhegdfl3y" path="res://menus/main_menu_temp.gd" id="1_o8com"]
 [ext_resource type="PackedScene" uid="uid://csjnbcf3pr87d" path="res://menus/world_menu_preview.tscn" id="2_4uey8"]
-[ext_resource type="AudioStream" uid="uid://dlxdbx4l1jdm0" path="res://assets/sound/Songs/New Title Screen.wav" id="4_ffc6i"]
+[ext_resource type="Texture2D" uid="uid://ckg8gj7rjgvdr" path="res://assets/images/keyboard-&-mouse_sheet_double.png" id="3_3510t"]
+[ext_resource type="Texture2D" uid="uid://ucij4orrin6y" path="res://assets/textures/Book/Book_Cover.png" id="3_ffc6i"]
+[ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="4_yki0k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffc6i"]
 content_margin_left = 4.0
@@ -16,6 +18,38 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 6
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3510t"]
+atlas = ExtResource("3_3510t")
+region = Rect2(1408, 1664, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ireii"]
+atlas = ExtResource("3_3510t")
+region = Rect2(1792, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_318nu"]
+atlas = ExtResource("3_3510t")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f1to"]
+atlas = ExtResource("3_3510t")
+region = Rect2(256, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ste8"]
+atlas = ExtResource("3_3510t")
+region = Rect2(512, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anr75"]
+atlas = ExtResource("3_3510t")
+region = Rect2(128, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fytw"]
+atlas = ExtResource("3_3510t")
+region = Rect2(1792, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epvkq"]
+atlas = ExtResource("3_3510t")
+region = Rect2(2048, 1792, 128, 128)
 
 [node name="MainMenuTemp" type="CanvasLayer" unique_id=635395771]
 script = ExtResource("1_o8com")
@@ -72,19 +106,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 48
 
-[node name="ButtonStart" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=341485007]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 72
-text = "Begin"
-
 [node name="ButtonTutorial" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=765816215]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 72
 text = "  How to Play"
+
+[node name="ButtonStart" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=341485007]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 72
+text = "Begin"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=1457408358]
 layout_mode = 2
@@ -106,6 +140,146 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
+[node name="HowToPlayModal" type="PanelContainer" parent="MainMenu" unique_id=1407363759]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -854.0
+offset_top = -545.0
+offset_right = 854.0
+offset_bottom = 545.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/HowToPlayModal" unique_id=722934905]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/HowToPlayModal/MarginContainer" unique_id=1178266242]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer" unique_id=93213992]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer" unique_id=360896931]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 64
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+text = "[b]\"The Countdown\"[/b]
+I recieved a package with this [code]strange book[/code] and claims of [code]nefarious deeds[/code] done in the dark [code]catacombs[/code] in this very town. If this letter reaches you before before I do, know that I have delved too deep. [code]Time is running out[/code]."
+fit_content = true
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer" unique_id=338993221]
+layout_mode = 2
+
+[node name="WASD" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=843461578]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_3510t")
+
+[node name="Label" type="Label" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1657792433]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Move"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer" unique_id=885001964]
+layout_mode = 2
+
+[node name="Mouse" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1371130091]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_ireii")
+
+[node name="Label" type="Label" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1023294680]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Interact"
+
+[node name="CPUParticles2D4" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1489809784 instance=ExtResource("4_yki0k")]
+position = Vector2(64, 497.5)
+
+[node name="BookControlsRaise" type="HBoxContainer" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer" unique_id=2030192461]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Mouse" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise" unique_id=725621313]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_318nu")
+
+[node name="Label2" type="Label" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise" unique_id=593703960]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "OR"
+
+[node name="Space" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise" unique_id=2121879512]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5f1to")
+
+[node name="Label" type="Label" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise" unique_id=1115814316]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "[ Hold ] to raise The Book"
+
+[node name="BookControlsRaise2" type="HBoxContainer" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1847349506]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="ControlA" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise2" unique_id=793114309]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_4ste8")
+
+[node name="ControlD" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise2" unique_id=985613953]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_anr75")
+
+[node name="Label" type="Label" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise2" unique_id=1807435919]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "OR"
+
+[node name="ArrowLeft" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise2" unique_id=1816578216]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_5fytw")
+
+[node name="ArrowRight" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise2" unique_id=2129842182]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_epvkq")
+
+[node name="Label2" type="Label" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer/BookControlsRaise2" unique_id=33697243]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Turn the page"
+
+[node name="ButtonReturnToMenu" type="Button" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1082620675]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "RETURN TO MENU"
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer" unique_id=352898283]
+layout_mode = 2
+texture = ExtResource("3_ffc6i")
+expand_mode = 3
+
 [node name="ColorRect" type="ColorRect" parent="MainMenu" unique_id=1756180518]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
@@ -117,11 +291,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="WorldMenuPreview" parent="MainMenu" unique_id=1058388667 instance=ExtResource("2_4uey8")]
-
-[node name="AudioStreamTitle" type="AudioStreamPlayer" parent="." unique_id=1337221430]
-unique_name_in_owner = true
-stream = ExtResource("4_ffc6i")
-volume_db = -5.0
-autoplay = true

@@ -38,16 +38,23 @@ const ROTATION_SPEED = 2.0
 @export var attack_value: int = 30
 
 const RETREAT_CHANCE = 0.4
-const ATTACK_RANGE = 1.0
-const ARRIVE_DISTANCE = 0.2
+const ATTACK_RANGE = 1.2
+const ARRIVE_DISTANCE = 0.8
 const MIN_ALIGNMENT = 0.25
 const CHASE_BREAK_DISTANCE = 2.0
-const CHASE_BREAK_CHANCE = 0.5
+const CHASE_BREAK_CHANCE = 0.4
 
 var timer_attack_cooldown = Timer.new()
 var timer_retreat = Timer.new()
+var timer_retreat_cooldown = Timer.new()
 
-var target = null
+
+var target = null:
+	set(value):
+		if target == value:
+			return
+		target = value
+		Global.signal_enemy_target_changed.emit()
 
 @onready var AudioPlayerAmbient: AudioStreamPlayer3D = $AudioStreamPlayer3DAmbient
 
@@ -104,20 +111,23 @@ func _ready():
 	# Health
 	health_system.signal_hurt.connect(on_hurt)
 	health_system.signal_death.connect(on_death)
-	
+
 	# Nav
 	#nav_agent.navigation_finished.connect(on_navigation_finished)
 	nav_agent.path_changed.connect(on_path_changed)
 
 	add_child(timer_attack_cooldown)
 	timer_attack_cooldown.timeout.connect(attack)
-	timer_attack_cooldown.wait_time = randf_range(2.0, 4.0)
-	timer_attack_cooldown.one_shot = false
+	timer_attack_cooldown.wait_time = randf_range(4.0, 7.0)
 	timer_attack_cooldown.start()
 
 	add_child(timer_retreat)
 	timer_retreat.timeout.connect(end_retreat)
 	timer_retreat.one_shot = true
+
+	add_child(timer_retreat_cooldown)
+	timer_retreat_cooldown.wait_time = 0.4
+	timer_retreat_cooldown.one_shot = true
 
 	await get_tree().create_timer(0.2).timeout
 	set_state(States.SEARCHING)
@@ -159,8 +169,8 @@ func move_and_attack(delta):
 	if target:
 		face_position(target.global_transform.origin, delta)
 
-	if global_position.distance_to(attack_position) > 0.2:
-		move_towards(attack_position, speed * 1.4)
+	if global_position.distance_to(attack_position) > 0.8:
+		move_towards(attack_position, speed)
 	else:
 		set_state(States.CHASING)
 		nav.chase_target()
@@ -261,6 +271,7 @@ func set_state(new_state: States) -> void:
 		timer_retreat.wait_time = randf_range(2.0, 5.0)
 		timer_retreat.start()
 
+	# THIS does the actual attack
 	if state == States.ATTACKING:
 		animation_player.play(ANI[LIST.ATTACK])
 		# TODO: await an animation but we're not sure if the current animation is in action, etc.
@@ -280,6 +291,7 @@ func set_state(new_state: States) -> void:
 			#set_state(States.CHASING)
 
 	if state == States.DYING:
+		target = null
 		# Helps prevent monitoring issues
 		nav.timer_tick.stop()
 		nav.timer_navigate.stop()
@@ -315,12 +327,22 @@ func on_animation_finished(animation_name):
 	if animation_name == ANI[LIST.ATTACK]:
 		set_state(States.CHASING)
 
-func on_hurt():
+func on_hurt(_damage_value: int = 0):
 	set_state(States.HURTING)
-
-	if health_system.health > 0 and state == States.HURTING and randf() < RETREAT_CHANCE:
+	Global.signal_enemy_damaged.emit(_damage_value)
+	# Whenever we recieve damage, stop attacking for a moment
+	if check_retreat_chance():
 		set_state(States.DODGING)
+	else:
+		# we didn't retreat, start the cooldown before checking again
+		timer_retreat_cooldown.start()
 
+func check_retreat_chance() -> bool:
+	return health_system.health > 0 \
+	and state == States.HURTING \
+	and randf() < RETREAT_CHANCE \
+	and timer_retreat_cooldown.is_stopped()
+	
 func end_retreat():
 	if state != States.DODGING:
 		return
@@ -342,7 +364,7 @@ func can_attack() -> bool:
 	if health_system.health == 0:
 		return false
 		
-	if state in [States.ATTACKING, States.DYING, States.DECAYING]:
+	if state in [States.ATTACKING, States.DYING, States.DECAYING, States.DODGING]:
 		return false
 
 	return true
@@ -414,9 +436,8 @@ func on_attack_box_entered(body):
 	if body.is_in_group('PlayerCharacter') or body.is_in_group('Goat'):
 		if not body.get('health_system'):
 			return
-		var damage_successful = body.health_system.damage(attack_value, 4)
-		if damage_successful && attack_box:
-			attack_box.set_deferred('monitoring', false)
+		body.health_system.damage(attack_value, 4)
+		attack_box.set_deferred('monitoring', false)
 
 func _on_audio_stream_player_3d_ambient_finished() -> void:
 	_play_new_random_ambient_sound()

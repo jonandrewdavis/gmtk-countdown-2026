@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ckg8gj7rjgvdr" path="res://assets/images/keyboard-&-mouse_sheet_double.png" id="6_anr75"]
 [ext_resource type="Texture2D" uid="uid://ckf672el7mxks" path="res://assets/textures/Book/Book_Page.png" id="7_epvkq"]
 [ext_resource type="Texture2D" uid="uid://cyj5cyrvdb2wd" path="res://assets/textures/Book/Book_Spine.png" id="8_gb4gm"]
+[ext_resource type="AudioStream" uid="uid://bvc6lbdrqr4j3" path="res://assets/sound/Sounds/Spellbook Sounds/Spell Book Closing - 3.wav" id="9_2mv0n"]
 [ext_resource type="AudioStream" uid="uid://d223no3j4qs33" path="res://assets/sound/Sounds/Spellbook Sounds/Spellbook Pages Turning 3.mp3" id="9_3ep63"]
 [ext_resource type="Texture2D" uid="uid://ucij4orrin6y" path="res://assets/textures/Book/Book_Cover.png" id="9_uv2nh"]
 [ext_resource type="Texture2D" uid="uid://57gq4ht6fvmr" path="res://assets/textures/Book/Book_Inside.png" id="10_n270p"]
@@ -336,6 +337,7 @@ closed_scale = Vector2(1, 1)
 closed_skew = 0.0
 closed_rotation = 0.0
 open_scale = Vector2(1, 1)
+sfx_book_impact = ExtResource("9_2mv0n")
 sfx_page_flip = Array[AudioStream]([ExtResource("9_3ep63"), ExtResource("10_rqcxa"), ExtResource("11_2mv0n")])
 pages_paths = Array[String](["uid://dndmf85msy16a", "uid://dndmf85msy16a", "uid://dp84i3671beg", "uid://dndmf85msy16a", "uid://wamtfbeofiln", "uid://dndmf85msy16a"])
 tex_cover_front_out = ExtResource("9_uv2nh")
@@ -348,6 +350,16 @@ unique_name_in_owner = true
 layer = 2
 script = ExtResource("13_dmgnm")
 color = Color(1, 0.35, 0.3, 1)
+number_scale = 0.9
+height = -260.0
+spread = 50.0
+duration = 2.4
+
+[node name="DamageNumbersPlayerHeal" type="CanvasLayer" parent="." unique_id=1014316305]
+unique_name_in_owner = true
+layer = 2
+script = ExtResource("13_dmgnm")
+color = Color(0.35, 1, 0.45, 1)
 number_scale = 0.9
 height = -260.0
 spread = 50.0

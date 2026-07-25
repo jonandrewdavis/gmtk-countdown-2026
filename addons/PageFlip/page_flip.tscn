@@ -33,11 +33,11 @@ viewport_path = NodePath("Viewports/Covers/CoverFrontIn")
 offsets = PackedFloat32Array(0, 0.2236842, 0.7697368, 1)
 colors = PackedColorArray(0, 0, 0, 0.38200003, 0, 0, 0, 0.324, 0, 0, 0, 0.492, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ur30m"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_15rl4"]
 gradient = SubResource("Gradient_3i6i7")
 width = 512
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_obyba"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d7q7d"]
 gradient = SubResource("Gradient_3i6i7")
 width = 435
 
@@ -56,7 +56,7 @@ tracks/0/keys = {
 "values": [SubResource("ViewportTexture_7r0mx")]
 }
 
-[sub_resource type="Animation" id="Animation_prp7a"]
+[sub_resource type="Animation" id="Animation_ur30m"]
 length = 0.8
 step = 0.01
 tracks/0/type = "value"
@@ -797,7 +797,7 @@ tracks/60/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_000wr"]
+[sub_resource type="Animation" id="Animation_obyba"]
 length = 0.8
 step = 0.01
 tracks/0/type = "value"
@@ -1538,7 +1538,7 @@ tracks/60/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_pmqqf"]
+[sub_resource type="Animation" id="Animation_prp7a"]
 length = 0.8
 step = 0.01
 tracks/0/type = "value"
@@ -2267,7 +2267,7 @@ tracks/59/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_hmrje"]
+[sub_resource type="Animation" id="Animation_000wr"]
 length = 0.8
 step = 0.01
 tracks/0/type = "value"
@@ -2999,10 +2999,10 @@ tracks/59/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hqhik"]
 _data = {
 &"RESET": SubResource("Animation_cuh5i"),
-&"turn_flexible_page": SubResource("Animation_prp7a"),
-&"turn_flexible_page_mirror": SubResource("Animation_000wr"),
-&"turn_rigid_page": SubResource("Animation_pmqqf"),
-&"turn_rigid_page_mirror": SubResource("Animation_hmrje")
+&"turn_flexible_page": SubResource("Animation_ur30m"),
+&"turn_flexible_page_mirror": SubResource("Animation_obyba"),
+&"turn_rigid_page": SubResource("Animation_prp7a"),
+&"turn_rigid_page_mirror": SubResource("Animation_000wr")
 }
 
 [node name="PageFlip" type="Node2D" unique_id=665792726 node_paths=PackedStringArray("visuals_container", "static_left", "static_right", "dynamic_poly", "anim_player", "vp_compositor", "compositor_sprite", "audio_player")]
@@ -3135,394 +3135,394 @@ face_shadow_spread = 0.65
 timing_peak_lift = 0.1
 timing_peak_land = 0.92
 
-[node name="AutoShadow" type="Polygon2D" parent="Visual/DynamicFlipPoly" unique_id=1443387234]
+[node name="AutoShadow" type="Polygon2D" parent="Visual/DynamicFlipPoly" unique_id=1429589370]
 z_index = -1
-texture = SubResource("GradientTexture2D_ur30m")
+texture = SubResource("GradientTexture2D_15rl4")
 polygon = PackedVector2Array(4, 4, 508, 4, 508, 816, 4, 816)
 uv = PackedVector2Array(4, 4, 508, 4, 508, 816, 4, 816)
 
-[node name="AutoSkeleton" type="Skeleton2D" parent="Visual/DynamicFlipPoly" unique_id=901516849]
+[node name="AutoSkeleton" type="Skeleton2D" parent="Visual/DynamicFlipPoly" unique_id=1094061312]
 
-[node name="Bone_0_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=1465633145]
+[node name="Bone_0_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=1346280340]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_1_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0" unique_id=520432497]
+[node name="Bone_1_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0" unique_id=1908398898]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_2_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0" unique_id=892982214]
+[node name="Bone_2_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0" unique_id=480110749]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_3_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0" unique_id=1434681348]
+[node name="Bone_3_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0" unique_id=1908174114]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_4_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0" unique_id=1145228706]
+[node name="Bone_4_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0" unique_id=1106576396]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_5_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0" unique_id=1282842788]
+[node name="Bone_5_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0" unique_id=1998992244]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_6_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0/Bone_5_0" unique_id=1116683933]
+[node name="Bone_6_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0/Bone_5_0" unique_id=1436224239]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_7_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0/Bone_5_0/Bone_6_0" unique_id=191083328]
+[node name="Bone_7_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0/Bone_5_0/Bone_6_0" unique_id=610058701]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_8_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0/Bone_5_0/Bone_6_0/Bone_7_0" unique_id=1414288829]
+[node name="Bone_8_0" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_0/Bone_1_0/Bone_2_0/Bone_3_0/Bone_4_0/Bone_5_0/Bone_6_0/Bone_7_0" unique_id=174552737]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_0_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=903144378]
+[node name="Bone_0_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=711876676]
 position = Vector2(0, 164)
 rest = Transform2D(1, 0, 0, 1, 0, 164)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_1_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1" unique_id=1794004515]
+[node name="Bone_1_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1" unique_id=1650429187]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_2_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1" unique_id=1012729283]
+[node name="Bone_2_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1" unique_id=1792639009]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_3_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1" unique_id=180028474]
+[node name="Bone_3_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1" unique_id=1049697574]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_4_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1" unique_id=1708123801]
+[node name="Bone_4_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1" unique_id=1333581493]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_5_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1" unique_id=107116903]
+[node name="Bone_5_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1" unique_id=1757325409]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_6_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1/Bone_5_1" unique_id=983547926]
+[node name="Bone_6_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1/Bone_5_1" unique_id=1827995696]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_7_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1/Bone_5_1/Bone_6_1" unique_id=828389157]
+[node name="Bone_7_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1/Bone_5_1/Bone_6_1" unique_id=95911372]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_8_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1/Bone_5_1/Bone_6_1/Bone_7_1" unique_id=2118857615]
+[node name="Bone_8_1" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_1/Bone_1_1/Bone_2_1/Bone_3_1/Bone_4_1/Bone_5_1/Bone_6_1/Bone_7_1" unique_id=138284824]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_0_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=919752728]
+[node name="Bone_0_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=593620906]
 position = Vector2(0, 328)
 rest = Transform2D(1, 0, 0, 1, 0, 328)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_1_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2" unique_id=38582997]
+[node name="Bone_1_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2" unique_id=553808775]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_2_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2" unique_id=35278655]
+[node name="Bone_2_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2" unique_id=1356912210]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_3_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2" unique_id=2032278130]
+[node name="Bone_3_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2" unique_id=998017250]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_4_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2" unique_id=1519021568]
+[node name="Bone_4_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2" unique_id=335307282]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_5_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2" unique_id=1988466102]
+[node name="Bone_5_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2" unique_id=994915913]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_6_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2/Bone_5_2" unique_id=210625332]
+[node name="Bone_6_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2/Bone_5_2" unique_id=61979309]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_7_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2/Bone_5_2/Bone_6_2" unique_id=915213438]
+[node name="Bone_7_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2/Bone_5_2/Bone_6_2" unique_id=1800092692]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_8_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2/Bone_5_2/Bone_6_2/Bone_7_2" unique_id=574166064]
+[node name="Bone_8_2" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_2/Bone_1_2/Bone_2_2/Bone_3_2/Bone_4_2/Bone_5_2/Bone_6_2/Bone_7_2" unique_id=1937786443]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_0_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=889203854]
+[node name="Bone_0_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=826542594]
 position = Vector2(0, 492)
 rest = Transform2D(1, 0, 0, 1, 0, 492)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_1_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3" unique_id=1537078931]
+[node name="Bone_1_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3" unique_id=407218943]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_2_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3" unique_id=871590989]
+[node name="Bone_2_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3" unique_id=1313610712]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_3_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3" unique_id=449964012]
+[node name="Bone_3_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3" unique_id=1918612210]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_4_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3" unique_id=1405372206]
+[node name="Bone_4_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3" unique_id=1479922998]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_5_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3" unique_id=1854377449]
+[node name="Bone_5_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3" unique_id=1049134384]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_6_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3/Bone_5_3" unique_id=1910260645]
+[node name="Bone_6_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3/Bone_5_3" unique_id=1557242178]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_7_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3/Bone_5_3/Bone_6_3" unique_id=358383801]
+[node name="Bone_7_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3/Bone_5_3/Bone_6_3" unique_id=1008545180]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_8_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3/Bone_5_3/Bone_6_3/Bone_7_3" unique_id=1639374709]
+[node name="Bone_8_3" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_3/Bone_1_3/Bone_2_3/Bone_3_3/Bone_4_3/Bone_5_3/Bone_6_3/Bone_7_3" unique_id=844438328]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_0_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=1191245382]
+[node name="Bone_0_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=877270127]
 position = Vector2(0, 656)
 rest = Transform2D(1, 0, 0, 1, 0, 656)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_1_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4" unique_id=791652809]
+[node name="Bone_1_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4" unique_id=1078687075]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_2_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4" unique_id=623151220]
+[node name="Bone_2_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4" unique_id=1772796526]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_3_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4" unique_id=1558596205]
+[node name="Bone_3_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4" unique_id=1911476232]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_4_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4" unique_id=1354135077]
+[node name="Bone_4_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4" unique_id=743333114]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_5_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4" unique_id=2063201832]
+[node name="Bone_5_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4" unique_id=1985837955]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_6_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4/Bone_5_4" unique_id=1451150505]
+[node name="Bone_6_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4/Bone_5_4" unique_id=1348855864]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_7_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4/Bone_5_4/Bone_6_4" unique_id=853740711]
+[node name="Bone_7_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4/Bone_5_4/Bone_6_4" unique_id=1452173351]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_8_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4/Bone_5_4/Bone_6_4/Bone_7_4" unique_id=912657341]
+[node name="Bone_8_4" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_4/Bone_1_4/Bone_2_4/Bone_3_4/Bone_4_4/Bone_5_4/Bone_6_4/Bone_7_4" unique_id=1047305299]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_0_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=166683802]
+[node name="Bone_0_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton" unique_id=1161150886]
 position = Vector2(0, 820)
 rest = Transform2D(1, 0, 0, 1, 0, 820)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_1_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5" unique_id=2083245748]
+[node name="Bone_1_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5" unique_id=1583078613]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_2_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5" unique_id=1383481359]
+[node name="Bone_2_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5" unique_id=209433172]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_3_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5" unique_id=1480465346]
+[node name="Bone_3_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5" unique_id=569863293]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_4_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5" unique_id=13033127]
+[node name="Bone_4_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5" unique_id=385742596]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_5_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5" unique_id=2128315327]
+[node name="Bone_5_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5" unique_id=407854197]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_6_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5/Bone_5_5" unique_id=382380292]
+[node name="Bone_6_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5/Bone_5_5" unique_id=217036050]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_7_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5/Bone_5_5/Bone_6_5" unique_id=217202729]
+[node name="Bone_7_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5/Bone_5_5/Bone_6_5" unique_id=97180117]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="Bone_8_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5/Bone_5_5/Bone_6_5/Bone_7_5" unique_id=489622486]
+[node name="Bone_8_5" type="Bone2D" parent="Visual/DynamicFlipPoly/AutoSkeleton/Bone_0_5/Bone_1_5/Bone_2_5/Bone_3_5/Bone_4_5/Bone_5_5/Bone_6_5/Bone_7_5" unique_id=963898663]
 position = Vector2(64, 0)
 rest = Transform2D(1, 0, 0, 1, 64, 0)
 auto_calculate_length_and_angle = false
 length = 64.0
 bone_angle = 0.0
 
-[node name="AutoGradient" type="Polygon2D" parent="Visual/DynamicFlipPoly" unique_id=1130694283]
+[node name="AutoGradient" type="Polygon2D" parent="Visual/DynamicFlipPoly" unique_id=504384202]
 scale = Vector2(0.001, 1)
-texture = SubResource("GradientTexture2D_obyba")
+texture = SubResource("GradientTexture2D_d7q7d")
 skeleton = NodePath("../AutoSkeleton")
 polygon = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0, 512, 0, 0, 164, 64, 164, 128, 164, 192, 164, 256, 164, 320, 164, 384, 164, 448, 164, 512, 164, 0, 328, 64, 328, 128, 328, 192, 328, 256, 328, 320, 328, 384, 328, 448, 328, 512, 328, 0, 492, 64, 492, 128, 492, 192, 492, 256, 492, 320, 492, 384, 492, 448, 492, 512, 492, 0, 656, 64, 656, 128, 656, 192, 656, 256, 656, 320, 656, 384, 656, 448, 656, 512, 656, 0, 820, 64, 820, 128, 820, 192, 820, 256, 820, 320, 820, 384, 820, 448, 820, 512, 820)
 uv = PackedVector2Array(0, 0, 64, 0, 128, 0, 192, 0, 256, 0, 320, 0, 384, 0, 448, 0, 512, 0, 0, 164, 64, 164, 128, 164, 192, 164, 256, 164, 320, 164, 384, 164, 448, 164, 512, 164, 0, 328, 64, 328, 128, 328, 192, 328, 256, 328, 320, 328, 384, 328, 448, 328, 512, 328, 0, 492, 64, 492, 128, 492, 192, 492, 256, 492, 320, 492, 384, 492, 448, 492, 512, 492, 0, 656, 64, 656, 128, 656, 192, 656, 256, 656, 320, 656, 384, 656, 448, 656, 512, 656, 0, 820, 64, 820, 128, 820, 192, 820, 256, 820, 320, 820, 384, 820, 448, 820, 512, 820)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_phrhr"]
 [ext_resource type="Texture2D" uid="uid://p8vt4240k4t3" path="res://assets/textures/Book/Spell_Ice.png" id="2_al5if"]
 [ext_resource type="Texture2D" uid="uid://cl3erjh25o56u" path="res://game/pages/page_ice_gradient_texture.tres" id="3_5di8p"]
+[ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="5_jupod"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_4i8qy"]
 
@@ -70,7 +71,7 @@ corner_detail = 5
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_phrhr")
-timer_cooldown = 11.0
+timer_cooldown = 10.0
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
 layout_mode = 0
@@ -106,6 +107,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
 
+[node name="CPUParticles2D6" parent="Button" unique_id=1489809784 instance=ExtResource("5_jupod")]
+position = Vector2(73, 70)
+
 [node name="Button2" type="Button" parent="." unique_id=912241615]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 0
@@ -118,6 +122,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_t1kqs")
+
+[node name="CPUParticles2D6" parent="Button2" unique_id=1823511711 instance=ExtResource("5_jupod")]
+position = Vector2(73, 70)
 
 [node name="Button3" type="Button" parent="." unique_id=1517317677]
 custom_minimum_size = Vector2(96, 96)
@@ -132,6 +139,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_t1kqs")
 
+[node name="CPUParticles2D5" parent="Button3" unique_id=1755024306 instance=ExtResource("5_jupod")]
+position = Vector2(73, 69)
+
 [node name="Button4" type="Button" parent="." unique_id=480399331]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 0
@@ -144,6 +154,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_t1kqs")
+
+[node name="CPUParticles2D4" parent="Button4" unique_id=548581871 instance=ExtResource("5_jupod")]
+position = Vector2(70, 70)
 
 [node name="Timer" type="Timer" parent="." unique_id=995384436]
 unique_name_in_owner = true

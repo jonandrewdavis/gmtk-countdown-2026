@@ -1,7 +1,7 @@
 extends Node
 class_name HealthSystem
 
-signal signal_hurt
+signal signal_hurt(int)
 signal signal_health_updated(int)
 signal signal_max_health_updated
 signal signal_death
@@ -34,6 +34,7 @@ func damage(value: int, source: int = 0) -> bool:
 
 	if get_parent().has_method('can_be_damaged'):
 		if get_parent().can_be_damaged() == false:
+			signal_hurt.emit(0)
 			return false
 
 	# Don't allow negative values when damaging
@@ -53,13 +54,13 @@ func damage(value: int, source: int = 0) -> bool:
 		health = 0
 		last_damage_source = source
 		signal_health_updated.emit(0)
-		signal_hurt.emit()
+		signal_hurt.emit(value)
 		signal_death.emit()
 		return true
 
 	# Damage
 	if next_health < health and regen_enabled:
-		signal_hurt.emit()
+		signal_hurt.emit(value)
 		if regen_timer.is_inside_tree():
 			regen_timer.start()
 
@@ -71,7 +72,7 @@ func damage(value: int, source: int = 0) -> bool:
 	last_damage_source = source
 	health = next_health
 	signal_health_updated.emit(next_health)
-	signal_hurt.emit()
+	signal_hurt.emit(value)
 
 	return true
 

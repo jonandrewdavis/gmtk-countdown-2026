@@ -167,6 +167,8 @@ libraries/ = ExtResource("14_v1528")
 
 [node name="HealthSystem" type="Node" parent="." unique_id=374662232]
 script = ExtResource("2_ip34o")
+max_health = 125
+health = 125
 
 [node name="NavigationSystem" type="Node" parent="." unique_id=516601289 node_paths=PackedStringArray("nav_agent", "search_box")]
 script = ExtResource("3_uvqya")
@@ -217,13 +219,15 @@ cast_shadow = 0
 mesh = SubResource("CylinderMesh_j1tbm")
 
 [node name="AudioStreamPlayer3DAmbient" type="AudioStreamPlayer3D" parent="." unique_id=2071931980]
+bus = &"SFX"
 
 [node name="AudioStreamPlayer3DAttack" type="AudioStreamPlayer3D" parent="." unique_id=1183111435]
+bus = &"SFX"
 
 [node name="Enemy_Ghost2" parent="." unique_id=521300060 instance=ExtResource("2_nhagh")]
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
 
-[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1790139966]
+[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1678079172]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_tgc2r")
 

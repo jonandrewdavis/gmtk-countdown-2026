@@ -26,6 +26,7 @@ const RAY_LENGTH := 0.55
 @onready var health_system: HealthSystem = %HealthSystem
 @onready var timer_ice_shield: Timer = %TimerIceShield
 @onready var damage_numbers_player: DamageNumbers2D = %DamageNumbersPlayer
+@onready var damage_numbers_player_heal: DamageNumbers2D = %DamageNumbersPlayerHeal
 @onready var damage_numbers_enemy: DamageNumbers2D = %DamageNumbersEnemy
 
 var is_rotating := false
@@ -38,7 +39,6 @@ var book_raise_tween: Tween
 var count_down := 60
 
 var hurt_tween: Tween
-var last_health := -1
 
 func _ready() -> void:
 	add_to_group('PlayerCharacter')
@@ -71,10 +71,6 @@ func _on_max_health_updated(max_health: int) -> void:
 	health_bar.max_value = max_health
 
 func _on_health_updated(health: int) -> void:
-	if last_health > health:
-		damage_numbers_player.spawn(last_health - health,
-			health_bar.global_position + Vector2(health_bar.size.x * 0.5, health_bar.size.y + 30.0))
-	last_health = health
 	health_bar.value = health
 
 func _on_enemy_damaged(amount: int) -> void:
@@ -86,9 +82,17 @@ func can_be_damaged() -> bool:
 		
 	return true
 
-func _on_hurt() -> void:	
+func _on_hurt(damage_value: int = 0) -> void:	
 	if hurt_tween:
 		hurt_tween.kill()
+
+	var bar_pos = health_bar.global_position + Vector2(health_bar.size.x * 0.5, health_bar.size.y + 30.0)
+
+	if damage_value == 0:
+		damage_numbers_player_heal.spawn(damage_value, bar_pos)
+		return
+
+	damage_numbers_player.spawn(damage_value, bar_pos)
 
 	hurt_color_rect.show()
 	hurt_tween = create_tween().set_trans(Tween.TRANS_SINE)
@@ -156,6 +160,7 @@ func move(move_dir: Vector3 = direction) -> void:
 		return
 
 	is_moving = true
+	Global.signal_footstep.emit()
 
 	var target_position = global_position + move_dir
 	target_position.x = snappedf(target_position.x, Global.GRID_SIZE)
@@ -214,6 +219,7 @@ func show_spell(spell: Global.SPELLS):
 
 func remove_spell(spell: Global.SPELLS):
 	if spell == Global.SPELLS.ICE:
+		print('no more ice')
 		var tween = get_tree().create_tween()
 		tween.tween_property(ice_color_rect.material, 'shader_parameter/vignette_strength', 0.0, 2.0)
 		# Fades out
@@ -223,7 +229,7 @@ func remove_spell(spell: Global.SPELLS):
 
 
 func shoot():
-	var force = 1.0
+	var force = 0.6
 	var shoot_dir = get_shoot_direction()
 	var new_ball: RigidBody3D = BALL.instantiate()
 	get_tree().current_scene.add_child(new_ball, true)

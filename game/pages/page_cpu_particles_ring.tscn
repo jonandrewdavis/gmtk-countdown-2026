@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ihc1si1n2lie"]
+
+[ext_resource type="Texture2D" uid="uid://dogt0rxmyxnps" path="res://game/pages/page_particles_circle_gradient.tres" id="1_g2k45"]
+
+[node name="CPUParticles2D4" type="CPUParticles2D" unique_id=1489809784]
+amount = 16
+texture = ExtResource("1_g2k45")
+emission_shape = 6
+emission_ring_inner_radius = 70.0
+emission_ring_radius = 80.0
+spread = 0.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+scale_amount_min = 0.1
+scale_amount_max = 0.5

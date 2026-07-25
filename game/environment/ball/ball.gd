@@ -4,13 +4,23 @@ extends RigidBody3D
 
 var source: int
 
+@onready var timer_fire_damage: Timer = %TimerFireDamage
+
+const FIRE_TICK_TIME = 0.2
+const FIRE_TICK_DAMAGE = 5
+const FIRE_DUR = 3.0
+
 func _ready() -> void:
-	area_3d.body_entered.connect(on_ball_hit)
-	# temp stuff
-	await get_tree().create_timer(3.5).timeout
+	area_3d.body_entered.connect(on_ball_entered)
+	timer_fire_damage.wait_time = FIRE_TICK_TIME
+
+	await get_tree().create_timer(FIRE_DUR).timeout
 	queue_free()
 
-func on_ball_hit(body: Node3D):
+func on_ball_entered(body: Node3D):
 	if body is Enemy:
-		if body.health_system.damage(100):
-			Global.signal_enemy_damaged.emit(100)
+			timer_fire_damage.timeout.connect(_deal_fire_tick.bind(body))
+			timer_fire_damage.start()
+
+func _deal_fire_tick(body: Enemy):
+	body.health_system.damage(FIRE_TICK_DAMAGE)

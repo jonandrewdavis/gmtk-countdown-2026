@@ -39,6 +39,8 @@ func _process(_delta):
 func activate(active_button: Button):
 	active_button.disabled = true
 	active_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	if active_button.get_child(0):
+		active_button.get_child(0).hide()
 	if buttons_to_activate.all(func(item: Button): return item.disabled == true):
 		start_cooldown()
 	
@@ -50,3 +52,5 @@ func reset():
 	for this_button in buttons_to_activate:
 		this_button.disabled = false
 		this_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		if this_button.get_child(0):
+			this_button.get_child(0).show()
