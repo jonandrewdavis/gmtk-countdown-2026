@@ -20,7 +20,6 @@ constant = Color(0, 0, 0, 1)
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_lshnd"]
 parameter_name = "ColorParameter"
-qualifier = 2
 default_value_enabled = true
 default_value = Color(0.28235295, 0.2784314, 0.25882354, 1)
 

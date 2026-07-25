@@ -20,22 +20,22 @@ void fragment() {
 	vec2 pixel_count = tex_size / pixel_size;
 	vec2 pixelated_uv = floor(SCREEN_UV * pixel_count) / pixel_count;
 	vec4 color = texture(screen_texture, pixelated_uv);
-	
+
 	color.rgb = pow(color.rgb, vec3(gamma.x));
-	
+
 	float greyscale = max(color.r, max(color.g, color.b));
 	float lower = floor(greyscale * levels) / levels;
 	float higher = ceil(greyscale * levels) / levels;
 
 	float lower_diff = abs(lower - greyscale);
 	float higher_diff = abs(higher - greyscale);
-	
+
 	float level = lower * float(lower_diff < higher_diff) + higher * float(lower_diff > higher_diff);
 	float adjustment = level / greyscale;
-	
+
 	color.rgb *= adjustment;
 		color.rgb = pow(color.rgb, vec3(gamma.y));
-	
+
 	ALBEDO = color.rgb;
 	//ALPHA = color.a;
 }

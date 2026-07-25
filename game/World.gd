@@ -31,8 +31,7 @@ func _ready() -> void:
 	#add_child(ghost)
 	#ghost.global_transform.origin = cells.pick_random().global_transform.origin + Vector3(0.0, 1.0, 0.0)
 
-	var secret_ball = BALL.instantiate()
+	var secret_ball: RigidBody3D = BALL.instantiate()
 	secret_ball.position = Vector3(100.0, 100.0, 100.0)
 	add_child.call_deferred(secret_ball)
-	await get_tree().process_frame
-	secret_ball.queue_free()
+	secret_ball.freeze = true

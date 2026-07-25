@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://b7yc03naufag0" path="res://game/environment/map/map.tscn" id="2_prens"]
 [ext_resource type="AudioStream" uid="uid://dt1m8gu6boc0m" path="res://assets/sound/Songs/Title Screen.wav" id="4_r743u"]
 
-[sub_resource type="Environment" id="Environment_yruvy"]
-
 [sub_resource type="NavigationMesh" id="NavigationMesh_yruvy"]
 geometry_parsed_geometry_type = 1
 cell_size = 0.05
@@ -24,9 +22,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="DEBUG_CAM" type="Camera3D" parent="." unique_id=1616180418]
 transform = Transform3D(0.8424786, 0, 0.53872997, 0, 1, 0, -0.53872997, 0, 0.8424786, 4.1579947, 2.0765727, 3.813717)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=154180460]
-environment = SubResource("Environment_yruvy")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=559861031]
 unique_name_in_owner = true
