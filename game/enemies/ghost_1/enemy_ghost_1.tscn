@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://2so0dr2208kn" path="res://game/enemies/ghost_1/enemy_ghost_1.gd" id="1_j1tbm"]
 [ext_resource type="Script" uid="uid://d5jl3b0hfehw" path="res://game/enemies/components/health_system.gd" id="2_ip34o"]
+[ext_resource type="PackedScene" uid="uid://148qaumywbac" path="res://assets/mesh/Enemy_Ghost.glb" id="2_nhagh"]
+[ext_resource type="Shader" uid="uid://bv057fdcdjpii" path="res://assets/shaders/WorldPalette.tres" id="3_bcvej"]
 [ext_resource type="Script" uid="uid://es67axqa8ao6" path="res://game/enemies/components/navigation_system.gd" id="3_uvqya"]
 [ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="5_1jl0m"]
 [ext_resource type="Texture2D" uid="uid://bxh65xidnxpf6" path="res://assets/mesh/monk/textures/Material.001_baseColor.png" id="5_dfiu0"]
@@ -131,6 +133,10 @@ shader_parameter/ColorParameter = Color(0.282353, 0.278431, 0.258824, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_j1tbm"]
 height = 0.2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tgc2r"]
+render_priority = 0
+shader = ExtResource("3_bcvej")
+
 [node name="EnemyGhost1" type="CharacterBody3D" unique_id=427302985 node_paths=PackedStringArray("animation_player", "health_system", "nav", "nav_agent", "search_box", "attack_box", "detection_box")]
 script = ExtResource("1_j1tbm")
 enemy_type = 1
@@ -190,6 +196,7 @@ shape = SubResource("SphereShape3D_detect")
 
 [node name="Sketchfab_Scene" type="Node3D" parent="." unique_id=2083895909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.041, 0)
+visible = false
 
 [node name="Sketchfab_model" type="Node3D" parent="Sketchfab_Scene" unique_id=1524213485]
 transform = Transform3D(-0.1, -1.509958e-08, -6.6002364e-16, 0, -4.371139e-09, 0.1, -1.509958e-08, 0.1, 4.371139e-09, -2.0139816e-15, -0.054855585, 2.3037265e-08)
@@ -213,4 +220,13 @@ mesh = SubResource("CylinderMesh_j1tbm")
 
 [node name="AudioStreamPlayer3DAttack" type="AudioStreamPlayer3D" parent="." unique_id=1183111435]
 
+[node name="Enemy_Ghost2" parent="." unique_id=521300060 instance=ExtResource("2_nhagh")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
+
+[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1790139966]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_tgc2r")
+
 [connection signal="finished" from="AudioStreamPlayer3DAmbient" to="." method="_on_audio_stream_player_3d_ambient_finished"]
+
+[editable path="Enemy_Ghost2"]
