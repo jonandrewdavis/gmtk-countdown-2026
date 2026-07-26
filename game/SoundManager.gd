@@ -41,7 +41,6 @@ func _ready() -> void:
 	for i in SFX_PLAYER_COUNT:
 		sfx_players.append(_make_player("SfxPlayer%d" % i, BUS_SFX, SFX_VOLUME_DB))
 
-	Global.signal_spell_start.connect(_on_spell_start)
 	Global.signal_footstep.connect(play_footstep)
 	Global.signal_enemy_damaged.connect(play_damage_tick)
 
@@ -94,11 +93,11 @@ func play_sfx(stream: AudioStream, volume_db := SFX_VOLUME_DB, pitch_scale := 1.
 func play_footstep() -> void:
 	play_sfx(SFX_FOOTSTEPS.pick_random(), SFX_VOLUME_DB, randf_range(0.9, 1.1))
 
-func _on_spell_start(spell: Global.SPELLS) -> void:
-	if spell == Global.SPELLS.ICE:
-		play_sfx(ICE_SPELL)
-	elif spell == Global.SPELLS.FIRE:
-		play_sfx(FIRE_SPELL)
+#func _on_spell_start(spell: Global.SPELLS) -> void:
+	#if spell == Global.SPELLS.ICE:
+		#play_sfx(ICE_SPELL)
+	#elif spell == Global.SPELLS.FIRE:
+		#play_sfx(FIRE_SPELL)
 
 func play_damage_tick(_damage: int = 0):
 	play_sfx(SFX_DAMAGE_TICK, SFX_VOLUME_DB, randf_range(0.9, 1.1))

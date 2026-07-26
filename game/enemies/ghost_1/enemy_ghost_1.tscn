@@ -19,7 +19,7 @@ height = 0.7
 size = Vector3(0.8, 1, 0.2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8fdcm"]
-radius = 0.3
+radius = 0.4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_detect"]
 radius = 1.2
@@ -181,7 +181,7 @@ nav_agent = NodePath("../NavigationAgent3D")
 search_box = NodePath("../SearchBox")
 
 [node name="AttackBox" type="Area3D" parent="." unique_id=1496836165]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.53920424)
 collision_layer = 0
 collision_mask = 2
 monitoring = false

@@ -14,7 +14,6 @@ const RAY_LENGTH := 0.55
 @onready var camera = $Camera3D
 @onready var page_holder: Node2D = %PageHolder
 @onready var page_flip: PageFlip2D = %PageFlip
-@onready var ice_color_rect: ColorRect = %IceColorRect
 @onready var book_controls_raise: Control = %BookControlsRaise
 @onready var book_arrows: Control = %BookArrows
 @onready var control_a: TextureRect = %ControlA
@@ -24,7 +23,6 @@ const RAY_LENGTH := 0.55
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var hurt_color_rect: ColorRect = %HurtColorRect
 @onready var health_system: HealthSystem = %HealthSystem
-@onready var timer_ice_shield: Timer = %TimerIceShield
 @onready var damage_numbers_player: DamageNumbers2D = %DamageNumbersPlayer
 @onready var damage_numbers_player_heal: DamageNumbers2D = %DamageNumbersPlayerHeal
 @onready var damage_numbers_enemy: DamageNumbers2D = %DamageNumbersEnemy
@@ -42,8 +40,6 @@ var hurt_tween: Tween
 
 func _ready() -> void:
 	add_to_group('PlayerCharacter')
-	ready_spell_timers()
-	
 	transition_rect.material.set_shader_parameter('inner_radius', -0.1)
 	transition_rect.material.set_shader_parameter('outer_radius', 0.0)
 	transition_rect.show()
@@ -51,7 +47,6 @@ func _ready() -> void:
 	_tween_book(OFFSET_START)
 	page_holder.position = _book_target(OFFSET_START)
 
-	Global.signal_spell_start.connect(show_spell)
 	Global.signal_enemy_damaged.connect(_on_enemy_damaged)
 
 	health_system.signal_max_health_updated.connect(_on_max_health_updated)
@@ -77,9 +72,6 @@ func _on_enemy_damaged(amount: int) -> void:
 	damage_numbers_enemy.spawn_centered(amount)
 
 func can_be_damaged() -> bool:
-	if not timer_ice_shield.is_stopped():
-		return false
-		
 	return true
 
 func _on_hurt(damage_value: int = 0) -> void:	
@@ -90,7 +82,6 @@ func _on_hurt(damage_value: int = 0) -> void:
 
 	if damage_value == 0:
 		damage_numbers_player_heal.spawn(damage_value, bar_pos)
-		remove_spell(Global.SPELLS.ICE)
 		return
 
 	damage_numbers_player.spawn(damage_value, bar_pos)
@@ -203,31 +194,6 @@ func rotate_and_set_direction(angle_delta: float) -> void:
 	direction = (-global_transform.basis.z).snappedf(1.0)
 	print(direction)
 	is_rotating = false
-
-func ready_spell_timers():
-	timer_ice_shield.one_shot = true
-	timer_ice_shield.wait_time = 7.0 # Longer shield timer, since enemies attack so slow
-	timer_ice_shield.timeout.connect(func(): remove_spell(Global.SPELLS.ICE))
-
-# TODO: Page resource
-# TOOD: Spell resource, effects, etc	
-func show_spell(spell: Global.SPELLS):
-	if spell == Global.SPELLS.ICE:
-		ice_color_rect.show()
-		timer_ice_shield.start()
-	elif spell == Global.SPELLS.FIRE:
-		shoot()
-
-func remove_spell(spell: Global.SPELLS):
-	if spell == Global.SPELLS.ICE:
-		print('no more ice')
-		var tween = get_tree().create_tween()
-		tween.tween_property(ice_color_rect.material, 'shader_parameter/vignette_strength', 0.0, 2.0)
-		# Fades out
-		await tween.finished
-		ice_color_rect.hide()
-		ice_color_rect.material['shader_parameter/vignette_strength'] = 1.5		
-
 
 func shoot():
 	var force = 0.6

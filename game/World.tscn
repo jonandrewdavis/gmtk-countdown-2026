@@ -12,7 +12,14 @@ agent_height = 0.7
 agent_radius = 0.15
 agent_max_climb = 0.1
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nefus"]
+
+[sub_resource type="Sky" id="Sky_508ii"]
+sky_material = SubResource("ProceduralSkyMaterial_nefus")
+
 [sub_resource type="Environment" id="Environment_yruvy"]
+background_mode = 2
+sky = SubResource("Sky_508ii")
 
 [node name="World" type="Node3D" unique_id=62566534]
 script = ExtResource("1_16uyv")
@@ -23,7 +30,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="DEBUG_CAM" type="Camera3D" parent="." unique_id=1616180418]
-transform = Transform3D(0.8424786, 0, 0.53872997, 0, 1, 0, -0.53872997, 0, 0.8424786, 4.1579947, 2.0765727, 3.813717)
+transform = Transform3D(0.8424786, 0, 0.53872997, 0, 1, 0, -0.53872997, 0, 0.8424786, 1.9946592, 1.5771487, 1.9315627)
+current = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=559861031]
 unique_name_in_owner = true

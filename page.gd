@@ -5,17 +5,14 @@ extends Control
 signal manage_pageflip(give_control_to_book: bool)
 
 # TOOD: Resource
-@export var spell: Global.SPELLS
-@export var timer_cooldown: float = 5.0
-
+@export var spell: SpellSystem.SPELLS
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
 @onready var timer: Timer = %Timer
 
 var buttons_to_activate: Array[Button] = []
 
-func _ready():
-	timer.wait_time = timer_cooldown
 
+func _ready():
 	for child in get_children():
 		if child is Button:
 			var this_button: Button = child
@@ -30,6 +27,7 @@ func _ready():
 func start_cooldown():
 	if timer.is_stopped() and all_buttons_ready():
 		Global.signal_spell_start.emit(spell)
+		timer.wait_time = Global.spell_system.get_spell_cooldown(spell)
 		texture_progress_bar.value = 0.0
 		timer.start()
 
