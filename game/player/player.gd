@@ -47,6 +47,8 @@ func _ready() -> void:
 	page_holder.position = _book_target(OFFSET_START)
 
 	Global.signal_enemy_damaged.connect(_on_enemy_damaged)
+	Global.signal_spell_start.connect(func(_spell: SpellSystem.SPELLS): count_down -= 1; \
+		label_countdown.text = str(count_down))
 
 	health_system.signal_max_health_updated.connect(_on_max_health_updated)
 	health_system.signal_health_updated.connect(_on_health_updated)
@@ -59,8 +61,7 @@ func _ready() -> void:
 	_on_page_turn(-1) # turn to cover page to get the book in position
 
 	label_countdown.text = str(count_down)
-
-
+	
 func _on_max_health_updated(max_health: int) -> void:
 	health_bar.max_value = max_health
 
