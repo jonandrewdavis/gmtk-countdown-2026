@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://chesbfnlbboby"]
+
+[ext_resource type="Script" uid="uid://b3n41ngdc3c6g" path="res://game/pages/page_lightning.gd" id="1_rb0s2"]
+[ext_resource type="Texture2D" uid="uid://kv5h22xvjglh" path="res://assets/textures/Book/Spell_Lightning.png" id="2_3mv7b"]
+[ext_resource type="Texture2D" uid="uid://cxsrr78hl8024" path="res://game/pages/page_fire_gradient.tres" id="3_flbp2"]
+[ext_resource type="Texture2D" uid="uid://b35hn3htiapxc" path="res://game/pages/yellow_circle_gradient_2.tres" id="4_3mv7b"]
+[ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="4_yen4q"]
+
+[sub_resource type="Gradient" id="Gradient_3mv7b"]
+offsets = PackedFloat32Array(0, 0.5183374, 0.56479216, 0.58679706)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yen4q"]
+gradient = SubResource("Gradient_3mv7b")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb0s2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.99607843, 0.827451, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[node name="PageLightning" type="Control" unique_id=2090317257 node_paths=PackedStringArray("texture_progress_bar", "timer", "control_group")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rb0s2")
+spell = 4
+texture_progress_bar = NodePath("TextureProgressBar")
+timer = NodePath("Timer")
+control_group = NodePath("ControlGroup")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 820.0
+texture = ExtResource("2_3mv7b")
+
+[node name="Timer" type="Timer" parent="." unique_id=995384436]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[node name="ControlGroup" type="Control" parent="." unique_id=1735336742]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HSlider" type="HSlider" parent="ControlGroup" unique_id=1057562957]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 262.77667
+offset_right = 420.0
+offset_bottom = 326.77667
+rotation = -0.7853982
+theme_override_icons/grabber = ExtResource("4_3mv7b")
+theme_override_icons/grabber_highlight = ExtResource("4_3mv7b")
+theme_override_icons/grabber_disabled = SubResource("GradientTexture2D_yen4q")
+theme_override_styles/slider = SubResource("StyleBoxFlat_rb0s2")
+metadata/_edit_group_ = true
+
+[node name="Particles" parent="ControlGroup/HSlider" unique_id=1489809784 instance=ExtResource("4_yen4q")]
+position = Vector2(33.783222, 32.68489)
+
+[node name="HSlider2" type="HSlider" parent="ControlGroup" unique_id=1411317604]
+layout_mode = 0
+offset_left = 154.99998
+offset_top = 432.0
+offset_right = 425.0
+offset_bottom = 496.0
+rotation = -0.7853982
+theme_override_icons/grabber = ExtResource("4_3mv7b")
+theme_override_icons/grabber_highlight = ExtResource("4_3mv7b")
+theme_override_icons/grabber_disabled = SubResource("GradientTexture2D_yen4q")
+theme_override_styles/slider = SubResource("StyleBoxFlat_rb0s2")
+metadata/_edit_group_ = true
+
+[node name="Particles" parent="ControlGroup/HSlider2" unique_id=1115844119 instance=ExtResource("4_yen4q")]
+position = Vector2(28.991394, 33.23398)
+
+[node name="HSlider3" type="HSlider" parent="ControlGroup" unique_id=416496601]
+layout_mode = 0
+offset_left = 158.99986
+offset_top = 621.0
+offset_right = 428.99988
+offset_bottom = 685.0
+rotation = -0.7853982
+theme_override_icons/grabber = ExtResource("4_3mv7b")
+theme_override_icons/grabber_highlight = ExtResource("4_3mv7b")
+theme_override_icons/grabber_disabled = SubResource("GradientTexture2D_yen4q")
+theme_override_styles/slider = SubResource("StyleBoxFlat_rb0s2")
+metadata/_edit_group_ = true
+
+[node name="Particles" parent="ControlGroup/HSlider3" unique_id=1151576909 instance=ExtResource("4_yen4q")]
+position = Vector2(36.062557, 34.64826)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=139384893]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 189.0
+offset_top = 172.0
+offset_right = 329.0
+offset_bottom = 632.0
+mouse_filter = 2
+step = 0.1
+value = 59.7
+fill_mode = 3
+texture_progress = ExtResource("3_flbp2")
+metadata/_edit_lock_ = true

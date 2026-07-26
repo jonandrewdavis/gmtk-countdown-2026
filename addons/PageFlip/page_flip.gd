@@ -714,6 +714,9 @@ func _inject_event_to_viewport(viewport: SubViewport, polygon: Polygon2D, event:
 	ev.position = new_mouse_pos
 	ev.global_position = new_mouse_pos
 	viewport.push_input(ev, true)
+	var touch_ev = _mouse_to_touch(ev)
+	if touch_ev:
+		viewport.push_input(touch_ev, true)
 	var node = viewport.gui_get_hovered_control()
 	if node is Control:
 		# Input.set_default_cursor_shape (not DisplayServer.cursor_set_shape): the main
@@ -722,6 +725,24 @@ func _inject_event_to_viewport(viewport: SubViewport, polygon: Polygon2D, event:
 		Input.set_default_cursor_shape(node.get_default_cursor_shape() as Input.CursorShape)
 	else:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+
+static func _mouse_to_touch(ev: InputEvent) -> InputEvent:
+	if ev is InputEventMouseButton and ev.button_index == MOUSE_BUTTON_LEFT:
+		var touch := InputEventScreenTouch.new()
+		touch.index = 0
+		touch.position = ev.position
+		touch.pressed = ev.pressed
+		touch.double_tap = ev.double_click
+		return touch
+	if ev is InputEventMouseMotion and ev.button_mask & MOUSE_BUTTON_MASK_LEFT:
+		var drag := InputEventScreenDrag.new()
+		drag.index = 0
+		drag.position = ev.position
+		drag.relative = ev.relative
+		drag.velocity = ev.velocity
+		return drag
+	return null
 
 
 func _input(event):

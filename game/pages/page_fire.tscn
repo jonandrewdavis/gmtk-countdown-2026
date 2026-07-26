@@ -1,62 +1,83 @@
 [gd_scene format=3 uid="uid://wamtfbeofiln"]
 
-[ext_resource type="Script" uid="uid://cclab6sse7025" path="res://page.gd" id="1_k3igj"]
+[ext_resource type="Script" uid="uid://bj2a655hodvmr" path="res://game/pages/page_fire.gd" id="1_kna4x"]
 [ext_resource type="Texture2D" uid="uid://dmk4uw0nu07vn" path="res://assets/textures/Book/Spell_Fire.png" id="2_k3igj"]
-[ext_resource type="Texture2D" uid="uid://cxsrr78hl8024" path="res://game/pages/page_fire_gradient.tres" id="3_kna4x"]
-[ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="4_4th0j"]
+[ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="3_kna4x"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl7yk"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.5529412)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
+[sub_resource type="ImageTexture" id="ImageTexture_4th0j"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l06b"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="Gradient" id="Gradient_7tx1s"]
+resource_local_to_scene = true
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.3953125, 0.396875, 0.41261262, 0.42702702, 0.5765766, 0.58198196, 0.59375, 0.609375, 1)
+colors = PackedColorArray(0.93333334, 0.93333334, 0.93333334, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0.99607843, 0, 0.36078432, 1, 0.99607843, 0, 0.36078432, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8980392, 0.8980392, 0.8980392, 0, 1, 1, 1, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x45ud"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.9254902, 0.9137255, 0, 0.58431375)
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
-corner_detail = 5
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k3igj"]
+gradient = SubResource("Gradient_7tx1s")
+width = 450
+height = 450
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmxod"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4th0j"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.92156863, 0.92156863, 0.92156863, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10000
+corner_radius_top_right = 10000
+corner_radius_bottom_right = 10000
+corner_radius_bottom_left = 10000
+corner_detail = 20
 
-[node name="PageFire" type="Control" unique_id=2090317257]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3igj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.99607843, 0, 0.36078432, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10000
+corner_radius_top_right = 10000
+corner_radius_bottom_right = 10000
+corner_radius_bottom_left = 10000
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kna4x"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.92156863, 0.92156863, 0.92156863, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10000
+corner_radius_top_right = 10000
+corner_radius_bottom_right = 10000
+corner_radius_bottom_left = 10000
+corner_detail = 20
+
+[node name="PageFire" type="Control" unique_id=2090317257 node_paths=PackedStringArray("texture_progress_bar", "timer", "control_group")]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_k3igj")
+script = ExtResource("1_kna4x")
 spell = 1
+texture_progress_bar = NodePath("TextureProgressBar")
+timer = NodePath("Timer")
+control_group = NodePath("ControlGroup")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
 layout_mode = 0
@@ -64,52 +85,49 @@ offset_right = 512.0
 offset_bottom = 820.0
 texture = ExtResource("2_k3igj")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=139384893]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 189.0
-offset_top = 172.0
-offset_right = 329.0
-offset_bottom = 632.0
-mouse_filter = 2
-step = 0.1
-value = 59.7
-fill_mode = 3
-texture_progress = ExtResource("3_kna4x")
-
-[node name="Button" type="Button" parent="." unique_id=1010016718]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 0
-offset_left = 187.0
-offset_top = 169.33176
-offset_right = 328.0
-offset_bottom = 311.66824
-mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
-
-[node name="CPUParticles2D4" parent="Button" unique_id=1489809784 instance=ExtResource("4_4th0j")]
-position = Vector2(68, 67.66824)
-
-[node name="Button2" type="Button" parent="." unique_id=1240733112]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 0
-offset_left = 185.0
-offset_top = 481.46924
-offset_right = 331.0
-offset_bottom = 627.46924
-mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl7yk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1l06b")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x45ud")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_hmxod")
-
-[node name="CPUParticles2D4" parent="Button2" unique_id=174443017 instance=ExtResource("4_4th0j")]
-position = Vector2(72, 64.53076)
-
 [node name="Timer" type="Timer" parent="." unique_id=995384436]
 unique_name_in_owner = true
 wait_time = 10.0
 one_shot = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1788943680]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(425, 425)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 183.0
+offset_right = 480.0
+offset_bottom = 633.0
+mouse_filter = 2
+step = 0.1
+value = 64.0
+fill_mode = 4
+texture_under = SubResource("ImageTexture_4th0j")
+texture_progress = SubResource("GradientTexture2D_k3igj")
+
+[node name="ControlGroup" type="Control" parent="." unique_id=484144360]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="ControlGroup" unique_id=1709664354]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 284.0
+offset_right = 378.0
+offset_bottom = 524.0
+theme_override_styles/normal_joystick = SubResource("StyleBoxFlat_4th0j")
+theme_override_styles/normal_tip = SubResource("StyleBoxFlat_k3igj")
+theme_override_styles/pressed_joystick = SubResource("StyleBoxFlat_kna4x")
+theme_override_styles/pressed_tip = SubResource("StyleBoxFlat_k3igj")
+joystick_size = 200.0
+tip_size = 125.0
+action_left = &"fire_left"
+action_right = &"fire_right"
+action_up = &"fire_up"
+action_down = &"fire_down"
+
+[node name="CPUParticles2D4" parent="." unique_id=1489809784 instance=ExtResource("3_kna4x")]
+unique_name_in_owner = true
+position = Vector2(258, 402)

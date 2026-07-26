@@ -11,6 +11,8 @@ class_name SpellSystem
 @onready var area_lightning: Area3D = %AreaLightning
 
 @onready var timer_fire_damage: Timer = %TimerFireDamage
+@onready var timer_ice_prevent_damage: Timer = %TimerIcePreventDamage
+@onready var canvas_layer_ice: CanvasLayer = %CanvasLayerIce
 
 enum SPELLS {
 	ICE,
@@ -38,8 +40,13 @@ const LIGHTNING_CLEANUP_TIME = 0.33
 const LIGHTNING_DAMAGE_MIN = 25
 const LIGHTNING_DAMAGE_MAX = 50
 
+const ICE_DAMAGE_PREVENT_TIMER = 8.0
+
 func get_spell_cooldown(SPELL):
 	return SPELL_COOLDOWNS.get(SPELLS.keys()[SPELL])
+
+func is_damage_prevented() -> bool:
+	return not timer_ice_prevent_damage.is_stopped()
 
 func _ready() -> void:
 	Global.spell_system = self
@@ -54,11 +61,22 @@ func _ready() -> void:
 	area_lightning.body_entered.connect(on_lightning_entered)
 	timer_fire_damage.wait_time = FIRE_TICK_TIME
 	timer_fire_damage.timeout.connect(deal_fire_tick)
+	timer_ice_prevent_damage.wait_time = ICE_DAMAGE_PREVENT_TIMER
+	timer_ice_prevent_damage.timeout.connect(func(): canvas_layer_ice.visible = false)
+	
+	area_fire.top_level = true
+
+func _process(_delta: float) -> void:
+	area_fire.global_position.x = global_position.x
+	area_fire.global_position.z = global_position.z
+
 
 # Godot match statements break automatically.
 func spell_start(spell: SPELLS):
 	match spell:
-		SPELLS.ICE:  pass
+		SPELLS.ICE:
+			canvas_layer_ice.visible = true
+			timer_ice_prevent_damage.start()
 		SPELLS.FIRE:
 			area_fire.visible = true
 			area_fire.monitoring = true

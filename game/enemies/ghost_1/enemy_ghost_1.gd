@@ -43,7 +43,7 @@ const ROTATION_SPEED = 2.0
 @export var attack_value: int = 20
 @export var attack_value_max: int = 30
 
-const RETREAT_CHANCE = 0.6
+const RETREAT_CHANCE = 0.45
 const ATTACK_RANGE = 1.2
 const ARRIVE_DISTANCE = 0.8
 const MIN_ALIGNMENT = 0.25

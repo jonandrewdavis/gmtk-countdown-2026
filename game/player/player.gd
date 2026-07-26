@@ -71,6 +71,8 @@ func _on_enemy_damaged(amount: int) -> void:
 	damage_numbers_enemy.spawn_centered(amount)
 
 func can_be_damaged() -> bool:
+	if Global.spell_system and Global.spell_system.is_damage_prevented():
+		return false
 	return true
 
 func _on_hurt(damage_value: int = 0) -> void:	

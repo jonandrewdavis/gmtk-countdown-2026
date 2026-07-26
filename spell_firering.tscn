@@ -96,7 +96,7 @@ transform = Transform3D(-4.3707047e-08, 0, -0.9998677, 0, 0.99983466, 0, 0.99990
 [node name="Spell_fire" parent="OuterPath/PathFollow3D" unique_id=255890384 instance=ExtResource("1_an4xt")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="FireSpell" parent="OuterPath/PathFollow3D/Spell_fire" index="0" unique_id=1241055400]
+[node name="FireSpell" parent="OuterPath/PathFollow3D/Spell_fire" index="0" unique_id=671371941]
 transform = Transform3D(1.271, -3.4530897e-18, -9.723008e-09, 0, 1.103, -5.483434e-10, 9.469689e-09, 4.634658e-10, 1.305, -2.9802322e-08, 0, 0)
 
 [node name="FireSpell5" type="MeshInstance3D" parent="OuterPath/PathFollow3D/Spell_fire" unique_id=1662557578]
