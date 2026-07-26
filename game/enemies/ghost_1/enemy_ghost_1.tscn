@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="5_1jl0m"]
 [ext_resource type="Texture2D" uid="uid://bxh65xidnxpf6" path="res://assets/mesh/monk/textures/Material.001_baseColor.png" id="5_dfiu0"]
 [ext_resource type="PackedScene" uid="uid://c34e5todmxua4" path="res://assets/mesh/Enemy_Knight.glb" id="9_bcvej"]
+[ext_resource type="Material" uid="uid://d3aypiy5ai8vk" path="res://assets/materials/WorldMaterial.tres" id="10_nd7pr"]
 [ext_resource type="AnimationLibrary" uid="uid://d1jtpjs3818j4" path="res://assets/mesh/monk/ghost_animations.res" id="14_v1528"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_indh1"]
@@ -223,25 +224,25 @@ cast_shadow = 0
 mesh = SubResource("CylinderMesh_j1tbm")
 
 [node name="AudioStreamPlayer3DAmbient" type="AudioStreamPlayer3D" parent="." unique_id=2071931980]
-bus = &"SFX"
 
 [node name="AudioStreamPlayer3DAttack" type="AudioStreamPlayer3D" parent="." unique_id=1183111435]
-bus = &"SFX"
 
 [node name="Enemy_Ghost2" parent="." unique_id=521300060 instance=ExtResource("2_nhagh")]
 unique_name_in_owner = true
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
 
-[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1678079172]
+[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1509290157]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_tgc2r")
 
 [node name="Enemy_Knight" parent="." unique_id=387999878 instance=ExtResource("9_bcvej")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14752433, 0)
 visible = false
 
-[node name="Enemy_knight_026" parent="Enemy_Knight" index="0" unique_id=947738918]
+[node name="Enemy_knight_026" parent="Enemy_Knight" index="0" unique_id=1137966117]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -0.018599704, 0.16821624, -0.006317995)
+material_override = ExtResource("10_nd7pr")
 surface_material_override/0 = SubResource("ShaderMaterial_oihty")
 
 [connection signal="finished" from="AudioStreamPlayer3DAmbient" to="." method="_on_audio_stream_player_3d_ambient_finished"]

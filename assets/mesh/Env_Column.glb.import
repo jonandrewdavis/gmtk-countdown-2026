@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c34e5todmxua4"
-path="res://.godot/imported/Enemy_Knight.glb-c92e35c76354b3f9da98152510fdff59.scn"
+uid="uid://dce2bl7xsxor2"
+path="res://.godot/imported/Env_Column.glb-28d86f37d787946cfd893812aa8ddffb.scn"
 
 [deps]
 
-source_file="res://assets/mesh/Enemy_Knight.glb"
-dest_files=["res://.godot/imported/Enemy_Knight.glb-c92e35c76354b3f9da98152510fdff59.scn"]
+source_file="res://assets/mesh/Env_Column.glb"
+dest_files=["res://.godot/imported/Env_Column.glb-28d86f37d787946cfd893812aa8ddffb.scn"]
 
 [params]
 
@@ -45,6 +45,11 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://assets/materials/WorldMaterial.tres",
 "use_external/path": "uid://d3aypiy5ai8vk"
+}
+},
+"nodes": {
+"PATH:Column": {
+"generate/physics": true
 }
 }
 }

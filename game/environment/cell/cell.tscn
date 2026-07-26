@@ -5,6 +5,7 @@
 [ext_resource type="PlaneMesh" uid="uid://dy2yod8hwvg6q" path="res://assets/walls/wall_mesh_1.tres" id="3_508ii"]
 [ext_resource type="PlaneMesh" uid="uid://t01hrwmpf6p7" path="res://assets/walls/ceiling_mesh.tres" id="4_508ii"]
 [ext_resource type="Shader" uid="uid://bqef5am0cebv7" path="res://assets/shaders/WallTile.tres" id="4_tcmk1"]
+[ext_resource type="PackedScene" uid="uid://dce2bl7xsxor2" path="res://assets/mesh/Env_Column.glb" id="6_tcmk1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0uc8s"]
 material = ExtResource("2_508ii")
@@ -34,6 +35,18 @@ data = PackedVector3Array(0, -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, 0.
 
 [node name="cell" type="Node3D" unique_id=1702587645]
 script = ExtResource("1_7x4xk")
+
+[node name="Env_Column" parent="." unique_id=1067789923 instance=ExtResource("6_tcmk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="Env_Column2" parent="." unique_id=845928291 instance=ExtResource("6_tcmk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="Env_Column3" parent="." unique_id=1599217441 instance=ExtResource("6_tcmk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="Env_Column4" parent="." unique_id=1738751385 instance=ExtResource("6_tcmk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 
 [node name="Bottom" type="MeshInstance3D" parent="." unique_id=297199605]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.129244e-05, 0.0010787249, -0.0004657209)
