@@ -3,7 +3,6 @@ extends Node3D
 const CELL = preload("uid://cau0iddxgec2w")
 
 @export var Map: PackedScene
-const BALL = preload("uid://c1yny3sauy8yu")
 const ENEMY = preload("uid://vydo5ihqeu0v")
 
 @onready var navigation_region_3d: NavigationRegion3D = %NavigationRegion3D

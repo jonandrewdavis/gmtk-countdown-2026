@@ -1,6 +1,8 @@
-[gd_scene format=3 uid="uid://diqu7dsn1wyxf"]
+[gd_scene format=4 uid="uid://diqu7dsn1wyxf"]
 
 [ext_resource type="Script" uid="uid://c6xkmy5xpewp8" path="res://game/player/spell_system.gd" id="1_yhc6l"]
+[ext_resource type="PackedScene" uid="uid://bao8qdmkxffsy" path="res://assets/mesh/Spell_Lightning.glb" id="2_fom8v"]
+[ext_resource type="Material" uid="uid://d3aypiy5ai8vk" path="res://assets/materials/WorldMaterial.tres" id="3_cb4uh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr2nu"]
 albedo_color = Color(1, 0.3647059, 1, 1)
@@ -10,20 +12,127 @@ material = SubResource("StandardMaterial3D_pr2nu")
 radius = 0.2
 height = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yruvy"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_fom8v"]
+radius = 1.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_pr2nu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fom8v"]
+albedo_color = Color(1, 0.32156864, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ko5vc"]
+_surfaces = [{
+"aabb": AABB(-0.43457246, -4.869782e-06, -2.05552, 1.1115148, 0.0003922492, 2.0699534),
+"format": 34896613377,
+"index_count": 231,
+"index_data": PackedByteArray("FQAZABoAGQAYABoAGgAYABYAGgAWABUAGQAXABgAFQAWABIAGwAXABkAFQAbABkAGwAUABcAFQASABEAEQAbABUAEQASAA4AEwAUABsAEQATABsAEwAQABQAEQAOAA0ADQATABEADQAOAAwADwAQABMADQAPABMADwAKABAACQAKAA8ADwANAAkACQAGAAoADQAMAAsACQANAAsACwAMAAgACwAIAAEACQALAAEAAQAIAAcAAAAGAAkACQABAAAAAAADAAYAAgADAAAAAAABAAIAAgAEAAMAAQAHABwAAgABABwAHAAHAAUAHQAEAAIAAgAcAB0AHQAFAAQAHAAFAB0AHgAfACAAIAAhAB4AIAAiACEAHwAiACAAHgAhACMAHwAkACIAHgAjACUAJQAfAB4AJQAjACYAJQAmACcAJwAfACUAJwAmACgAKQAkAB8AJwApAB8AKQAqACQAJwAoACsAKwAoACwALQAnACsAKwAsAC0ALQApACcALQAsAC4ALwAqACkALQAvACkALwAwACoALQAuADEAMQAuADIALwAtADMAMwAwAC8AMwAtADEAMwA0ADAAMQAyADUAMwAxADUANQAyADQANQA0ADMA"),
+"lods": [0.7870856, PackedByteArray("AAABAAIAAgADAAAAAgAEAAMAAgAFAAQAAAADAAYAAgAHAAUAAQAHAAIAAQAIAAcAAAAGAAkACQABAAAACQAGAAoACwAIAAEACQALAAEACwAMAAgADQAMAAsACQANAAsADQAOAAwACQAKAA8ADwANAAkADwAKABAAEQAOAA0AEQASAA4ADQAPABMADwAQABMADQATABEAEwAQABQAFQASABEAEQATABUAEwAUABUAFQAWABIAFQAUABcAFQAYABYAFQAXABgA")],
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 54,
+"vertex_data": PackedByteArray("qLEtAwJHAACaji0DPFUAADl4LQN5UAAAprQtA5VFAAB7ei0DK08AAEq9LQMAAAAAPYAtA1pzAAAQMy0DAWsAAMmLLQPRVgAAXX0tA610AAAkzy0Dh2gAAHhlLQPQfgAAA2MtAwiAAADInS0DHHgAAJWZLQOKeQAAmcstA/JpAABpXy0DArgAABcfLQPXwgAAvxstA8PDAADTWy0DdLkAAOqfLQO7rgAA1WQtA9fCAAAkYS0Dw8MAADRbLQP3/wAAAAAtA/f/AAC6Wi0DC/8AACwFLQML/wAAX50tAwewAADeNi0DMmkAAC+3LQPcBQAA13F9BAv/AADc6Q0G9KYAANOP9wQL/wAA13EtA/f/AABAkC0D9/8AAG1n/////wAAOu0tAzulAACraqn9EP8AAO27LQONvAAAtr64AC67AAC0oi0DhcAAAHLFzAVlrwAAncgtA7itAADCpVsAHL8AAAzSLQOLjwAA7tUMAG+NAAA8sy0Dt5gAAAj3wwU8ggAAEfotA62AAAAotwAAmJYAAP//LQNCWAAAo9EZBdmJAAAp1C0DZogAAF72OgWDYQAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dd1xl"]
+resource_name = "Spell_Lightning_LightningSpell"
+_surfaces = [{
+"aabb": AABB(-0.43457246, -4.869782e-06, -2.05552, 1.1115148, 0.0003922492, 2.0699534),
+"attribute_data": PackedByteArray("Nm+cicN1OIayeXWGlnj1gCd9337EcViBGGqWhJp7oHXihdZy5XlPdDA5qnqaNqN2vUFIdd05a3qHLxJ/vEX5eOU6+nstRTF5YjpBfKQxaodkKfCKEDGzh88oPYvZPAGF4jdQh3I8OYUZNt+Hcji9ioIu9o8ONZKMBC5BkHZDmYf+OM+MyDeEjeMthZthd2xw1IEnb6Vwdniig5KBhm8blGaAbXnkasOD4XrjeZ2AOXpudrKApnRWgcZw04YxfUR/9WePiQJyNYf/eHiEuGhQjq02x3YfQYJ18C/Qfu5C7IfSLnWasj/IfyxApoDoP5SABEBefyw6PYAEQF5/sj/Ifxs6FoDoP5SAeTa+hrk1DIcsQKaAuTUMh0Y9VIV8PJ+FeTa+hnw8n4UXMb6MEjAujUY9VIUSMC6NUjliiko404oXMb6MSjjTio4lVZYDKKqUUjliigMoqpSkMNuNTjGPjY4lVZZOMY+NdCY9kEAn6Y+kMNuNQCfpjyAzB4jxM7CHdCY9kPEzsIdNKXqKMCoeiiAzB4gwKh6KGzoWgCw6PYBNKXqK"),
+"format": 34896613399,
+"index_count": 231,
+"index_data": PackedByteArray("CQAjACQACQAlACMACAAlAAkACAAHACUABQAHAAgABQAGAAcABgAFAAMAAwAFAAQAAwAEAAEAAwABAAAAAAABAAIAAgABACYAAgAmACcAKAApACoAKwApACgALAApACsALAAtACkALgAtACwALgAsAC8ALgAwAC0AMAAuADEAMQAuADIAMQAyADMANAAMADUANQAMAA0ANAALAAwANQANAAoANgALADQACgANAA8ANgAOAAsACgAPABEAEAAOADYAEQAPABMAEAASAA4AEQATABUAFAASABAAFQATABcAFAAWABIAFQAXABkAGAAWABQAGQAXABsAGAAaABYAGQAbAB0AHAAaABgAHQAbAB8AHAAeABoAHQAfADcAIAAeABwANwAfACIAIAAhAB4ANwAiADgAOAAhACAAOAAiACEAOQA6ADsAOQA8ADoAPQA+AD8APQBAAD4AQQBCAEMAQQBEAEIARQBGAEcARQBIAEYASQBKAEsASQBMAEoATQBOAE8ATQBQAE4AUQBSAFMAUQBUAFIAVQBWAFcAVQBYAFYAWQBaAFsAWQBcAFoAXQBeAF8AXQBgAF4AYQBiAGMAYQBkAGIAZQBmAGcAZQBoAGYA"),
+"lods": [0.7870856, PackedByteArray("AAABAAIAAwABAAAAAwAEAAEAAwAFAAQABgAFAAMABQAGAAcABQAHAAgACAAHAAkACgALAAwACgAMAA0ACgAOAAsACgANAA8AEAAOAAoACgAPABEAEAASAA4AEQAPABMAFAASABAAEQATABUAFAAWABIAFQATABcAGAAWABQAFQAXABkAGAAaABYAGQAXABsAHAAaABgAGQAbAB0AHAAeABoAHQAbAB8AIAAeABwAHQAfACAAIAAhAB4AIAAfACIAIAAiACEA")],
+"material": ExtResource("3_cb4uh"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 105,
+"vertex_data": PackedByteArray("qLEtAwJHp/Waji0DPFUW9jl4LQN5UPD6XX0tA610Pvd4ZS0D0H5v98idLQMceGv3mcstA/JppPfTWy0DdLnB+xcfLQPXwvD41WQtA9fC0e7VZC0D18LG4zRbLQP3/5z+AAAtA/f/7eYkYS0Dw8Ob4+qfLQO7rkrrvxstA8PDBPnTWy0DdLn1+RcfLQPXwv34aV8tAwK4oPqVmS0Dink++JnLLQPyadn3yJ0tAxx4Zvckzy0Dh2j79wNjLQMIgDzxXX0tA6106+54ZS0D0H518D2ALQNac73nyYstA9FWe+eosS0DAkdN9pqOLQM8VWz0prQtA5VFePYQMy0DAWsy/Dl4LQN5UL3xe3otAytPvedKvS0DAAAR+bpaLQML//bwLAUtAwv/+PNfnS0DB7AX6d42LQMyabL7L7ctA9wFf/3XcX0EC//b9NzpDQb0poTf04/3BAv/vveraqn9EP9J77a+uAAuuy/hcsXMBWWv3vXu1QwAb41Q9MKlWwAcv63vCPfDBTyCa/Sj0RkF2YmA9Ci3AACYloH0XvY6BYNhifS6Wi0DC/8d+iwFLQML/+3rX50tAwew1ujeNi0DMmmS/C+3LQPcBcf413F9BAv/LfJtZ/////9l8Ktqqf0Q/1Xv13EtA/f/gfLTj/cEC/8L+ddxLQP3//n913F9BAv/Kv5AkC0D9//h+Ktqqf0Q/3Xt7bstA428Gc62vrgALrsNzm1n/////2vttr64AC67c/W0oi0DhcAV8sKlWwAcv37x7bstA428AfbCpVsAHL+g7AzSLQOLj4fm7tUMAG+Nf+a0oi0DhcCp7O7VDABvjUz0PLMtA7eYR/QotwAAmJZH9AzSLQOLj030KLcAAJiW7vT//y0DQliH9F72OgWDYXX0PLMtA7eY7vRe9joFg2F89CnULQNmiN3zo9EZBdmJ3PP//y0DQlh99KPRGQXZic30EfotA62AgPQI98MFPIJ49CnULQNmiNT0CPfDBTyCi/SdyC0DuK2693LFzAVlr733EfotA62Ah/RyxcwFZa/Z8jrtLQM7pX/03OkNBvSmtvSdyC0DuK2l8tzpDQb0pnTWQJAtA/f/cvTTj/cEC/8t9DrtLQM7pWfWVcWsCh/FPwqywmUFjsQdCXXE7Qh3xPEIXMS5CEXCjQS2w24HlMgqEb/NfxuEgTy/QcyEGNPNqBs5ynMUrMNZBzLDZgavw2EH28K3BQ/EIAhBxIQIesT2CDDEYghyx+UOiMgSEc/HoQ/gy8EX/8v/FwTFCgrtxdwL78TgCQrCFwQ1x2wO4MvCF6XDTAeTxycPJcZMDD7LfxZOwp0EW8G4AnqLPbrKz5cfS8SUCMGQmbf5zvQdfoq7uvfF7QspyFIQ6sXTC+DFvwvgxb0L3MW2Cz2G4LztydsTXcu7FtjBswPKw5YHaY5zuBGQnrcMkSC3Go6buKrDUQccwTUCAcEAAr/DfAduks+2VdqvNF7awjR3ksu2bcXiCgrHHQ5Sx6wOKMVYCpbJLRNtzNsYcczjGJLJJBP7xQEM/sUFDP7FBgz7xQAMr8VeC+DFwQvoxdILrsVeC+LFxAsvxl0ML8ZeDOLFwwu9xYML4sXNC+bF1Qu6xXwL28W0C03EmAhMxJUI3cW4C6zGYg3ixc8LyMWaC8XGlA2i1Ekp3YsMuiCM67mq1Fgp")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ko5vc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yruvy"]
+size = Vector3(1, 1, 3)
 
 [node name="SpellSystem" type="Node3D" unique_id=1538375608]
 script = ExtResource("1_yhc6l")
 
 [node name="DEBUG_MESH_INSTANCE" type="MeshInstance3D" parent="." unique_id=29869946]
+layers = 512
 mesh = SubResource("CapsuleMesh_yhc6l")
 
-[node name="Fire" type="Area3D" parent="." unique_id=1492226034]
+[node name="AreaFire" type="Area3D" parent="." unique_id=1492226034]
+unique_name_in_owner = true
+visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Fire" unique_id=1734845983]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaFire" unique_id=1734845983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("SphereShape3D_fom8v")
+debug_color = Color(0.9549214, 3.080368e-06, 0.5484451, 0.41960785)
+
+[node name="Spell_Lightning" parent="AreaFire" unique_id=704322174 instance=ExtResource("2_fom8v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29050237, 0.28835762)
+
+[node name="LightningSpell" parent="AreaFire/Spell_Lightning" index="0" unique_id=84363709]
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell2" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=1128345242]
+transform = Transform3D(0.904414, 0, 0.4266562, 0, 1, 0, -0.4266562, 0, 0.904414, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell3" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=278233966]
+transform = Transform3D(0.71525633, 0, 0.6988623, 0, 1, 0, -0.6988623, 0, 0.71525633, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell4" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=822409380]
+transform = Transform3D(0.31335708, 0, 0.9496355, 0, 1, 0, -0.9496355, 0, 0.31335708, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell5" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=1897537051]
+transform = Transform3D(0.31335708, 0, 0.9496355, 0, 1, 0, -0.9496355, 0, 0.31335708, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell6" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=972440475]
+transform = Transform3D(0.8295915, 0, -0.5583708, 0, 1, 0, 0.5583708, 0, 0.8295915, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell7" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=1637641258]
+transform = Transform3D(0.96654224, 0, -0.25650775, 0, 1, 0, 0.25650775, 0, 0.96654224, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell8" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=1626219320]
+transform = Transform3D(0.97614634, 0, 0.21711439, 0, 1, 0, -0.21711439, 0, 0.97614634, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="LightningSpell9" type="MeshInstance3D" parent="AreaFire/Spell_Lightning" unique_id=969728971]
+transform = Transform3D(0.97614634, 0, 0.21711439, 0, 1, 0, -0.21711439, 0, 0.97614634, 0, 0, 0)
+mesh = SubResource("ArrayMesh_dd1xl")
+surface_material_override/0 = SubResource("StandardMaterial3D_fom8v")
+
+[node name="AreaLightning" type="Area3D" parent="." unique_id=847938440]
+unique_name_in_owner = true
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaLightning" unique_id=307228730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 shape = SubResource("BoxShape3D_yruvy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Fire" unique_id=1327752873]
-mesh = SubResource("PlaneMesh_pr2nu")
+[node name="Spell_Lightning" parent="AreaLightning" unique_id=625239000 instance=ExtResource("2_fom8v")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -0.1, 0.288)
+
+[node name="LightningSpell" parent="AreaLightning/Spell_Lightning" index="0" unique_id=84363709]
+surface_material_override/0 = ExtResource("3_cb4uh")
+
+[node name="TimerFireDamage" type="Timer" parent="." unique_id=458203345]
+unique_name_in_owner = true
+
+[editable path="AreaFire/Spell_Lightning"]
+[editable path="AreaLightning/Spell_Lightning"]

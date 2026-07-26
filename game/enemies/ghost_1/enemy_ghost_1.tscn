@@ -190,6 +190,7 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackBox" unique_id=1196945054]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_8fdcm")
+debug_color = Color(0.8370727, 0.0012444687, 0.9310287, 0.41960785)
 metadata/_edit_lock_ = true
 
 [node name="DetectionBox" type="Area3D" parent="." unique_id=1496836166]
@@ -231,7 +232,7 @@ mesh = SubResource("CylinderMesh_j1tbm")
 unique_name_in_owner = true
 transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
 
-[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1509290157]
+[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1678079172]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_tgc2r")
 
@@ -240,7 +241,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14752433, 0)
 visible = false
 
-[node name="Enemy_knight_026" parent="Enemy_Knight" index="0" unique_id=1137966117]
+[node name="Enemy_knight_026" parent="Enemy_Knight" index="0" unique_id=2050943328]
 transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -0.018599704, 0.16821624, -0.006317995)
 material_override = ExtResource("10_nd7pr")
 surface_material_override/0 = SubResource("ShaderMaterial_oihty")

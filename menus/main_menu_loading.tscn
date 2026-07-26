@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bwtp4idccslav" path="res://menus/main_menu_loading.gd" id="1_script"]
 [ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="2_theme"]
-[ext_resource type="PackedScene" uid="uid://c1yny3sauy8yu" path="res://game/environment/ball/ball.tscn" id="3_ball"]
+[ext_resource type="PackedScene" uid="uid://bao8qdmkxffsy" path="res://assets/mesh/Spell_Lightning.glb" id="2_xjkwq"]
 [ext_resource type="PackedScene" uid="uid://vydo5ihqeu0v" path="res://game/enemies/ghost_1/enemy_ghost_1.tscn" id="4_ghost"]
 [ext_resource type="PackedScene" uid="uid://b0ekxxogjmxvh" path="res://game/player/player.tscn" id="4_xjkwq"]
-[ext_resource type="PackedScene" uid="uid://c34e5todmxua4" path="res://assets/mesh/Enemy_Knight.glb" id="5_rt8he"]
 
 [sub_resource type="Environment" id="Environment_load"]
 background_mode = 1
@@ -21,7 +20,7 @@ height = 60
 
 [node name="MainMenuLoading" type="Node3D" unique_id=410157323]
 script = ExtResource("1_script")
-scenes_to_instantiate = Array[PackedScene]([ExtResource("4_ghost"), ExtResource("3_ball"), ExtResource("4_xjkwq"), ExtResource("5_rt8he")])
+scenes_to_instantiate = Array[PackedScene]([ExtResource("2_xjkwq"), ExtResource("4_ghost"), ExtResource("4_xjkwq")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=216064984]
 environment = SubResource("Environment_load")

@@ -8,7 +8,6 @@ const DEFAULT_SPEED := 3.0
 @export var move_time := 0.4 * speed_factor
 @export var bob_height := 0.07
 
-const BALL = preload("uid://c1yny3sauy8yu")
 const RAY_LENGTH := 0.55
 
 @onready var camera = $Camera3D
@@ -194,14 +193,6 @@ func rotate_and_set_direction(angle_delta: float) -> void:
 	direction = (-global_transform.basis.z).snappedf(1.0)
 	print(direction)
 	is_rotating = false
-
-func shoot():
-	var force = 0.6
-	var shoot_dir = get_shoot_direction()
-	var new_ball: RigidBody3D = BALL.instantiate()
-	get_tree().current_scene.add_child(new_ball, true)
-	new_ball.global_position = camera.global_position + shoot_dir * 0.1
-	new_ball.apply_central_impulse(shoot_dir * force)
 
 func get_shoot_direction() -> Vector3:
 	return camera.project_ray_normal(get_viewport().get_visible_rect().size / 2.0)

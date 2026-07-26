@@ -18,19 +18,6 @@
 [ext_resource type="Script" uid="uid://d5jl3b0hfehw" path="res://game/enemies/components/health_system.gd" id="12_hlth0"]
 [ext_resource type="Script" uid="uid://cbuduog2p7fw5" path="res://addons/damage_numbers/damage_numbers_2d.gd" id="13_dmgnm"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gh012"]
-albedo_color = Color(1, 0.3647059, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_yruvy"]
-material = SubResource("StandardMaterial3D_gh012")
-radius = 0.2
-height = 1.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_pr2nu"]
-top_radius = 0.2
-bottom_radius = 0.1
-height = 0.4
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yruvy"]
 radius = 0.2
 height = 1.0
@@ -112,18 +99,11 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_3780m")
 
-[node name="DEBUG_MESH_INSTANCE" type="MeshInstance3D" parent="." unique_id=871921692]
-mesh = SubResource("CapsuleMesh_yruvy")
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1061677885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.279261)
+cull_mask = 1048063
 near = 0.001
 far = 5000.0
-
-[node name="Nose" type="MeshInstance3D" parent="Camera3D" unique_id=2110059873]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.41826087, -0.87329626)
-visible = false
-mesh = SubResource("CylinderMesh_pr2nu")
 
 [node name="SpellSystem" parent="Camera3D" unique_id=1538375608 instance=ExtResource("2_gh012")]
 unique_name_in_owner = true
