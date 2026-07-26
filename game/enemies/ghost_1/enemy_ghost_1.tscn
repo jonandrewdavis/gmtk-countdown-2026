@@ -223,10 +223,10 @@ mesh = SubResource("CylinderMesh_j1tbm")
 [node name="Enemy_Ghost_Rigged" parent="." unique_id=1536767431 instance=ExtResource("7_nhagh")]
 unique_name_in_owner = true
 
-[node name="Armature" parent="Enemy_Ghost_Rigged" index="0" unique_id=1422991722]
+[node name="Armature" parent="Enemy_Ghost_Rigged" index="0" unique_id=2016674574]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Enemy_Ghost_Rigged/Armature" index="0" unique_id=1061033017]
+[node name="Skeleton3D" parent="Enemy_Ghost_Rigged/Armature" index="0" unique_id=725761291]
 bones/0/rotation = Quaternion(-2.9802326e-08, 1.1920928e-07, -2.5243543e-29, 1)
 bones/1/position = Vector3(0, 0.34901035, 0)
 bones/1/rotation = Quaternion(-3.5527103e-15, 1.7763568e-14, -2.0194842e-28, 1)
@@ -236,17 +236,17 @@ bones/4/rotation = Quaternion(0.7071068, -3.0908588e-08, 1.3767874e-07, 0.707106
 bones/5/rotation = Quaternion(0.7071069, -3.698665e-15, -0.70710665, -1.3256301e-15)
 bones/5/scale = Vector3(0.9475288, 0.9475287, 0.9475287)
 
-[node name="AnimationPlayer" parent="Enemy_Ghost_Rigged" index="1" unique_id=32624117]
+[node name="AnimationPlayer" parent="Enemy_Ghost_Rigged" index="1" unique_id=541556587]
 autoplay = &"ghost_Idle"
 
 [node name="Enemy_Knight_Rigged" parent="." unique_id=1176603478 instance=ExtResource("8_bcvej")]
 unique_name_in_owner = true
 visible = false
 
-[node name="knigthrig" parent="Enemy_Knight_Rigged" index="0" unique_id=992922235]
+[node name="knigthrig" parent="Enemy_Knight_Rigged" index="0" unique_id=359366846]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Enemy_Knight_Rigged/knigthrig" index="0" unique_id=185521245]
+[node name="Skeleton3D" parent="Enemy_Knight_Rigged/knigthrig" index="0" unique_id=902134140]
 bones/2/position = Vector3(3.1763736e-22, 0.20673294, 9.646383e-09)
 bones/2/rotation = Quaternion(-0.11876453, 1.1836556e-07, -1.4157834e-08, 0.9929225)
 bones/3/position = Vector3(1.4359945e-09, 0.13447613, -8.5032914e-10)
@@ -270,7 +270,7 @@ bones/11/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/12/position = Vector3(0.2296108, 0.46555135, 0.24670428)
 bones/12/rotation = Quaternion(-0.3589033, 0.6092524, 0.6092524, -0.35890323)
 
-[node name="AnimationPlayer" parent="Enemy_Knight_Rigged" index="1" unique_id=18795373]
+[node name="AnimationPlayer" parent="Enemy_Knight_Rigged" index="1" unique_id=603585348]
 autoplay = &"Knight_Idle"
 
 [connection signal="finished" from="AudioStreamPlayer3DAmbient" to="." method="_on_audio_stream_player_3d_ambient_finished"]

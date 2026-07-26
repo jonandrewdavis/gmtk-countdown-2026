@@ -1,0 +1,298 @@
+[gd_scene format=3 uid="uid://doru8iopyv7h7"]
+
+[ext_resource type="Script" uid="uid://bx8x12sxjqri5" path="res://menus/main_menu_winner.gd" id="1_r3jd4"]
+[ext_resource type="Texture2D" uid="uid://ckg8gj7rjgvdr" path="res://assets/images/keyboard-&-mouse_sheet_double.png" id="3_7ksp4"]
+[ext_resource type="PackedScene" uid="uid://csjnbcf3pr87d" path="res://menus/world_menu_preview.tscn" id="6_uh4t2"]
+[ext_resource type="Theme" uid="uid://dp5p4tu7lotpj" path="res://assets/theme/lab.tres" id="8_y1fyy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ireii"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0431373, 0.0627451, 0.0862745, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3510t"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(1408, 1664, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ireii"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(1792, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_318nu"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f1to"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(256, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ste8"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(512, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anr75"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(128, 1280, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fytw"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(1792, 1792, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epvkq"]
+atlas = ExtResource("3_7ksp4")
+region = Rect2(2048, 1792, 128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffv50"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0.9999998, 0.036710527, 0.39264116, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqinn"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnhm6"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenuWin" type="CanvasLayer" unique_id=635395771]
+script = ExtResource("1_r3jd4")
+
+[node name="WinModal" type="PanelContainer" parent="." unique_id=1407363759]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -854.0
+offset_top = -545.0
+offset_right = 854.0
+offset_bottom = 545.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_y1fyy")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ireii")
+
+[node name="MarginContainer" type="MarginContainer" parent="WinModal" unique_id=722934905]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinModal/MarginContainer" unique_id=93213992]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WinModal/MarginContainer/VBoxContainer" unique_id=360896931]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 64
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+text = "[b]I have reached the inner sanctum in time. Before me lies a sinister pattern, the runes pulsing with power. It seems the ritual was nearly complete. The Book burns cold in my hands. I hear it's faint whisper...
+
+\"Come to me\" It says.
+
+What should I do? 
+
+[/b]"
+fit_content = true
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WinModal/MarginContainer/VBoxContainer" unique_id=338993221]
+visible = false
+layout_mode = 2
+
+[node name="WASD" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/HBoxContainer" unique_id=843461578]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_3510t")
+
+[node name="Label" type="Label" parent="WinModal/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1657792433]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Move"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="WinModal/MarginContainer/VBoxContainer" unique_id=885001964]
+visible = false
+layout_mode = 2
+
+[node name="Mouse" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1371130091]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_ireii")
+
+[node name="Label" type="Label" parent="WinModal/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1023294680]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Interact"
+
+[node name="BookControlsRaise" type="HBoxContainer" parent="WinModal/MarginContainer/VBoxContainer" unique_id=2030192461]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Mouse" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise" unique_id=725621313]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("AtlasTexture_318nu")
+
+[node name="Label2" type="Label" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise" unique_id=593703960]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "OR"
+
+[node name="Space" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise" unique_id=2121879512]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5f1to")
+
+[node name="Label" type="Label" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise" unique_id=1115814316]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "[ Hold ] to raise The Book"
+
+[node name="BookControlsRaise2" type="HBoxContainer" parent="WinModal/MarginContainer/VBoxContainer" unique_id=1847349506]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="ControlA" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise2" unique_id=793114309]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_4ste8")
+
+[node name="ControlD" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise2" unique_id=985613953]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_anr75")
+
+[node name="Label" type="Label" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise2" unique_id=1807435919]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "OR"
+
+[node name="ArrowLeft" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise2" unique_id=1816578216]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_5fytw")
+
+[node name="ArrowRight" type="TextureRect" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise2" unique_id=2129842182]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_epvkq")
+
+[node name="Label2" type="Label" parent="WinModal/MarginContainer/VBoxContainer/BookControlsRaise2" unique_id=33697243]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Turn the page"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="WinModal/MarginContainer/VBoxContainer" unique_id=738985088]
+layout_mode = 2
+
+[node name="ButtonDestroy" type="Button" parent="WinModal/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1082620675]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_ffv50")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pqinn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dnhm6")
+text = "DESTROY THE BOOK"
+
+[node name="ButtonEmbrace" type="Button" parent="WinModal/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1494544013]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_ffv50")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pqinn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dnhm6")
+text = "EMBRACE THE RITUAL"
+
+[node name="WorldMenuPreview" parent="." unique_id=1058388667 instance=ExtResource("6_uh4t2")]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2072823054]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ThankYou" type="CenterContainer" parent="." unique_id=1222429017]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_y1fyy")
+
+[node name="Label" type="Label" parent="ThankYou" unique_id=2060373749]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Thank you for playing
+"
+
+[editable path="WorldMenuPreview"]
+[editable path="WorldMenuPreview/Env_Column"]
+[editable path="WorldMenuPreview/Env_Column3"]
+[editable path="WorldMenuPreview/Env_Column5"]
+[editable path="WorldMenuPreview/Env_Column6"]
+[editable path="WorldMenuPreview/Env_Column7"]
+[editable path="WorldMenuPreview/Env_Column15"]
+[editable path="WorldMenuPreview/Env_Column16"]
+[editable path="WorldMenuPreview/arch2"]

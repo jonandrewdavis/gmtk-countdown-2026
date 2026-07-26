@@ -14,12 +14,23 @@ var cells = []
 
 func _ready() -> void:
 	Global.signal_enemy_target_changed.connect(_update_combat_music)
+	Global.signal_enemy_target_changed.connect(_update_game_status)
 	SoundManager.crossfade_bgm(SoundManager.MUSIC_INTRO)
 
 	_build_cells()
 	await _bake_navigation()
 	_spawn_enemies()
 	player.fade_in()
+
+func _update_game_status():
+	await get_tree().create_timer(3).timeout
+	var has_enemies = false
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if is_instance_valid(enemy):
+			has_enemies = true
+
+	if has_enemies == false:
+		get_tree().change_scene_to_file("res://menus/main_menu_winner.tscn")
 
 func _update_combat_music() -> void:
 	SoundManager.crossfade_bgm(SoundManager.MUSIC_COMBAT if _any_enemy_hunting() else SoundManager.MUSIC_INTRO)

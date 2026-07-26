@@ -25,6 +25,10 @@ const RAY_LENGTH := 0.55
 @onready var damage_numbers_player: DamageNumbers2D = %DamageNumbersPlayer
 @onready var damage_numbers_player_heal: DamageNumbers2D = %DamageNumbersPlayerHeal
 @onready var damage_numbers_enemy: DamageNumbers2D = %DamageNumbersEnemy
+@onready var canvas_layer_ui: CanvasLayer = %CanvasLayerUI
+
+const GHOST_DEATH = preload("uid://d17fnnelf6pbc")
+const PLAYER_IS_HURT = preload("uid://bck02uf67ocqh")
 
 var is_rotating := false
 var is_moving := false
@@ -34,7 +38,6 @@ const OFFSET_ACTIVE = Vector2(1.5, 1.5)
 var book_raise_tween: Tween
 
 var count_down := 60
-
 var hurt_tween: Tween
 
 func _ready() -> void:
@@ -87,7 +90,7 @@ func _on_hurt(damage_value: int = 0) -> void:
 		return
 
 	damage_numbers_player.spawn(damage_value, bar_pos)
-
+	SoundManager.play_sfx(PLAYER_IS_HURT, -5.0)
 	hurt_color_rect.show()
 	hurt_tween = create_tween().set_trans(Tween.TRANS_SINE)
 	hurt_tween.tween_property(hurt_color_rect.material, 'shader_parameter/vignette_strength', 1.4, 0.07)\
@@ -98,7 +101,7 @@ func _on_hurt(damage_value: int = 0) -> void:
 
 func _on_death() -> void:
 	health_bar.value = 0
-	# TODO: game over
+	game_over()
 
 func _book_target(offset: Vector2) -> Vector2:
 	return camera.get_viewport().get_visible_rect().get_center() * offset
@@ -214,3 +217,21 @@ func fade_in() -> void:
 	tween.parallel().tween_property(transition_rect.material, 'shader_parameter/inner_radius', 0.85, 2.5)
 	await tween.finished
 	transition_rect.hide()
+
+func fade_out() -> void:
+	transition_rect.show()
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(transition_rect.material, 'shader_parameter/outer_radius', 0.0, 4.5)
+	tween.parallel().tween_property(transition_rect.material, 'shader_parameter/inner_radius', -0.0, 4.5)
+	await tween.finished
+
+func game_over():
+	SoundManager.play_sfx(GHOST_DEATH)
+	SoundManager.crossfade_bgm(null, 4.0)
+	
+	canvas_layer_ui.hide()
+	var camera_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	camera_tween.tween_property(camera, "fov", 70.0, 5.0)
+	await fade_out()
+	await get_tree().create_timer(1.0).timeout
+	get_tree().change_scene_to_file("res://menus/main_menu_temp.tscn")

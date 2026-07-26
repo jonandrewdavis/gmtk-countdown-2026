@@ -115,12 +115,13 @@ shape = SubResource("CapsuleShape3D_yruvy")
 [node name="HealthSystem" type="Node" parent="." unique_id=530590663]
 unique_name_in_owner = true
 script = ExtResource("12_hlth0")
-max_health = 1250
-health = 1250
+max_health = 1000
+health = 1000
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=365755593]
+[node name="CanvasLayerUI" type="CanvasLayer" parent="." unique_id=365755593]
+unique_name_in_owner = true
 
-[node name="UI" type="Control" parent="CanvasLayer" unique_id=148245232]
+[node name="UI" type="Control" parent="CanvasLayerUI" unique_id=148245232]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,7 +132,7 @@ mouse_filter = 2
 mouse_behavior_recursive = 2
 theme = ExtResource("3_anr75")
 
-[node name="HurtColorRect" type="ColorRect" parent="CanvasLayer/UI" unique_id=530590664]
+[node name="HurtColorRect" type="ColorRect" parent="CanvasLayerUI/UI" unique_id=530590664]
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_hurt")
@@ -143,7 +144,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PageControlRoot" type="Control" parent="CanvasLayer/UI" unique_id=1174815161]
+[node name="PageControlRoot" type="Control" parent="CanvasLayerUI/UI" unique_id=1174815161]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -44.0
@@ -151,13 +152,13 @@ offset_top = -41.0
 offset_right = -4.0
 offset_bottom = -1.0
 
-[node name="BookControlsRaise" type="Control" parent="CanvasLayer/UI/PageControlRoot" unique_id=1351155341]
+[node name="BookControlsRaise" type="Control" parent="CanvasLayerUI/UI/PageControlRoot" unique_id=1351155341]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Mouse" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookControlsRaise" unique_id=1915180086]
+[node name="Mouse" type="TextureRect" parent="CanvasLayerUI/UI/PageControlRoot/BookControlsRaise" unique_id=1915180086]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
 offset_left = 1474.0
@@ -166,7 +167,7 @@ offset_right = 1602.0
 offset_bottom = 1082.0
 texture = SubResource("AtlasTexture_j0mij")
 
-[node name="Space" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookControlsRaise" unique_id=3987300]
+[node name="Space" type="TextureRect" parent="CanvasLayerUI/UI/PageControlRoot/BookControlsRaise" unique_id=3987300]
 layout_mode = 0
 offset_left = 1315.0
 offset_top = 917.0
@@ -174,7 +175,7 @@ offset_right = 1507.0
 offset_bottom = 1109.0
 texture = SubResource("AtlasTexture_5ghna")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/PageControlRoot/BookControlsRaise" unique_id=591345884]
+[node name="Label" type="Label" parent="CanvasLayerUI/UI/PageControlRoot/BookControlsRaise" unique_id=591345884]
 layout_mode = 0
 offset_left = 1606.0
 offset_top = 977.0
@@ -183,7 +184,7 @@ offset_bottom = 1044.0
 theme_override_font_sizes/font_size = 48
 text = "Book"
 
-[node name="BookArrows" type="Control" parent="CanvasLayer/UI/PageControlRoot" unique_id=1284381388]
+[node name="BookArrows" type="Control" parent="CanvasLayerUI/UI/PageControlRoot" unique_id=1284381388]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 44.0
@@ -191,7 +192,7 @@ offset_top = 41.0
 offset_right = 84.0
 offset_bottom = 81.0
 
-[node name="ControlA" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=802674537]
+[node name="ControlA" type="TextureRect" parent="CanvasLayerUI/UI/PageControlRoot/BookArrows" unique_id=802674537]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
@@ -201,7 +202,7 @@ offset_right = 610.0
 offset_bottom = 1161.0
 texture = SubResource("AtlasTexture_4ste8")
 
-[node name="ControlD" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=709255922]
+[node name="ControlD" type="TextureRect" parent="CanvasLayerUI/UI/PageControlRoot/BookArrows" unique_id=709255922]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
@@ -211,7 +212,7 @@ offset_right = 1973.0
 offset_bottom = 1173.0
 texture = SubResource("AtlasTexture_anr75")
 
-[node name="ArrowLeft" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=1160030228]
+[node name="ArrowLeft" type="TextureRect" parent="CanvasLayerUI/UI/PageControlRoot/BookArrows" unique_id=1160030228]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
@@ -221,7 +222,7 @@ offset_right = 610.0
 offset_bottom = 1280.0
 texture = SubResource("AtlasTexture_5fytw")
 
-[node name="ArrowRight" type="TextureRect" parent="CanvasLayer/UI/PageControlRoot/BookArrows" unique_id=1537755763]
+[node name="ArrowRight" type="TextureRect" parent="CanvasLayerUI/UI/PageControlRoot/BookArrows" unique_id=1537755763]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
@@ -231,57 +232,57 @@ offset_right = 1973.0
 offset_bottom = 1292.0
 texture = SubResource("AtlasTexture_epvkq")
 
-[node name="TopLeft" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=475728918]
+[node name="TopLeft" type="VBoxContainer" parent="CanvasLayerUI/UI" unique_id=475728918]
 layout_mode = 1
 offset_right = 128.0
 offset_bottom = 155.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TopLeft" unique_id=1550966979]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerUI/UI/TopLeft" unique_id=1550966979]
 layout_mode = 2
 
-[node name="WASD" type="TextureRect" parent="CanvasLayer/UI/TopLeft/HBoxContainer" unique_id=176096386]
+[node name="WASD" type="TextureRect" parent="CanvasLayerUI/UI/TopLeft/HBoxContainer" unique_id=176096386]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = SubResource("AtlasTexture_gb4gm")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/TopLeft/HBoxContainer" unique_id=1904693432]
+[node name="Label" type="Label" parent="CanvasLayerUI/UI/TopLeft/HBoxContainer" unique_id=1904693432]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Move"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/TopLeft" unique_id=340473680]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayerUI/UI/TopLeft" unique_id=340473680]
 layout_mode = 2
 
-[node name="Mouse" type="TextureRect" parent="CanvasLayer/UI/TopLeft/HBoxContainer2" unique_id=1642137680]
+[node name="Mouse" type="TextureRect" parent="CanvasLayerUI/UI/TopLeft/HBoxContainer2" unique_id=1642137680]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = SubResource("AtlasTexture_uv2nh")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/TopLeft/HBoxContainer2" unique_id=1863709495]
+[node name="Label" type="Label" parent="CanvasLayerUI/UI/TopLeft/HBoxContainer2" unique_id=1863709495]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Interact"
 
-[node name="TopCenter" type="MarginContainer" parent="CanvasLayer/UI" unique_id=530590660]
+[node name="TopCenter" type="MarginContainer" parent="CanvasLayerUI/UI" unique_id=530590660]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/TopCenter" unique_id=530590661]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerUI/UI/TopCenter" unique_id=530590661]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TopCenter/VBoxContainer" unique_id=566212641]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerUI/UI/TopCenter/VBoxContainer" unique_id=566212641]
 layout_mode = 2
 alignment = 1
 
-[node name="LabelCountdown" type="Label" parent="CanvasLayer/UI/TopCenter/VBoxContainer/HBoxContainer" unique_id=1829217015]
+[node name="LabelCountdown" type="Label" parent="CanvasLayerUI/UI/TopCenter/VBoxContainer/HBoxContainer" unique_id=1829217015]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/UI/TopCenter/VBoxContainer" unique_id=530590662]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayerUI/UI/TopCenter/VBoxContainer" unique_id=530590662]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 24)
 layout_mode = 2
@@ -290,11 +291,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
 value = 100.0
 show_percentage = false
 
-[node name="PageHolder" type="Node2D" parent="CanvasLayer" unique_id=1030296480]
+[node name="PageHolder" type="Node2D" parent="CanvasLayerUI" unique_id=1030296480]
 unique_name_in_owner = true
 z_index = 99
 
-[node name="PageFlip" parent="CanvasLayer/PageHolder" unique_id=665792726 instance=ExtResource("2_b2mth")]
+[node name="PageFlip" parent="CanvasLayerUI/PageHolder" unique_id=665792726 instance=ExtResource("2_b2mth")]
 unique_name_in_owner = true
 blank_page_texture = ExtResource("7_epvkq")
 spine_texture = ExtResource("8_gb4gm")

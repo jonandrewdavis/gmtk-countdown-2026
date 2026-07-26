@@ -82,7 +82,7 @@ var target = null:
 @export var AttackSoundsArray: Array[AudioStream]
 
 # ANIMATION LIST. These are required
-enum LIST { 
+enum LIST {
 	WALK,
 	IDLE,
 	ATTACK,
@@ -119,8 +119,8 @@ func _ready():
 		print("IM A GHOST")
 		
 	if enemy_type == TYPE.KNIGHT:
-		health_system.max_health = 250
-		health_system.heal(250)
+		health_system.max_health = 270
+		health_system.heal(270)
 		attack_time_freq = randf_range(3.0, 7.0)
 		attack_value = 40
 		attack_value_max = 50
