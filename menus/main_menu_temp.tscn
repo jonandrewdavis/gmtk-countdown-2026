@@ -85,9 +85,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -549.0
-offset_top = -471.0
-offset_right = 549.0
+offset_left = -116.0
+offset_top = -660.0
+offset_right = 982.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 100
@@ -142,6 +142,7 @@ value = 0.5
 
 [node name="HowToPlayModal" type="PanelContainer" parent="MainMenu" unique_id=1407363759]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -294,3 +295,4 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="WorldMenuPreview" parent="MainMenu" unique_id=1058388667 instance=ExtResource("2_4uey8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9989405, -0.95020103, -1.35306)

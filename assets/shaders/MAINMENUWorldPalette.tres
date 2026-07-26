@@ -1,14 +1,14 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://d3aypiy5ai8vk"]
+[gd_resource type="VisualShader" format=3 uid="uid://cbx17gy1xkd4b"]
 
-[ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="1_8rqbl"]
+[ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="1_yslik"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yrc3d"]
-texture = ExtResource("1_8rqbl")
+texture = ExtResource("1_yslik")
 
 [sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_yrc3d"]
 
 [sub_resource type="VisualShaderNodeDistanceFade" id="VisualShaderNodeDistanceFade_viixc"]
-default_input_values = [0, 0.0, 1, 2.0]
+default_input_values = [0, 0.0, 1, 4.8]
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_a65kd"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
@@ -18,9 +18,9 @@ op_type = 3
 constant = Color(0, 0, 0, 1)
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_viixc"]
-texture = ExtResource("1_8rqbl")
+texture = ExtResource("1_yslik")
 
-[sub_resource type="VisualShader" id="VisualShader_0bs2g"]
+[resource]
 flags/unshaded = true
 nodes/vertex/0/position = Vector2(400, 160)
 nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_viixc")
@@ -38,7 +38,3 @@ nodes/fragment/5/position = Vector2(100, 380)
 nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_cnpqs")
 nodes/fragment/6/position = Vector2(-300, 560)
 nodes/fragment/connections = PackedInt32Array(6, 0, 5, 1, 4, 0, 5, 2, 5, 0, 0, 0, 2, 0, 5, 0)
-
-[resource]
-render_priority = 0
-shader = SubResource("VisualShader_0bs2g")

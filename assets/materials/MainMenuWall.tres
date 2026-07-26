@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bkj3axbraxwi7"]
+
+[ext_resource type="Shader" uid="uid://56ufouv5ngxw" path="res://assets/shaders/MAINMENUWallTile.tres" id="1_lal3b"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lal3b")
+shader_parameter/ColorParameter = Color(0.282353, 0.278431, 0.258824, 1)
