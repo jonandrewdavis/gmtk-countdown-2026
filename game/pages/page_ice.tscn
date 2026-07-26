@@ -79,12 +79,11 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="PageIce" type="Control" unique_id=2090317257 node_paths=PackedStringArray("texture_progress_bar", "timer", "control_group")]
+[node name="PageIce" type="Control" unique_id=2090317257 node_paths=PackedStringArray("texture_progress_bar", "control_group")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_16ter")
 texture_progress_bar = NodePath("TextureProgressBar")
-timer = NodePath("Timer")
 control_group = NodePath("ControlGroup")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
@@ -107,11 +106,6 @@ value = 64.0
 fill_mode = 4
 texture_under = SubResource("ImageTexture_4i8qy")
 texture_progress = SubResource("GradientTexture2D_16ter")
-
-[node name="Timer" type="Timer" parent="." unique_id=995384436]
-unique_name_in_owner = true
-wait_time = 10.0
-one_shot = true
 
 [node name="ControlGroup" type="Control" parent="." unique_id=24754816]
 anchors_preset = 0

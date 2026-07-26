@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d17fnnelf6pbc"
+path="res://.godot/imported/Ghost Death.wav-5669caf2e130d27b24cd552581313610.sample"
+
+[deps]
+
+source_file="res://assets/sound/Sounds/Death Sounds/Ghost Death.wav"
+dest_files=["res://.godot/imported/Ghost Death.wav-5669caf2e130d27b24cd552581313610.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

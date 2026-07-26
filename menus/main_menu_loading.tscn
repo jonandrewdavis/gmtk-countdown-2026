@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bao8qdmkxffsy" path="res://assets/mesh/Spell_Lightning.glb" id="2_xjkwq"]
 [ext_resource type="PackedScene" uid="uid://vydo5ihqeu0v" path="res://game/enemies/ghost_1/enemy_ghost_1.tscn" id="4_ghost"]
 [ext_resource type="PackedScene" uid="uid://b0ekxxogjmxvh" path="res://game/player/player.tscn" id="4_xjkwq"]
+[ext_resource type="PackedScene" uid="uid://bs2201okxnx7l" path="res://assets/mesh/Spell_fire.glb" id="5_dmysi"]
+[ext_resource type="PackedScene" uid="uid://cau0iddxgec2w" path="res://game/environment/cell/cell.tscn" id="6_jakan"]
+[ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="7_shpgt"]
 
 [sub_resource type="Environment" id="Environment_load"]
 background_mode = 1
@@ -20,7 +23,7 @@ height = 60
 
 [node name="MainMenuLoading" type="Node3D" unique_id=410157323]
 script = ExtResource("1_script")
-scenes_to_instantiate = Array[PackedScene]([ExtResource("2_xjkwq"), ExtResource("4_ghost"), ExtResource("4_xjkwq")])
+scenes_to_instantiate = Array[PackedScene]([ExtResource("2_xjkwq"), ExtResource("4_ghost"), ExtResource("4_xjkwq"), ExtResource("5_dmysi"), ExtResource("6_jakan"), ExtResource("7_shpgt")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=216064984]
 environment = SubResource("Environment_load")

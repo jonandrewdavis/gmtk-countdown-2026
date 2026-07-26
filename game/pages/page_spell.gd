@@ -8,19 +8,24 @@ signal manage_pageflip(give_control_to_book: bool)
 
 @export var spell: SpellSystem.SPELLS
 @export var texture_progress_bar: TextureProgressBar
-@export var timer: Timer
 @export var control_group: Control
 
 func _ready() -> void:
 	texture_progress_bar.max_value = 1.0
 	texture_progress_bar.value = 0.0
-	timer.one_shot = true
-	timer.timeout.connect(_on_cooldown_finished)
 	for control in get_group_controls():
+		control.focus_mode = Control.FOCUS_NONE
+		if control is Slider:
+			control.scrollable = false
 		_setup_control(control)
+	if Global.spell_system:
+		Global.spell_system.cooldown_timers[spell].timeout.connect(_on_cooldown_finished)
+		if is_on_cooldown():
+			_start_cooldown_state()
 
 func _process(_delta):
-	texture_progress_bar.value = timer.time_left
+	if Global.spell_system:
+		texture_progress_bar.value = Global.spell_system.get_spell_cooldown_time_left(spell)
 
 func get_group_controls() -> Array[Control]:
 	var controls: Array[Control] = []
@@ -30,7 +35,7 @@ func get_group_controls() -> Array[Control]:
 	return controls
 
 func is_on_cooldown() -> bool:
-	return not timer.is_stopped()
+	return Global.spell_system != null and Global.spell_system.is_spell_on_cooldown(spell)
 
 func activate(control: Control) -> void:
 	if is_on_cooldown():
@@ -40,19 +45,16 @@ func activate(control: Control) -> void:
 		_cast()
 
 func _cast() -> void:
+	Global.signal_spell_start.emit(spell)
+	_start_cooldown_state()
+
+func _start_cooldown_state() -> void:
+	if Global.spell_system:
+		texture_progress_bar.max_value = maxf(1.0, Global.spell_system.get_spell_cooldown(spell))
 	for control in get_group_controls():
 		_disable(control)
-	Global.signal_spell_start.emit(spell)
-	var cooldown := 1.0
-	if Global.spell_system:
-		cooldown = Global.spell_system.get_spell_cooldown(spell)
-	texture_progress_bar.max_value = cooldown
-	timer.wait_time = cooldown
-	timer.start()
 
 func _on_cooldown_finished() -> void:
-	await get_tree().process_frame
-	texture_progress_bar.value = 0.0
 	for control in get_group_controls():
 		_reset(control)
 

@@ -70,13 +70,12 @@ corner_radius_bottom_right = 10000
 corner_radius_bottom_left = 10000
 corner_detail = 20
 
-[node name="PageFire" type="Control" unique_id=2090317257 node_paths=PackedStringArray("texture_progress_bar", "timer", "control_group")]
+[node name="PageFire" type="Control" unique_id=2090317257 node_paths=PackedStringArray("texture_progress_bar", "control_group")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_kna4x")
 spell = 1
 texture_progress_bar = NodePath("TextureProgressBar")
-timer = NodePath("Timer")
 control_group = NodePath("ControlGroup")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=396192142]
@@ -84,11 +83,6 @@ layout_mode = 0
 offset_right = 512.0
 offset_bottom = 820.0
 texture = ExtResource("2_k3igj")
-
-[node name="Timer" type="Timer" parent="." unique_id=995384436]
-unique_name_in_owner = true
-wait_time = 10.0
-one_shot = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1788943680]
 unique_name_in_owner = true

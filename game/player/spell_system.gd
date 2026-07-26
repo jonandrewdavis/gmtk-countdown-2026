@@ -23,11 +23,11 @@ enum SPELLS {
 }
 
 var SPELL_COOLDOWNS = { 
-	"ICE": 12.0,
-	"FIRE": 8.0, # longer since it lasts awhile
+	"ICE": 9.0,
+	"FIRE": 9.0, # longer since it lasts awhile
 	"HEAL": 0.0,
 	"SACRIFICE": 0.0,
-	"LIGHTNING": 4.0,
+	"LIGHTNING": 5.0,
 }
 
 const FIRE_TICK_TIME = 0.2
@@ -42,11 +42,24 @@ const LIGHTNING_DAMAGE_MAX = 50
 
 const ICE_DAMAGE_PREVENT_TIMER = 8.0
 
+var cooldown_timers := {}
+
 func get_spell_cooldown(SPELL):
 	return SPELL_COOLDOWNS.get(SPELLS.keys()[SPELL])
 
 func is_damage_prevented() -> bool:
 	return not timer_ice_prevent_damage.is_stopped()
+
+func start_cooldown(spell: SPELLS) -> void:
+	var cooldown: float = get_spell_cooldown(spell)
+	if cooldown > 0.0:
+		cooldown_timers[spell].start(cooldown)
+
+func is_spell_on_cooldown(spell: SPELLS) -> bool:
+	return not cooldown_timers[spell].is_stopped()
+
+func get_spell_cooldown_time_left(spell: SPELLS) -> float:
+	return cooldown_timers[spell].time_left
 
 func _ready() -> void:
 	Global.spell_system = self
@@ -63,6 +76,12 @@ func _ready() -> void:
 	timer_fire_damage.timeout.connect(deal_fire_tick)
 	timer_ice_prevent_damage.wait_time = ICE_DAMAGE_PREVENT_TIMER
 	timer_ice_prevent_damage.timeout.connect(func(): canvas_layer_ice.visible = false)
+
+	for spell_value in SPELLS.values():
+		var cooldown_timer := Timer.new()
+		cooldown_timer.one_shot = true
+		add_child(cooldown_timer)
+		cooldown_timers[spell_value] = cooldown_timer
 	
 	area_fire.top_level = true
 
@@ -73,6 +92,7 @@ func _process(_delta: float) -> void:
 
 # Godot match statements break automatically.
 func spell_start(spell: SPELLS):
+	start_cooldown(spell)
 	match spell:
 		SPELLS.ICE:
 			canvas_layer_ice.visible = true
@@ -111,12 +131,9 @@ func blink_lightning(lightning: Area3D) -> void:
 		await get_tree().create_timer(
 			LIGHTNING_BLINK_TIME * lerpf(1.0, 0.3, decay) * randf_range(0.5, 1.0)
 		).timeout
-		if not is_instance_valid(lightning):
-			return
 		lightning.visible = false
 		await get_tree().create_timer(LIGHTNING_BLINK_TIME * (0.3 + decay)).timeout
-		if not is_instance_valid(lightning):
-			return
+
 
 func deal_fire_tick():
 	for body in area_fire.get_overlapping_bodies():

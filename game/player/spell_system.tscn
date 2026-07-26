@@ -57,7 +57,7 @@ shape = SubResource("BoxShape3D_yruvy")
 [node name="Spell_Lightning" parent="AreaLightning" unique_id=625239000 instance=ExtResource("2_fom8v")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -0.1, 0.288)
 
-[node name="LightningSpell" parent="AreaLightning/Spell_Lightning" index="0" unique_id=84363709]
+[node name="LightningSpell" parent="AreaLightning/Spell_Lightning" index="0" unique_id=1834404195]
 surface_material_override/0 = ExtResource("3_cb4uh")
 
 [node name="TimerFireDamage" type="Timer" parent="." unique_id=458203345]
