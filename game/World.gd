@@ -8,7 +8,7 @@ const ENEMY = preload("uid://vydo5ihqeu0v")
 @onready var navigation_region_3d: NavigationRegion3D = %NavigationRegion3D
 @onready var player: Player = %Player
 
-const TOTAL_GHOSTS = 4
+const TOTAL_GHOSTS = 5
 
 var cells = []
 
@@ -69,7 +69,7 @@ func _spawn_enemies():
 			continue
 		if cell.global_transform.origin.distance_to(player.global_transform.origin) < 3.0 * Global.GRID_SIZE:
 			continue
-		spawn_enemy(cell, Enemy.TYPE.CULTIST)
+		spawn_enemy(cell, Enemy.TYPE.GHOST)
 		ghosts_spawned += 1
 
 func get_furthest_cell():

@@ -2,13 +2,11 @@
 
 [ext_resource type="Script" uid="uid://2so0dr2208kn" path="res://game/enemies/ghost_1/enemy_ghost_1.gd" id="1_j1tbm"]
 [ext_resource type="Script" uid="uid://d5jl3b0hfehw" path="res://game/enemies/components/health_system.gd" id="2_ip34o"]
-[ext_resource type="PackedScene" uid="uid://148qaumywbac" path="res://assets/mesh/Enemy_Ghost.glb" id="2_nhagh"]
-[ext_resource type="Shader" uid="uid://bv057fdcdjpii" path="res://assets/shaders/WorldPalette.tres" id="3_bcvej"]
 [ext_resource type="Script" uid="uid://es67axqa8ao6" path="res://game/enemies/components/navigation_system.gd" id="3_uvqya"]
 [ext_resource type="Texture2D" uid="uid://njhp1lxcomx4" path="res://assets/images/T_WorldPalette.png" id="5_1jl0m"]
 [ext_resource type="Texture2D" uid="uid://bxh65xidnxpf6" path="res://assets/mesh/monk/textures/Material.001_baseColor.png" id="5_dfiu0"]
-[ext_resource type="PackedScene" uid="uid://c34e5todmxua4" path="res://assets/mesh/Enemy_Knight.glb" id="9_bcvej"]
-[ext_resource type="Material" uid="uid://d3aypiy5ai8vk" path="res://assets/materials/WorldMaterial.tres" id="10_nd7pr"]
+[ext_resource type="PackedScene" uid="uid://sgeejpy7q0yv" path="res://assets/mesh/Enemy_Ghost_Rigged.glb" id="7_nhagh"]
+[ext_resource type="PackedScene" uid="uid://cth142eudejhx" path="res://assets/mesh/Enemy_Knight_Rigged.glb" id="8_bcvej"]
 [ext_resource type="AnimationLibrary" uid="uid://d1jtpjs3818j4" path="res://assets/mesh/monk/ghost_animations.res" id="14_v1528"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_indh1"]
@@ -136,12 +134,6 @@ shader_parameter/ColorParameter = Color(0.282353, 0.278431, 0.258824, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_j1tbm"]
 height = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tgc2r"]
-render_priority = 0
-shader = ExtResource("3_bcvej")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oihty"]
-
 [node name="EnemyGhost1" type="CharacterBody3D" unique_id=427302985 node_paths=PackedStringArray("animation_player", "health_system", "nav", "nav_agent", "search_box", "attack_box", "detection_box")]
 script = ExtResource("1_j1tbm")
 enemy_type = 1
@@ -228,25 +220,60 @@ mesh = SubResource("CylinderMesh_j1tbm")
 
 [node name="AudioStreamPlayer3DAttack" type="AudioStreamPlayer3D" parent="." unique_id=1183111435]
 
-[node name="Enemy_Ghost2" parent="." unique_id=521300060 instance=ExtResource("2_nhagh")]
+[node name="Enemy_Ghost_Rigged" parent="." unique_id=1536767431 instance=ExtResource("7_nhagh")]
 unique_name_in_owner = true
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
 
-[node name="Enemy_Ghost" parent="Enemy_Ghost2" index="0" unique_id=1678079172]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_tgc2r")
+[node name="Armature" parent="Enemy_Ghost_Rigged" index="0" unique_id=1422991722]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Enemy_Knight" parent="." unique_id=387999878 instance=ExtResource("9_bcvej")]
+[node name="Skeleton3D" parent="Enemy_Ghost_Rigged/Armature" index="0" unique_id=1061033017]
+bones/0/rotation = Quaternion(-2.9802326e-08, 1.1920928e-07, -2.5243543e-29, 1)
+bones/1/position = Vector3(0, 0.34901035, 0)
+bones/1/rotation = Quaternion(-3.5527103e-15, 1.7763568e-14, -2.0194842e-28, 1)
+bones/2/rotation = Quaternion(3.3881318e-21, 0, -2.019484e-28, 1)
+bones/3/rotation = Quaternion(0.7071068, -3.0908588e-08, 1.3767874e-07, 0.7071068)
+bones/4/rotation = Quaternion(0.7071068, -3.0908588e-08, 1.3767874e-07, 0.7071068)
+bones/5/rotation = Quaternion(0.7071069, -3.698665e-15, -0.70710665, -1.3256301e-15)
+bones/5/scale = Vector3(0.9475288, 0.9475287, 0.9475287)
+
+[node name="AnimationPlayer" parent="Enemy_Ghost_Rigged" index="1" unique_id=32624117]
+autoplay = &"ghost_Idle"
+
+[node name="Enemy_Knight_Rigged" parent="." unique_id=1176603478 instance=ExtResource("8_bcvej")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14752433, 0)
 visible = false
 
-[node name="Enemy_knight_026" parent="Enemy_Knight" index="0" unique_id=2050943328]
-transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, -0.018599704, 0.16821624, -0.006317995)
-material_override = ExtResource("10_nd7pr")
-surface_material_override/0 = SubResource("ShaderMaterial_oihty")
+[node name="knigthrig" parent="Enemy_Knight_Rigged" index="0" unique_id=992922235]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Enemy_Knight_Rigged/knigthrig" index="0" unique_id=185521245]
+bones/2/position = Vector3(3.1763736e-22, 0.20673294, 9.646383e-09)
+bones/2/rotation = Quaternion(-0.11876453, 1.1836556e-07, -1.4157834e-08, 0.9929225)
+bones/3/position = Vector3(1.4359945e-09, 0.13447613, -8.5032914e-10)
+bones/3/rotation = Quaternion(-0.13014255, -0.003729275, -0.028399732, 0.9910815)
+bones/4/position = Vector3(-0.010778526, 0.07062745, 0.09361429)
+bones/4/rotation = Quaternion(0.7071068, 1.226961e-07, 2.8560154e-07, 0.7071068)
+bones/5/position = Vector3(0.10168669, 0.20803261, -0.0007086867)
+bones/5/rotation = Quaternion(-0.16582817, 0.15257661, 0.9294355, -0.29218334)
+bones/6/position = Vector3(1.27793935e-08, 0.2688134, 2.2201796e-09)
+bones/6/rotation = Quaternion(0.7139704, -0.11074635, 0.546788, 0.42308912)
+bones/7/rotation = Quaternion(-0.022109088, 0.002698419, -0.02381594, 0.9994682)
+bones/8/position = Vector3(-0.13846125, 0.19792958, -0.0024702537)
+bones/8/rotation = Quaternion(0.14329974, 0.064290494, 0.95475525, 0.2525358)
+bones/9/position = Vector3(3.3893954e-10, 0.25954446, 1.6767217e-08)
+bones/9/rotation = Quaternion(0.7783005, 0.011354134, -0.5247888, 0.34455198)
+bones/10/position = Vector3(-2.8426221e-09, 0.35911828, 1.88657e-08)
+bones/10/rotation = Quaternion(-0.103912756, 0.008921512, 0.12571195, 0.98656934)
+bones/11/position = Vector3(0, 0.29547188, -0.10287866)
+bones/11/rotation = Quaternion(1, 0, 0, -0.00021364604)
+bones/11/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/12/position = Vector3(0.2296108, 0.46555135, 0.24670428)
+bones/12/rotation = Quaternion(-0.3589033, 0.6092524, 0.6092524, -0.35890323)
+
+[node name="AnimationPlayer" parent="Enemy_Knight_Rigged" index="1" unique_id=18795373]
+autoplay = &"Knight_Idle"
 
 [connection signal="finished" from="AudioStreamPlayer3DAmbient" to="." method="_on_audio_stream_player_3d_ambient_finished"]
 
-[editable path="Enemy_Ghost2"]
-[editable path="Enemy_Knight"]
+[editable path="Enemy_Ghost_Rigged"]
+[editable path="Enemy_Knight_Rigged"]

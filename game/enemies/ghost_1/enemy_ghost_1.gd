@@ -10,12 +10,23 @@ class_name Enemy
 # TODO: Resource these if we have at least 3.
 enum TYPE { 
 	GHOST,
-	CULTIST,
 	KNIGHT
 }
 
-@onready var CULT_MESH: Node3D = %Enemy_Ghost2
-@onready var KNIGHT_MESH: Node3D = %Enemy_Knight
+@onready var GHOST_MESH: Node3D = %Enemy_Ghost_Rigged
+@onready var KNIGHT_MESH: Node3D = %Enemy_Knight_Rigged
+
+var animation_player_current: AnimationPlayer
+@onready var animation_player_knight: AnimationPlayer = $Enemy_Knight_Rigged/AnimationPlayer
+@onready var animation_player_ghost: AnimationPlayer = $Enemy_Ghost_Rigged/AnimationPlayer
+
+const RIG_ANI = {
+	TYPE.GHOST: { idle = &"ghost_Idle", attack = &"ghost_attack", death = &"ghost_death" },
+	TYPE.KNIGHT: { idle = &"Knight_Idle", attack = &"Knight_Attack", death = &"Knight_Death" },
+}
+
+var hurt_flash_material := StandardMaterial3D.new()
+var hurt_tween: Tween
 
 @export var enemy_type: TYPE
 
@@ -96,13 +107,16 @@ enum States { IDLE, SEARCHING, CHASING, ATTACKING, HURTING, DODGING, DYING, DECA
 # This variable keeps track of the character's current state.
 var state: States = States.IDLE
 
-func _ready(): 
+func _ready():
 	add_to_group("Enemies")
-	
+
 	var attack_time_freq = randf_range(6.0, 10.0)
-	
-	if enemy_type == TYPE.CULTIST:
-		print("IM A CULTIST")
+
+	animation_player_current = animation_player_ghost
+
+	if enemy_type == TYPE.GHOST:
+		animation_player_current = animation_player_ghost
+		print("IM A GHOST")
 		
 	if enemy_type == TYPE.KNIGHT:
 		health_system.max_health = 250
@@ -110,12 +124,23 @@ func _ready():
 		attack_time_freq = randf_range(3.0, 7.0)
 		attack_value = 40
 		attack_value_max = 50
-		CULT_MESH.hide()
+		GHOST_MESH.hide()
 		KNIGHT_MESH.show()
 		speed = max_speed * 1.2
+		animation_player_current = animation_player_knight
 		print("IM A KNIGHT")
 	
 	animation_player.playback_default_blend_time = 0.4
+
+	animation_player_current.playback_default_blend_time = 0.4
+	animation_player_current.animation_finished.connect(on_current_animation_finished)
+	animation_player_current.play(RIG_ANI[enemy_type].idle)
+
+	hurt_flash_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	hurt_flash_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	hurt_flash_material.albedo_color = Color(1, 1, 1, 0)
+	damage_overlay_material(GHOST_MESH, hurt_flash_material)
+	damage_overlay_material(KNIGHT_MESH, hurt_flash_material)
 
 	nav_agent.path_desired_distance = 0.15
 	nav_agent.target_desired_distance = randf_range(0.5, 0.65)
@@ -293,6 +318,7 @@ func set_state(new_state: States) -> void:
 	# THIS does the actual attack
 	if state == States.ATTACKING:
 		animation_player.play(ANI[LIST.ATTACK])
+		animation_player_current.play(RIG_ANI[enemy_type].attack)
 		# TODO: await an animation but we're not sure if the current animation is in action, etc.
 		await get_tree().create_timer(0.5).timeout
 		attack_box.set_deferred('monitoring', true)
@@ -318,6 +344,7 @@ func set_state(new_state: States) -> void:
 		nav.timer_search.stop()
 		timer_retreat.stop()
 		animation_player.play(ANI[LIST.DYING])
+		animation_player_current.play(RIG_ANI[enemy_type].death)
 		set_process(false)
 		await get_tree().create_timer(2.0).timeout
 		queue_free()
@@ -346,7 +373,26 @@ func on_animation_finished(animation_name):
 	if animation_name == ANI[LIST.ATTACK]:
 		set_state(States.CHASING)
 
+func on_current_animation_finished(animation_name):
+	if animation_name == RIG_ANI[enemy_type].attack:
+		animation_player_current.play(RIG_ANI[enemy_type].idle)
+
+func damage_overlay_material(node: Node, overlay: Material) -> void:
+	if node is MeshInstance3D:
+		node.material_overlay = overlay
+	for child in node.get_children():
+		damage_overlay_material(child, overlay)
+
+func play_hurt_flash():
+	if hurt_tween and hurt_tween.is_running():
+		return
+	hurt_flash_material.albedo_color.a = 0.7
+	hurt_tween = create_tween()
+	hurt_tween.tween_property(hurt_flash_material, "albedo_color:a", 0.0, 0.2)
+	hurt_tween.tween_interval(0.3)
+
 func on_hurt(_damage_value: int = 0):
+	play_hurt_flash()
 	set_state(States.HURTING)
 	Global.signal_enemy_damaged.emit(_damage_value)
 	# Whenever we recieve damage, stop attacking for a moment
