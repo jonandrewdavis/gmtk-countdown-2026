@@ -7,6 +7,51 @@
 [ext_resource type="Texture2D" uid="uid://ucij4orrin6y" path="res://assets/textures/Book/Book_Cover.png" id="3_ffc6i"]
 [ext_resource type="PackedScene" uid="uid://ihc1si1n2lie" path="res://game/pages/page_cpu_particles_ring.tscn" id="4_yki0k"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3510t"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0.61960787, 0.3019608, 0.84705883, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_318nu"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5f1to"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffc6i"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -18,6 +63,22 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ireii"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0431373, 0.0627451, 0.0862745, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3510t"]
 atlas = ExtResource("3_3510t")
@@ -50,6 +111,51 @@ region = Rect2(1792, 1792, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_epvkq"]
 atlas = ExtResource("3_3510t")
 region = Rect2(2048, 1792, 128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffv50"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0.9999998, 0.036710527, 0.39264116, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqinn"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnhm6"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="MainMenuTemp" type="CanvasLayer" unique_id=635395771]
 script = ExtResource("1_o8com")
@@ -111,6 +217,9 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_3510t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_318nu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5f1to")
 text = "  How to Play"
 
 [node name="ButtonStart" type="Button" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=341485007]
@@ -118,6 +227,9 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_3510t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_318nu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5f1to")
 text = "Begin"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MainMargin/VBoxContainer/VBoxContainer" unique_id=1457408358]
@@ -142,7 +254,6 @@ value = 0.5
 
 [node name="HowToPlayModal" type="PanelContainer" parent="MainMenu" unique_id=1407363759]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,6 +266,7 @@ offset_right = 854.0
 offset_bottom = 545.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ireii")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu/HowToPlayModal" unique_id=722934905]
 layout_mode = 2
@@ -274,6 +386,9 @@ text = "Turn the page"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_ffv50")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pqinn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dnhm6")
 text = "RETURN TO MENU"
 
 [node name="TextureRect" type="TextureRect" parent="MainMenu/HowToPlayModal/MarginContainer/HBoxContainer" unique_id=352898283]
